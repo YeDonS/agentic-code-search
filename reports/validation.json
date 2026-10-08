@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-08",
+  "python": "3.12.13",
+  "tests_passed": 55,
+  "ruff": "passed",
+  "package_build": "passed",
+  "api_smoke": {
+    "health": {
+      "status": "ok",
+      "mode": "demo"
+    },
+    "http_debug": "passed",
+    "docs": "passed",
+    "test_status": "baseline_failed"
+  },
+  "wheel_smoke": {
+    "wheel_install": "passed",
+    "packaged_fixture": "passed",
+    "packaged_100_tasks": "passed",
+    "archive_privacy": "passed"
+  },
+  "historical_tasks": 100,
+  "retrieval_hit_at_5": 0.71,
+  "retrieval_reproduction_identical": true,
+  "docker_local": "not available; validation delegated to GitHub Actions",
+  "real_model_evaluation": "not run; provider credentials unavailable",
+  "root_cause_accuracy": null,
+  "patch_resolution_rate": null
+}

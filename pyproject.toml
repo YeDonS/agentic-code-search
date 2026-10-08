@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentic-code-search"
+version = "0.1.0"
+description = "Evidence-first multi-agent code search and debugging with LangChain and FastAPI"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = "MIT"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "langchain>=1.0,<2",
+  "langgraph>=1.0,<2",
+  "langchain-anthropic>=1.0,<2",
+  "langchain-openai>=1.0,<2",
+  "pydantic-settings>=2.8,<3",
+  "httpx>=0.28,<1",
+  "rank-bm25>=0.2.2,<0.3",
+  "typer>=0.15,<1",
+]
+
+[project.optional-dependencies]
+benchmark = ["pyarrow>=19,<24"]
+test-runner = ["pytest>=8,<10"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1"]
+
+[project.scripts]
+code-assistant = "code_assistant.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/code_assistant"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"examples/checkout" = "code_assistant/_fixtures/checkout"
+"benchmarks" = "code_assistant/_benchmarks"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]

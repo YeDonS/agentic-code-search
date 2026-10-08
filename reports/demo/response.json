@@ -1,0 +1,127 @@
+{
+  "run_id": "d9c5c68c46554206ad03d5c49028c642",
+  "mode": "demo",
+  "status": "diagnosed",
+  "diagnosis": {
+    "conclusion": "identified",
+    "root_cause": "discount or 10 treats an explicit numeric zero as false, so the default ten-percent discount is applied.",
+    "affected_files": [
+      "checkout.py"
+    ],
+    "evidence_ids": [
+      "e0004",
+      "e0005",
+      "e0010"
+    ],
+    "suggested_fix": "Use 10 only when discount is None; preserve an explicit zero.",
+    "proposed_patch": "--- a/checkout.py\n+++ b/checkout.py\n@@ -4,4 +4,4 @@\n def calculate_total(price: float, discount: float | None = None) -> float:\n     \"\"\"Apply a percentage discount; an omitted discount defaults to ten percent.\"\"\"\n-    effective_discount = discount or 10\n+    effective_discount = 10 if discount is None else discount\n     return round(price * (1 - effective_discount / 100), 2)\n",
+    "confidence": "high",
+    "limitations": [
+      "Scripted synthetic demo, not a real model evaluation.",
+      "Baseline test status: baseline_failed. Suggested patch was not applied or verified."
+    ]
+  },
+  "evidence": [
+    {
+      "id": "e0001",
+      "kind": "search",
+      "path": "tests/test_checkout.py",
+      "start_line": 6,
+      "end_line": 13,
+      "text": "\n\ndef test_explicit_zero_discount():\n    assert calculate_total(100, discount=0) == 100\n\n\ndef test_positive_discount():\n    assert calculate_total(100, discount=20) == 80"
+    },
+    {
+      "id": "e0002",
+      "kind": "search",
+      "path": "checkout.py",
+      "start_line": 1,
+      "end_line": 7,
+      "text": "\"\"\"Small, intentionally buggy checkout module used by the offline demonstration.\"\"\"\n\n\ndef calculate_total(price: float, discount: float | None = None) -> float:\n    \"\"\"Apply a percentage discount; an omitted discount defaults to ten percent.\"\"\"\n    effective_discount = discount or 10\n    return round(price * (1 - effective_discount / 100), 2)"
+    },
+    {
+      "id": "e0003",
+      "kind": "search",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 5,
+      "text": "# Deliberately failing demonstration\n\n`discount=0` is incorrectly replaced by the default discount. One test fails and two pass.\nThe assistant reads this repository, reproduces the failure, and proposes a patch without\nediting the repository. This fixture is synthetic and is excluded from the historical benchmark."
+    },
+    {
+      "id": "e0004",
+      "kind": "source",
+      "path": "checkout.py",
+      "start_line": 1,
+      "end_line": 7,
+      "text": "\"\"\"Small, intentionally buggy checkout module used by the offline demonstration.\"\"\"\n\n\ndef calculate_total(price: float, discount: float | None = None) -> float:\n    \"\"\"Apply a percentage discount; an omitted discount defaults to ten percent.\"\"\"\n    effective_discount = discount or 10\n    return round(price * (1 - effective_discount / 100), 2)"
+    },
+    {
+      "id": "e0005",
+      "kind": "test",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "text": "{\"exit_code\": 1, \"status\": \"completed\", \"duration_ms\": 109, \"output\": \".F.                                                                      [100%]\\n=================================== FAILURES ===================================\\n_________________________ test_explicit_zero_discount __________________________\\n\\n    def test_explicit_zero_discount():\\n>       assert calculate_total(100, discount=0) == 100\\nE       assert 90.0 == 100\\nE        +  where 90.0 = calculate_total(100, discount=0)\\n\\ntests/test_checkout.py:9: AssertionError\\n=========================== short test summary info ============================\\nFAILED tests/test_checkout.py::test_explicit_zero_discount - assert 90.0 == 100\\n1 failed, 2 passed in 0.01s\\n\", \"output_truncated\": false, \"targets\": [\"tests/test_checkout.py\"], \"executor\": \"local\"}"
+    },
+    {
+      "id": "e0006",
+      "kind": "log",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "text": ".F.                                                                      [100%]\n=================================== FAILURES ===================================\n_________________________ test_explicit_zero_discount __________________________\n\n    def test_explicit_zero_discount():\n>       assert calculate_total(100, discount=0) == 100\nE       assert 90.0 == 100\nE        +  where 90.0 = calculate_total(100, discount=0)\n\ntests/test_checkout.py:9: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_checkout.py::test_explicit_zero_discount - assert 90.0 == 100\n1 failed, 2 passed in 0.01s\n"
+    },
+    {
+      "id": "e0007",
+      "kind": "search",
+      "path": "tests/test_checkout.py",
+      "start_line": 6,
+      "end_line": 13,
+      "text": "\n\ndef test_explicit_zero_discount():\n    assert calculate_total(100, discount=0) == 100\n\n\ndef test_positive_discount():\n    assert calculate_total(100, discount=20) == 80"
+    },
+    {
+      "id": "e0008",
+      "kind": "search",
+      "path": "checkout.py",
+      "start_line": 1,
+      "end_line": 7,
+      "text": "\"\"\"Small, intentionally buggy checkout module used by the offline demonstration.\"\"\"\n\n\ndef calculate_total(price: float, discount: float | None = None) -> float:\n    \"\"\"Apply a percentage discount; an omitted discount defaults to ten percent.\"\"\"\n    effective_discount = discount or 10\n    return round(price * (1 - effective_discount / 100), 2)"
+    },
+    {
+      "id": "e0009",
+      "kind": "search",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 5,
+      "text": "# Deliberately failing demonstration\n\n`discount=0` is incorrectly replaced by the default discount. One test fails and two pass.\nThe assistant reads this repository, reproduces the failure, and proposes a patch without\nediting the repository. This fixture is synthetic and is excluded from the historical benchmark."
+    },
+    {
+      "id": "e0010",
+      "kind": "source",
+      "path": "checkout.py",
+      "start_line": 1,
+      "end_line": 7,
+      "text": "\"\"\"Small, intentionally buggy checkout module used by the offline demonstration.\"\"\"\n\n\ndef calculate_total(price: float, discount: float | None = None) -> float:\n    \"\"\"Apply a percentage discount; an omitted discount defaults to ten percent.\"\"\"\n    effective_discount = discount or 10\n    return round(price * (1 - effective_discount / 100), 2)"
+    }
+  ],
+  "routes": [
+    {
+      "agent": "code_search",
+      "reason": "initial_repository_search"
+    },
+    {
+      "agent": "test_runner",
+      "reason": "source_found_attempt_focused_reproduction"
+    },
+    {
+      "agent": "code_search",
+      "reason": "failed_test_refine_source_hypothesis"
+    },
+    {
+      "agent": "synthesis",
+      "reason": "evidence_ready_or_search_budget_reached"
+    }
+  ],
+  "test_status": "baseline_failed",
+  "patch_verified": false,
+  "error": null
+}

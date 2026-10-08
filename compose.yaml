@@ -1,0 +1,30 @@
+services:
+  assistant:
+    build:
+      context: .
+      target: service
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      ASSISTANT_MODE: ${ASSISTANT_MODE:-demo}
+      ASSISTANT_MODEL: ${ASSISTANT_MODEL:-anthropic:claude-sonnet-4-5-20250929}
+      ASSISTANT_TEST_EXECUTOR: ${ASSISTANT_TEST_EXECUTOR:-disabled}
+      ASSISTANT_API_TOKEN: ${ASSISTANT_API_TOKEN:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    volumes:
+      - assistant-runs:/app/runs
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,size=128m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 1g
+    init: true
+    restart: unless-stopped
+
+volumes:
+  assistant-runs:

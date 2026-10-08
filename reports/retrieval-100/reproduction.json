@@ -1,0 +1,8 @@
+{
+  "initial_run": "runs/retrieval-100",
+  "reproduction_run": "runs/retrieval-100-repro",
+  "count": 100,
+  "ranked_predictions_identical": true,
+  "original_manifest_sha256": "88affe8c9fc35ceb67fe586dfb880934b9731f7572742af064f0f3f97cf5f244",
+  "reproduction_manifest_sha256": "1c04db333ca5bf3d17685b8c84be5d6386daf462f6d73846a7d264ad0c31746c"
+}

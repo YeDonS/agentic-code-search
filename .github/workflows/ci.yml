@@ -1,0 +1,64 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: ${{ matrix.python }}
+      - run: uv sync --locked --all-extras
+      - run: uv run ruff check src tests
+      - run: uv run ruff format --check src tests
+      - run: uv run pytest --cov=code_assistant --cov-report=xml
+      - name: Run real offline reproduction
+        run: |
+          uv run code-assistant demo > demo.json
+          uv run python -c "import json; x=json.load(open('demo.json')); assert x['status']=='diagnosed'; assert x['test_status']=='baseline_failed'; assert not x['patch_verified']"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidence-python-${{ matrix.python }}
+          path: |
+            coverage.xml
+            demo.json
+            runs/*/events.jsonl
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build both images
+        run: |
+          docker build --target service -t code-assistant:ci .
+          docker build --target test-runner -t code-assistant-test:local .
+      - name: Check container API and actual baseline failure
+        run: |
+          docker run -d --name assistant -p 127.0.0.1:8000:8000 -e ASSISTANT_TEST_EXECUTOR=local code-assistant:ci
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/health && break || sleep 2; done
+          curl --fail-with-body -sS http://127.0.0.1:8000/v1/debug -H 'Content-Type: application/json' -d '{"repository":"checkout","issue":"Passing discount=0 to calculate_total(100, discount=0) returns 90 instead of 100."}' > response.json
+          python -c "import json; x=json.load(open('response.json')); assert x['status']=='diagnosed'; assert x['test_status']=='baseline_failed'; assert not x['patch_verified']"
+      - name: Check sandbox runner
+        run: |
+          docker run --rm --network none --read-only --cap-drop ALL --tmpfs /tmp:rw,noexec,nosuid,size=64m --user 65532:65532 --mount "type=bind,src=$PWD/examples/checkout,dst=/workspace,readonly" -e PYTHONPATH=/workspace code-assistant-test:local > sandbox.txt 2>&1 && code=0 || code=$?
+          test "$code" -eq 1
+          grep -q '1 failed, 2 passed' sandbox.txt
+      - name: Container logs
+        if: always()
+        run: docker logs assistant
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docker-evidence
+          path: |
+            response.json
+            sandbox.txt

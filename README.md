@@ -14,7 +14,7 @@ registered source citations. Patches are proposed without changing the repositor
 | Search / test / synthesis agents and conditional routing | Implemented and covered by offline integration tests |
 | Search, source reads, pytest execution, log inspection | Real tools with budgets and structured events |
 | FastAPI, bearer authentication, OpenAPI docs | Locally tested |
-| Docker service, restricted runner, Compose | Build and execution checks in GitHub Actions |
+| Docker service, restricted runner, Compose | Build and execution checks passed in GitHub Actions |
 | 100 historical issues across 12 repositories | Pinned, reproducible SWE-bench Lite subset |
 | Retrieval baseline on all 100 pre-fix snapshots | **100 completed; Hit@1 40%; Hit@5 71%; MRR@5 0.5202** |
 | Real-model root-cause accuracy | Integration and review workflow implemented; **not evaluated** |

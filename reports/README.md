@@ -15,10 +15,15 @@ by the repository's [GitHub Actions runs](https://github.com/YeDonS/agentic-code
 | `demo/response.json` | Scripted diagnosis with actual source/test evidence from the original demo fixture |
 | `demo/events.jsonl` | Search → test → search → synthesis transitions and real tool events |
 | `validation.json` | Local checks and remaining evaluation limits |
+| `github-ci.json` | Successful Docker and Python 3.11/3.12/3.13 jobs for the implementation commit |
 
 All 100 historical runs completed. File Hit@1 = **0.40**, Hit@5 = **0.71**, MRR@5 = **0.5201667**.
 The audit records 100 complete runs and 399 paired tool calls, with no empty searches, tool
 errors, or index truncation. There are 29 localization misses despite successful tool execution.
+
+[The implementation CI run](https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547)
+passed all four jobs, including actual container API and restricted-runner checks.
+The final evidence-only documentation commit does not change the verified implementation.
 
 Root-cause accuracy and patch resolution remain `null`: neither can be inferred from file
 localization. The demo is synthetic, uses a fixed model script, and is excluded from the

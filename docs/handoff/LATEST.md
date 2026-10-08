@@ -27,6 +27,8 @@ with English/Chinese READMEs and evidence-backed answers to four interview quest
 - Curated outputs: `reports/`; full local outputs: ignored `runs/` and `.cache/`.
 - Package build succeeds; API and wheel smoke checks are recorded in `reports/validation.json`.
 - Container and multi-version evidence is available from the repository's GitHub Actions CI.
+- CI run `37818447547` passed Docker and Python 3.11/3.12/3.13 jobs for implementation
+  commit `58736e5068c6cb51021e3c945a404f6ac5e29e68`; see `reports/github-ci.json`.
 
 ## Review Notes
 

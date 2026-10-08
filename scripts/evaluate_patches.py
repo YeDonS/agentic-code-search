@@ -89,8 +89,16 @@ def main() -> None:
             raise ValueError("invalid instance ID")
         case = args.output / identifier
         case.mkdir()
+        patch_sha256 = hashlib.sha256(prediction.get("model_patch", "").encode()).hexdigest()
         if not prediction.get("model_patch", "").strip():
-            outcomes.append({"instance_id": identifier, "status": "empty_patch", "resolved": False})
+            outcomes.append(
+                {
+                    "instance_id": identifier,
+                    "status": "empty_patch",
+                    "resolved": False,
+                    "patch_sha256": patch_sha256,
+                }
+            )
             write_jsonl(args.output / "outcomes.jsonl", outcomes)
             continue
         row = reference[identifier]
@@ -102,6 +110,7 @@ def main() -> None:
             "status": "infrastructure_error",
             "resolved": False,
             "image": image,
+            "patch_sha256": patch_sha256,
         }
         try:
             with (case / "image-pull.log").open("w") as stream:

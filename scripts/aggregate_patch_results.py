@@ -18,6 +18,24 @@ def aggregate(predictions: Path, artifacts: Path) -> dict:
     ids = [row["instance_id"] for row in rows]
     if len(ids) != len(set(ids)) or set(ids) - expected:
         raise ValueError("duplicate or unknown shard outcomes")
+    prediction_map = {p["instance_id"]: p for p in submitted}
+    for row in rows:
+        if row["status"] not in {
+            "resolved",
+            "unresolved",
+            "empty_patch",
+            "infrastructure_error",
+            "evaluation_error",
+        } or row.get("resolved") is not (row["status"] == "resolved"):
+            raise ValueError("invalid or inconsistent evaluation outcome")
+        patch = prediction_map[row["instance_id"]].get("model_patch", "")
+        if (
+            "patch_sha256" in row
+            and row["patch_sha256"] != hashlib.sha256(patch.encode()).hexdigest()
+        ):
+            raise ValueError("evaluation patch hash does not match frozen prediction")
+        if row["resolved"] and not patch:
+            raise ValueError("cannot resolve an empty patch")
     missing = sorted(expected - set(ids))
     resolved = sorted(
         r["instance_id"] for r in rows if r["status"] == "resolved" and r["resolved"] is True

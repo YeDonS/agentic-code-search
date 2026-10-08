@@ -67,7 +67,13 @@ def load_aggregator():
 
 def test_patch_aggregation_keeps_empty_error_and_missing_in_denominator(tmp_path):
     predictions = tmp_path / "predictions.jsonl"
-    write_jsonl(predictions, [{"instance_id": name} for name in ("a", "b", "c", "d")])
+    write_jsonl(
+        predictions,
+        [
+            {"instance_id": name, "model_patch": "patch" if name == "a" else ""}
+            for name in ("a", "b", "c", "d")
+        ],
+    )
     artifacts = tmp_path / "artifacts"
     write_jsonl(
         artifacts / "one/outcomes.jsonl",

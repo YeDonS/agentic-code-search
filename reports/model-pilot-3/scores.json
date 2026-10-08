@@ -1,0 +1,44 @@
+{
+  "expected": 3,
+  "submitted": 3,
+  "failed_or_missing": 0,
+  "file_hit_at_1": 1.0,
+  "file_hit_at_5": 1.0,
+  "mrr_at_5": 1.0,
+  "mean_changed_file_recall_at_5": 1.0,
+  "root_cause_accuracy": null,
+  "patch_resolution_rate": null,
+  "metric_scope": "file localization against maintainer patches; not semantic correctness or test resolution",
+  "per_issue": [
+    {
+      "instance_id": "astropy__astropy-12907",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": null
+    },
+    {
+      "instance_id": "django__django-16255",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": null
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23964",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": null
+    }
+  ]
+}

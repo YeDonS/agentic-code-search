@@ -1,0 +1,33 @@
+{
+  "mode": "model",
+  "count": 3,
+  "task_ids": [
+    "astropy__astropy-12907",
+    "django__django-16255",
+    "matplotlib__matplotlib-23964"
+  ],
+  "tasks_sha256": "933b5103f3a746835a41a71422d84487b504291ca577b5a450f9bf280b458a18",
+  "model": "codex-cli:gpt-6.1-sol",
+  "seed": 2026,
+  "created_at": "2026-10-08T17:57:00.305148+00:00",
+  "test_executor": "disabled",
+  "max_tool_calls": 18,
+  "max_search_passes": 2,
+  "max_agent_steps": 5,
+  "model_timeout": 120,
+  "codex_reasoning_effort": "medium",
+  "workers": 2,
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.4.1-arm64-arm-64bit",
+    "source_tree_sha256": "5ff16e6d2247f480eceae02c9d87d51f6f677aa27c054c432dfdda2303b941c9",
+    "packages": {
+      "langchain": "1.4.3",
+      "langgraph": "1.2.14",
+      "fastapi": "0.143.0",
+      "numpy": "2.5.3",
+      "rank-bm25": "0.2.2"
+    }
+  },
+  "codex_cli_version": "codex-cli 0.162.0-alpha.2"
+}

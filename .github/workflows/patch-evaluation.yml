@@ -1,0 +1,91 @@
+name: Official patch evaluation
+run-name: SWE-bench patches from ${{ inputs.predictions_path }}
+on:
+  workflow_dispatch:
+    inputs:
+      predictions_path:
+        description: Frozen SWE-bench JSONL predictions under reports/
+        required: true
+        default: reports/model-100/swebench-predictions.jsonl
+      shards:
+        description: Number of isolated shards (1 to 20)
+        required: true
+        default: "20"
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: matrix
+        env:
+          PREDICTIONS: ${{ inputs.predictions_path }}
+          SHARDS: ${{ inputs.shards }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path(os.environ['PREDICTIONS'])
+          assert path.resolve().is_relative_to(Path('reports').resolve()) and path.is_file()
+          rows = [json.loads(line) for line in path.read_text().splitlines()]
+          n = int(os.environ['SHARDS'])
+          assert 1 <= n <= min(20, len(rows))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('matrix=' + json.dumps({'shard': list(range(n))}) + '\n')
+          PY
+  evaluate:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Install pinned official harness
+        run: uv sync --locked --extra benchmark && uv pip install 'swebench==5.0.2'
+      - name: Evaluate frozen patches (no LLM login or API secrets)
+        env:
+          PREDICTIONS: ${{ inputs.predictions_path }}
+          SHARD: ${{ matrix.shard }}
+          SHARDS: ${{ inputs.shards }}
+        run: uv run --no-sync python scripts/evaluate_patches.py "$PREDICTIONS" "runs/patch-shard-$SHARD" --shard "$SHARD" --shards "$SHARDS" --timeout 600
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: patch-shard-${{ matrix.shard }}
+          path: runs/patch-shard-${{ matrix.shard }}
+          retention-days: 30
+  aggregate:
+    needs: evaluate
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: patch-shard-*
+          path: runs/patch-artifacts
+      - name: Aggregate with full denominator
+        env:
+          PREDICTIONS: ${{ inputs.predictions_path }}
+        run: uv run python scripts/aggregate_patch_results.py "$PREDICTIONS" runs/patch-artifacts runs/official-patch-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: official-patch-results
+          path: runs/official-patch-results.json

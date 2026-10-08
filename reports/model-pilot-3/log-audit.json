@@ -1,0 +1,51 @@
+{
+  "trace_files": 6,
+  "event_counts": {
+    "run_start": 6,
+    "index_ready": 3,
+    "route": 6,
+    "model_response": 14,
+    "tool_start": 18,
+    "search_result": 5,
+    "tool_end": 18,
+    "patch_check": 3,
+    "run_end": 6,
+    "snapshot_ready": 3
+  },
+  "route_reasons": {
+    "initial_repository_search": 3,
+    "evidence_ready_or_search_budget_reached": 3
+  },
+  "failure_patterns": {
+    "empty_search": 0,
+    "tool_error": 0,
+    "environment_error": 0,
+    "test_timeout": 0,
+    "index_truncated": 0,
+    "invalid_synthesis": 0,
+    "agent_step_limit": 0,
+    "run_error": 0
+  },
+  "tool_duration_ms_raw": [
+    20,
+    1,
+    1,
+    1,
+    1,
+    6,
+    1,
+    0,
+    0,
+    0,
+    23,
+    8,
+    1,
+    1,
+    1,
+    7,
+    1,
+    1
+  ],
+  "unpaired_tools": 0,
+  "unfinished_runs": 0
+}

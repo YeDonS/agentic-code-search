@@ -31,7 +31,10 @@ class Settings(BaseSettings):
     max_search_passes: int = Field(default=2, ge=1, le=4)
     max_agent_steps: int = Field(default=5, ge=1, le=10)
     max_tool_calls: int = Field(default=18, ge=1, le=50)
-    model_timeout: int = Field(default=60, ge=1, le=120)
+    model_timeout: int = Field(default=120, ge=1, le=300)
+    codex_reasoning_effort: Literal["low", "medium", "high", "xhigh", "max"] = "medium"
+    codex_executable: str = "codex"
+    codex_transport: Literal["auto", "https"] = "auto"
 
     def repository(self, name: str) -> Path:
         if not name or Path(name).is_absolute():

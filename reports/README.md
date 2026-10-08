@@ -27,7 +27,8 @@ Model inference reused a local Codex login; authentication files and API secrets
 | [Real-model HTTP](real-model-api/validation.json) | Bearer auth and three-role plumbing on the same synthetic fixture |
 | [Retrieval baseline](retrieval-100/scores.json) | Original Hit@1 40%, Hit@5 71%, MRR@5 0.5201667 |
 | [Retrieval reproduction](retrieval-100/reproduction.json) | Second full run produced identical ranked predictions |
-| [Validation](validation.json) and [CI](github-ci.json) | Local checks and actual multi-version/container evidence |
+| [Original validation](validation.json) and [original CI](github-ci.json) | Baseline-era checks and multi-version/container evidence |
+| [Remediation validation](experiments/validation.json) and [CI](experiments/github-ci.json) | 107 tests, CLI coverage 72.2%, eight successful Python/container checks tied to the tested source |
 
 The LLM run completed **100/100**: 90 cited diagnoses and 10 explicit abstentions. File
 Hit@1 is **87%**, Hit@5 **88%**, MRR@5 **0.875**. All 100 routes were **search → synthesis**;

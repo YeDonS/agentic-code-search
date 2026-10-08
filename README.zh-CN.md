@@ -1,7 +1,7 @@
 # Agentic Code-Search & Debugging Assistant
 
 [![CI](https://github.com/YeDonS/agentic-code-search/actions/workflows/ci.yml/badge.svg)](https://github.com/YeDonS/agentic-code-search/actions/workflows/ci.yml)
-[English](README.md) · [简体中文](README.zh-CN.md) · [面试讲解](docs/INTERVIEW.md)
+[English](README.md) · [简体中文](README.zh-CN.md)
 
 基于 **LangChain、LangGraph、FastAPI 和 Docker** 的开发助手。三个专职 agent
 分别定位代码、复现失败、综合诊断，输出附带源码引用和修复建议，不直接修改仓库。
@@ -168,7 +168,7 @@ token 用量。事件日志不记录提示词、源码正文和隐藏推理。�
 由 Git 忽略，不自动公开。
 
 `code-assistant logs <目录>` 汇总空检索、工具和环境错误、超时、索引截断、无效综合输出
-及未完成运行。[面试讲解](docs/INTERVIEW.md)。
+及未完成运行。[真实日志审计](reports/model-100/log-audit.json)。
 
 ```bash
 uv run ruff check src tests scripts
@@ -181,5 +181,5 @@ CI 覆盖 Python 3.11/3.12/3.13，并验证两种 Docker 镜像。故意失败�
 执行，不会被项目测试套件直接收集。
 
 `src/code_assistant/` 为实现，`examples/` 为演示，`benchmarks/` 为任务及独立标签，
-`tests/` 为行为测试，`docs/` 为设计与面试说明，`reports/` 为可公开的运行证据。
+`tests/` 为行为测试，`docs/` 为架构与复现说明，`reports/` 为可公开的运行证据。
 项目代码采用 [MIT](LICENSE)；历史数据与源码归上游作者所有。[来源说明](benchmarks/NOTICE.md)。

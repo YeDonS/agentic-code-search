@@ -1,7 +1,7 @@
 # Agentic Code-Search & Debugging Assistant
 
 [![CI](https://github.com/YeDonS/agentic-code-search/actions/workflows/ci.yml/badge.svg)](https://github.com/YeDonS/agentic-code-search/actions/workflows/ci.yml)
-[English](README.md) · [简体中文](README.zh-CN.md) · [Interview walkthrough](docs/INTERVIEW.md)
+[English](README.md) · [简体中文](README.zh-CN.md)
 
 An evidence-first developer assistant built with **LangChain, LangGraph, FastAPI, and Docker**.
 Three specialist agents locate code, reproduce failures, and synthesize a diagnosis with
@@ -173,7 +173,7 @@ when available. Event logs omit prompts, source text, and hidden reasoning. Deta
 responses contain source excerpts and are ignored by Git.
 
 `code-assistant logs <directory>` identifies empty searches, tool/environment errors, timeouts,
-index truncation, invalid synthesis, and incomplete traces. [Logging walkthrough](docs/INTERVIEW.md).
+index truncation, invalid synthesis, and incomplete traces. [Trace audit](reports/model-100/log-audit.json).
 
 ```bash
 uv run ruff check src tests scripts
@@ -186,6 +186,6 @@ CI tests Python 3.11/3.12/3.13 and checks both Docker images. Deliberately faili
 run in a subprocess and are excluded from the project's normal test collection.
 
 `src/code_assistant/` contains implementation; `examples/` the synthetic demo; `benchmarks/`
-the pinned tasks and separate labels; `tests/` behavioral tests; `docs/` design and interview
-answers; `reports/` curated public evidence. Project code is [MIT](LICENSE); upstream historical
+the pinned tasks and separate labels; `tests/` behavioral tests; `docs/` architecture and
+reproduction guides; `reports/` curated public evidence. Project code is [MIT](LICENSE); upstream historical
 data and source remain attributable to their authors. [Notices](benchmarks/NOTICE.md).

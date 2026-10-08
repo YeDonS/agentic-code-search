@@ -1,0 +1,12 @@
+{
+  "tasks": 100,
+  "model_calls": 541,
+  "input_tokens": 5379967,
+  "output_tokens": 124958,
+  "cached_input_tokens": 939008,
+  "builtin_tool_calls": 0,
+  "transport_reconnects": 0,
+  "applicable_patches": 73,
+  "withheld_patches": 17,
+  "model_duration_ms": 7798057
+}

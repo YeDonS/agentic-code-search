@@ -1,0 +1,160 @@
+=================================== FAILURES ===================================
+[31m[1m__________________ TestNumpyDocstring.test_token_type_invalid __________________[0m
+
+self = <tests.test_ext_napoleon_docstring.TestNumpyDocstring object at 0x7f2cf50b2eb0>
+warning = <_io.StringIO object at 0x7f2cf5128af0>
+
+    [0m[94mdef[39;49;00m [92mtest_token_type_invalid[39;49;00m([96mself[39;49;00m, warning):[90m[39;49;00m
+        tokens = ([90m[39;49;00m
+            [33m"[39;49;00m[33m{[39;49;00m[33m1, 2[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33m}[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33m'[39;49;00m[33mabc[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m"[39;49;00m[33mdef[39;49;00m[33m'[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33m'[39;49;00m[33m"[39;49;00m[33mghi[39;49;00m[33m'[39;49;00m,[90m[39;49;00m
+            [33m'[39;49;00m[33mjkl[39;49;00m[33m"[39;49;00m[33m'[39;49;00m,[90m[39;49;00m
+        )[90m[39;49;00m
+        errors = ([90m[39;49;00m
+            [33mr[39;49;00m[33m"[39;49;00m[33m.+: invalid value set [39;49;00m[33m\[39;49;00m[33m(missing closing brace[39;49;00m[33m\[39;49;00m[33m):[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33mr[39;49;00m[33m"[39;49;00m[33m.+: invalid value set [39;49;00m[33m\[39;49;00m[33m(missing opening brace[39;49;00m[33m\[39;49;00m[33m):[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33mr[39;49;00m[33m"[39;49;00m[33m.+: malformed string literal [39;49;00m[33m\[39;49;00m[33m(missing closing quote[39;49;00m[33m\[39;49;00m[33m):[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33mr[39;49;00m[33m"[39;49;00m[33m.+: malformed string literal [39;49;00m[33m\[39;49;00m[33m(missing opening quote[39;49;00m[33m\[39;49;00m[33m):[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33mr[39;49;00m[33m"[39;49;00m[33m.+: malformed string literal [39;49;00m[33m\[39;49;00m[33m(missing closing quote[39;49;00m[33m\[39;49;00m[33m):[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+            [33mr[39;49;00m[33m"[39;49;00m[33m.+: malformed string literal [39;49;00m[33m\[39;49;00m[33m(missing opening quote[39;49;00m[33m\[39;49;00m[33m):[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+        )[90m[39;49;00m
+        [94mfor[39;49;00m token, error [95min[39;49;00m [96mzip[39;49;00m(tokens, errors):[90m[39;49;00m
+            [94mwith[39;49;00m warns(warning, match=error):[90m[39;49;00m
+>               _token_type(token)[90m[39;49;00m
+
+[1m[31mtests/test_ext_napoleon_docstring.py[0m:2499:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m/opt/miniconda3/envs/testbed/lib/python3.9/contextlib.py[0m:126: in __exit__
+    [0m[96mnext[39;49;00m([96mself[39;49;00m.gen)[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+warning = <_io.StringIO object at 0x7f2cf5128af0>
+match = '.+: invalid value set \\(missing closing brace\\):'
+
+    [0m[37m@contextmanager[39;49;00m[90m[39;49;00m
+    [94mdef[39;49;00m [92mwarns[39;49;00m(warning, match):[90m[39;49;00m
+        match_re = re.compile(match)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94myield[39;49;00m warning[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            raw_warnings = warning.getvalue()[90m[39;49;00m
+            warnings = [w [94mfor[39;49;00m w [95min[39;49;00m raw_warnings.split([33m"[39;49;00m[33m\n[39;49;00m[33m"[39;49;00m) [94mif[39;49;00m w.strip()][90m[39;49;00m
+    [90m[39;49;00m
+>           [94massert[39;49;00m [96mlen[39;49;00m(warnings) == [94m1[39;49;00m [95mand[39;49;00m [96mall[39;49;00m(match_re.match(w) [94mfor[39;49;00m w [95min[39;49;00m warnings)[90m[39;49;00m
+[1m[31mE           assert (2 == 1)[0m
+[1m[31mE            +  where 2 = len(["\x1b[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden\x1b[39;49;00m", '\x1b[91mWARNING: invalid value set (missing closing brace): {1, 2\x1b[39;49;00m'])[0m
+
+[1m[31mtests/test_ext_napoleon_docstring.py[0m:2475: AssertionError
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v4.0.0+/e6b2d7bcf[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91mWARNING: invalid value set (missing closing brace): {1, 2[39;49;00m
+
+[33m=============================== warnings summary ===============================[0m
+sphinx/util/docutils.py:44
+  /testbed/sphinx/util/docutils.py:44: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    __version_info__ = tuple(LooseVersion(docutils.__version__).version)
+
+sphinx/registry.py:22
+  /testbed/sphinx/registry.py:22: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    from pkg_resources import iter_entry_points
+
+../opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pkg_resources/__init__.py:3154
+../opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pkg_resources/__init__.py:3154
+../opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pkg_resources/__init__.py:3154
+../opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pkg_resources/__init__.py:3154
+  /opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_ext_napoleon_docstring.py::TestNumpyDocstring::test_token_type_invalid
+  /testbed/sphinx/directives/patches.py:15: DeprecationWarning: The `docutils.parsers.rst.directive.html` module will be removed in Docutils 2.0. Since Docutils 0.18, the "Meta" node is defined in `docutils.parsers.rst.directives.misc`.
+    from docutils.parsers.rst.directives import html, images, tables
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+[32m[1m__________________ TestNumpyDocstring.test_pep526_annotations __________________[0m
+----------------------------- Captured stdout call -----------------------------
+Sample class with PEP 526 annotations and numpy docstring
+
+.. attribute:: attr1
+
+   Attr1 description
+
+   :type: int
+
+.. attribute:: attr2
+
+   Attr2 description
+
+   :type: str
+
+============================= slowest 25 durations =============================
+0.46s setup    tests/test_ext_napoleon_docstring.py::TestNumpyDocstring::test_token_type_invalid
+
+(24 durations < 0.005s hidden.  Use -vv to show these durations.)
+[36m[1m=========================== short test summary info ============================[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNamedtupleSubclassTest::test_attributes_docstring[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mInlineAttributeTest::test_class_data_member[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mInlineAttributeTest::test_class_data_member_inline[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mInlineAttributeTest::test_class_data_member_inline_no_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mInlineAttributeTest::test_class_data_member_inline_ref_in_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_attributes_with_class_reference[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_code_block_in_returns_section[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_colon_in_return_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_custom_generic_sections[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_docstrings[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_keywords_with_types[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_kwargs_in_arguments[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_list_in_parameter_description[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_noindex[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_parameters_with_class_reference[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_pep526_annotations[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_raises_types[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_section_header_formatting[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_sphinx_admonitions[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mGoogleDocstringTest::test_xrefs_in_return_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_colon_in_return_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_convert_numpy_type_spec[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_docstrings[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_list_in_parameter_description[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_multiple_parameters[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_parameter_types[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_parameters_with_class_reference[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_parameters_without_class_reference[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_raises_types[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_recombine_set_tokens[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_recombine_set_tokens_invalid[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_return_types[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_section_header_underline_length[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_see_also_refs[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_sphinx_admonitions[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_token_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_tokenize_type_spec[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_type_preprocessor[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_underscore_in_attribute[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_underscore_in_attribute_strip_signature_backslash[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_xrefs_in_return_type[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mNumpyDocstringTest::test_yield_types[0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mTestNumpyDocstring::test_escape_args_and_kwargs[x, y, z-x, y, z][0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mTestNumpyDocstring::test_escape_args_and_kwargs[*args, **kwargs-\\*args, \\*\\*kwargs][0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mTestNumpyDocstring::test_escape_args_and_kwargs[*x, **y-\\*x, \\*\\*y][0m
+[32mPASSED[0m tests/test_ext_napoleon_docstring.py::[1mTestNumpyDocstring::test_pep526_annotations[0m
+[31mFAILED[0m tests/test_ext_napoleon_docstring.py::[1mTestNumpyDocstring::test_token_type_invalid[0m - assert (2 == 1)
+[31m=================== [31m[1m1 failed[0m, [32m46 passed[0m, [33m7 warnings[0m[31m in 0.74s[0m[31m ===================[0m
+py39: exit 1 (1.41 seconds) /testbed> python -X dev -m pytest -rA --durations 25 tests/test_ext_napoleon_docstring.py pid=77
+  py39: FAIL code 1 (1.42=setup[0.01]+cmd[1.41] seconds)
+  evaluation failed :( (1.52 seconds)
+>>>>> Test Exit Code: 1
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

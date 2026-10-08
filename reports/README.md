@@ -6,7 +6,9 @@ Model inference reused a local Codex login; authentication files and API secrets
 
 | Evidence | Meaning |
 |---|---|
-| [Controlled studies](../docs/EXPERIMENTS.md) and [predeclared plan](experiments/paired-20/plan.json) | Separate same-model call/tool-budget controls and post-hoc invalid-patch repair; original 48/100 immutable |
+| [Paired 20-task controls](experiments/paired-20/README.md) and [predeclared plan](experiments/paired-20/plan.json) | Single 11/20; both routed windows 10/20; no measured routed advantage |
+| [17-candidate repair follow-up](experiments/repair-17-v2/README.md) | All 17 applicable, 11 officially resolved; selected extra-budget study, separate from original 48/100 |
+| [Historical context replay](experiments/historical-context-replay.json) | 13 partial source-loss cases, none lost all source; deterministic mechanism check, no new functional grades |
 | [Model manifest](model-100/manifest.json) | Fixed 100 tasks, model/reasoning/transport, budgets, environment, CLI version |
 | [Source proof](model-100/source-proof.json) | Inference source digest matches the recorded Git commit |
 | [Predictions](model-100/predictions.jsonl) | All 100 diagnoses/abstentions and submitted patches |

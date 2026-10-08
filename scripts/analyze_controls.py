@@ -61,6 +61,12 @@ def analyze(directory: Path):
             "official_status_counts": dict(Counter(p["status"] for p in official["per_issue"])),
             "usage": json.loads((path / "model-usage.json").read_text()),
             "call_ceilings_verified": True,
+            "model_ceiling_ids": sorted(
+                i for i, e in ends.items() if e["model_calls"] == manifest["max_model_calls"]
+            ),
+            "tool_ceiling_ids": sorted(
+                i for i, e in ends.items() if e["tool_calls"] == manifest["max_tool_calls"]
+            ),
             "source_handoff_mechanism": {
                 "scope": "first synthesis handoff; unique immutable path/line-range observations; continuous single-agent history has no handoff",
                 "handoffs": len(mechanism),

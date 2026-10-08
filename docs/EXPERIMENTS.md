@@ -6,6 +6,14 @@ establish a benefit from multiple agents. The following studies keep independent
 
 ## Paired architecture and evidence-window pilot
 
+Observed results are summarized in [the paired evidence directory](../reports/experiments/paired-20/).
+Both routed window policies resolved **the same 10/20 tasks**. The recent window lost unique
+source observations on two tasks; source priority lost none. This demonstrates source
+retention, **not a measured resolution improvement**. The single-conversation arm resolves
+**11/20**, with 102 model invocations and 1,119,272 reported input tokens versus 121 and
+1,299,138 for routed source-priority. The pilot does not support a routed advantage; provider
+failures and one stochastic run per case also limit interpretation.
+
 Before inference, `code-assistant experiment plan` freezes 20 tasks from the original 100,
 ranked by SHA256(`controls:20261008:instance_id`). Selection does not read original success,
 abstention, judge or patch labels. This is an exploratory subset, not a leaderboard result.
@@ -30,6 +38,11 @@ lengths are a remaining cost confounder; results must not be described as token-
 The three arms run in declared order with one stochastic attempt each, without choosing the
 best rerun. Provider drift and sampling variation remain possible.
 
+For independent reproduction, create a fresh plan on your own machine with the same seed
+and count. The published plan is a frozen record of its original environment; resumption
+correctly rejects a different platform/source/package configuration. Recreating the plan
+preserves the selected IDs, while documenting your own environment and accessible model.
+
 The primary measure is official FAIL_TO_PASS/PASS_TO_PASS resolution divided by all 20 tasks.
 Abstentions, invalid patches, errors and timeouts stay in the denominator. Secondary measures
 are applicability, abstentions, actual costs and source evidence retained at synthesis.
@@ -52,6 +65,12 @@ The initial historical correlation was 10 abstentions among 39 tasks with more t
 evidence records, versus 0 among 61 other tasks. Difficulty, search frequency and tool choices
 are confounders. The mechanism check counts actually retained source reads; a favorable
 correlation or a unit test alone is not evidence of better functional resolution.
+
+An additional deterministic [replay of all 100 original handoffs](../reports/experiments/historical-context-replay.json)
+found partial source loss in 13 cases, including 9 abstentions, but **no case lost all source
+reads**. Source priority retains all distinct source observations on those exact ledgers.
+This is an offline selection replay, without new diagnoses or functional grades; it does
+not establish why the original model abstained.
 
 ## Post-hoc format repair of 17 withheld candidates
 
@@ -77,6 +96,19 @@ between these runs cannot be attributed solely to exception handling, and their 
 patches are never pooled into one score. The paired three-arm study continues to use its
 original frozen `6b61f9a` implementation for every arm.
 
+| Repair run | Applicable | Official resolved | Other outcomes |
+|---|---:|---:|---|
+| [Development v1](../reports/experiments/repair-17-v1/) | 14/17 | 9/17 | 5 unresolved; 3 empty after provider errors |
+| [Full follow-up v2](../reports/experiments/repair-17-v2/) | 17/17 | **11/17** | 6 unresolved; no missing outcomes |
+
+The follow-up uses 40 model invocations, 519,468 reported input tokens and 22,898 output
+tokens. Applicable patches are not assumed correct: six still fail official regressions.
+The v2 functional result is separate from both v1 and the original 48/100.
+
+The real traces contain 36 `read_file` calls during v2 repair and five during synthesis
+in the source-priority paired arm. Source verification was exercised by the model, rather
+than merely exposed in a tool schema.
+
 ```bash
 uv run python scripts/repair_withheld.py reports/model-100 runs/repair-17 \
   --model provider:model-id --workers 4
@@ -97,3 +129,10 @@ uses the same pinned harness and 600-second test budget as the original evaluati
 17 题补救实验使用全部原无效补丁，给模型应用错误和修复前源码，最多重试两次，不反馈
 标准答案或官方测试结果。它是额外预算的事后补救，单独报告可应用率和官方解决率，不能
 加回原始 48/100 冒充原本的一次成功率。人工根因抽检仍未完成；自动评审只作审计。
+
+实测：补救第二轮 17/17 可应用、11/17 通过官方回归，6 条仍未解决。两种窗口的 20 题
+实验均解决同一组 10 题，未观察到修复率提升。原 100 条窗口回放中，13 条丢掉部分源码，
+其中 9 条放弃诊断，但没有任何一条丢掉全部源码；不能据此认定截断导致放弃。
+
+单 agent 官方结果为 11/20，实际调用和报告 token 更少；小样本不支持“多 agent 更好”
+的结论。对照已经运行，也如实保留了对路由架构不利的结果。

@@ -1,0 +1,113 @@
++ : '>>>>> Start Test Output'
++ pytest -rA xarray/tests/test_formatting.py
+============================= test session starts ==============================
+platform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0
+rootdir: /testbed
+configfile: setup.cfg
+plugins: xdist-3.6.1, hypothesis-6.114.0, env-1.1.5, cov-5.0.0
+collected 19 items
+
+xarray/tests/test_formatting.py ...............F...                      [100%]
+
+=================================== FAILURES ===================================
+_________________ test_inline_variable_array_repr_custom_repr __________________
+
+    @pytest.mark.skipif(not IS_NEP18_ACTIVE, reason="requires __array_function__")
+    def test_inline_variable_array_repr_custom_repr():
+        class CustomArray:
+            def __init__(self, value, attr):
+                self.value = value
+                self.attr = attr
+
+            def _repr_inline_(self, width):
+                formatted = f"({self.attr}) {self.value}"
+                if len(formatted) > width:
+                    formatted = f"({self.attr}) ..."
+
+                return formatted
+
+            def __array_function__(self, *args, **kwargs):
+                return NotImplemented
+
+            @property
+            def shape(self):
+                return self.value.shape
+
+            @property
+            def dtype(self):
+                return self.value.dtype
+
+            @property
+            def ndim(self):
+                return self.value.ndim
+
+        value = CustomArray(np.array([20, 40]), "m")
+        variable = xr.Variable("x", value)
+
+        max_width = 10
+        actual = formatting.inline_variable_array_repr(variable, max_width=10)
+
+>       assert actual == value._repr_inline_(max_width)
+E       AssertionError: assert '<xarray...' == '(m) ...'
+E         - (m) ...
+E         + <xarray...
+
+xarray/tests/test_formatting.py:430: AssertionError
+=============================== warnings summary ===============================
+xarray/__init__.py:1
+  /testbed/xarray/__init__.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+xarray/core/dask_array_compat.py:16
+xarray/core/dask_array_compat.py:16
+  /testbed/xarray/core/dask_array_compat.py:16: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) >= LooseVersion("2.0.0"):
+
+xarray/core/dask_array_compat.py:149
+xarray/core/dask_array_compat.py:149
+  /testbed/xarray/core/dask_array_compat.py:149: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) >= LooseVersion("2.8.1"):
+
+xarray/core/dask_array_compat.py:186
+xarray/core/dask_array_compat.py:186
+  /testbed/xarray/core/dask_array_compat.py:186: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion("2.9.0"):
+
+xarray/core/pdcompat.py:45
+  /testbed/xarray/core/pdcompat.py:45: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pd.__version__) < "0.25.0":
+
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+  /opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+
+xarray/tests/__init__.py:58
+xarray/tests/__init__.py:58
+  /testbed/xarray/tests/__init__.py:58: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    return version.LooseVersion(vstring)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_get_indexer_at_least_n_items
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_first_n_items
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_last_n_items
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_last_item
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_format_item
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_format_items
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_format_array_flat
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_pretty_print
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_maybe_truncate
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_format_timestamp_out_of_bounds
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_attribute_repr
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_diff_array_repr
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_diff_attrs_repr_with_array
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_diff_dataset_repr
+PASSED xarray/tests/test_formatting.py::TestFormatting::test_array_repr
+PASSED xarray/tests/test_formatting.py::test_set_numpy_options
+PASSED xarray/tests/test_formatting.py::test_short_numpy_repr
+PASSED xarray/tests/test_formatting.py::test_large_array_repr_length
+FAILED xarray/tests/test_formatting.py::test_inline_variable_array_repr_custom_repr
+================== 1 failed, 18 passed, 11 warnings in 3.07s ===================
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

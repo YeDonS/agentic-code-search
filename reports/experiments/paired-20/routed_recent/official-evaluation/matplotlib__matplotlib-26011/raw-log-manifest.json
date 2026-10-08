@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37848455841",
+  "artifact_name": "patch-shard-1",
+  "files": {
+    "harness.log": {
+      "sha256": "704e0044ca39f95fbd1a25337ce0ba612add2a7e7b8d8e26e0ed564a714d359c",
+      "bytes": 854
+    },
+    "image-pull.log": {
+      "sha256": "0dc0f0be85220e3430428c5ba032eb87af4eae36ffb8dc0e183db05a7beb4a21",
+      "bytes": 1698
+    },
+    "logs/run_evaluation/patch-37848455841-1-1/agentic-controls-routed_recent/matplotlib__matplotlib-26011/eval.sh": {
+      "sha256": "98fb3865ff0851b65144738d5b69d3381bd249a1a66d7e4142e7d67839f36cd3",
+      "bytes": 1515
+    },
+    "logs/run_evaluation/patch-37848455841-1-1/agentic-controls-routed_recent/matplotlib__matplotlib-26011/patch.diff": {
+      "sha256": "de8cd4dac7e50d6ed968a5d12f8f19974587703310092a62305d6d660f3c71ac",
+      "bytes": 417
+    },
+    "logs/run_evaluation/patch-37848455841-1-1/agentic-controls-routed_recent/matplotlib__matplotlib-26011/report.json": {
+      "sha256": "186598267b40a11ffaa6898058aae44b45498f7de1e510a96403bf80bebd4aed",
+      "bytes": 73407
+    },
+    "logs/run_evaluation/patch-37848455841-1-1/agentic-controls-routed_recent/matplotlib__matplotlib-26011/run_instance.log": {
+      "sha256": "ab24c4eb36249b7efdf1d93e99cde4f2edc79b244f6d7153e4afb00468c467cd",
+      "bytes": 59842
+    },
+    "logs/run_evaluation/patch-37848455841-1-1/agentic-controls-routed_recent/matplotlib__matplotlib-26011/test_output.txt": {
+      "sha256": "ac338c76c46c9b9a3f40d4e380c34f17b18a18417c1b1501748fd6dbebb131fd",
+      "bytes": 1585389
+    },
+    "logs/run_evaluation/patch-37848455841-1-1/run.json": {
+      "sha256": "d17828dcab3606816edda42a55b879504d73efd4be09b225f15a1790cd6eb776",
+      "bytes": 222
+    },
+    "predictions.jsonl": {
+      "sha256": "4169b51656e0609b23a05d5d5fdee0883cf17f1aeabb128ecb7c863bd54e25c2",
+      "bytes": 551
+    },
+    "summary/agentic-controls-routed_recent.patch-37848455841-1-1.json": {
+      "sha256": "5e1fd9275a914db6c3f0dc729f4fd93e0f01e327a51f08d02100ef934a5d675b",
+      "bytes": 870
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "ac338c76c46c9b9a3f40d4e380c34f17b18a18417c1b1501748fd6dbebb131fd",
+    "raw_lines": 28297,
+    "start_line": 28135,
+    "stop_line": 28294,
+    "truncated": true,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37849298422",
+  "artifact_name": "patch-shard-7",
+  "files": {
+    "harness.log": {
+      "sha256": "9b6131c5abeff19eda3d1c4f4469a1e3650907486f3607d60c8d598ba9d219f9",
+      "bytes": 841
+    },
+    "image-pull.log": {
+      "sha256": "676c8e629e8bc01ee4b4b025f88841451fa65a13a14fd60b10a5246861f9a66d",
+      "bytes": 1668
+    },
+    "logs/run_evaluation/patch-37849298422-7-7/agentic-controls-routed_source/sympy__sympy-13647/eval.sh": {
+      "sha256": "1452be92d34ec493b75539018dbe73da94a41a638cc6072233a73ea67adbe87c",
+      "bytes": 1691
+    },
+    "logs/run_evaluation/patch-37849298422-7-7/agentic-controls-routed_source/sympy__sympy-13647/patch.diff": {
+      "sha256": "0c5ca584fe11861c46731e2153829205d76b55a38cc1bb1110b24fa9ec72b796",
+      "bytes": 413
+    },
+    "logs/run_evaluation/patch-37849298422-7-7/agentic-controls-routed_source/sympy__sympy-13647/report.json": {
+      "sha256": "1d88ddb605782f713ab4e2e0164e2885be3bce9d62065e52186dc9d958b3aa85",
+      "bytes": 3584
+    },
+    "logs/run_evaluation/patch-37849298422-7-7/agentic-controls-routed_source/sympy__sympy-13647/run_instance.log": {
+      "sha256": "7e11336bef7f151137a76328a220becc22a5e86542d858411a3a96407e9e98e6",
+      "bytes": 4665
+    },
+    "logs/run_evaluation/patch-37849298422-7-7/agentic-controls-routed_source/sympy__sympy-13647/test_output.txt": {
+      "sha256": "3351077e673bdfdf7695a4c60998d82ae081950bd74cddc1a082bdd39a41a7f4",
+      "bytes": 368031
+    },
+    "logs/run_evaluation/patch-37849298422-7-7/run.json": {
+      "sha256": "450c2ce60a7c6b82e0bc13cb6ff4e0673ce750f965f7fa7b9e1e4b756895cccf",
+      "bytes": 212
+    },
+    "predictions.jsonl": {
+      "sha256": "762f5f79529d34199e5c48045b49be4f2f6f4a43d5d84fa1a22d604e477f6f32",
+      "bytes": 537
+    },
+    "summary/agentic-controls-routed_source.patch-37849298422-7-7.json": {
+      "sha256": "abf76e007f28c127348ada9af1b31f3d966e7c112906d520dbf69aa1006f9ee3",
+      "bytes": 830
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "3351077e673bdfdf7695a4c60998d82ae081950bd74cddc1a082bdd39a41a7f4",
+    "raw_lines": 9253,
+    "start_line": 9090,
+    "stop_line": 9249,
+    "truncated": true,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

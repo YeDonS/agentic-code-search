@@ -81,6 +81,11 @@ def check_and_repair_patch(
     context: dict[str, Any],
 ) -> Diagnosis:
     """Bounded, pre-evaluation format repair; never receives gold or test outcomes."""
+    diagnosis.limitations = [
+        item
+        for item in diagnosis.limitations
+        if not item.startswith("Candidate patch was withheld: applicability check status ")
+    ]
     original = diagnosis.proposed_patch
     candidate = original
     checked, audit = check_patch(tools.root, candidate, set(diagnosis.affected_files))

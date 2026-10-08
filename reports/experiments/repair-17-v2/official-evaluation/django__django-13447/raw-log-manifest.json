@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37849300774",
+  "artifact_name": "patch-shard-2",
+  "files": {
+    "harness.log": {
+      "sha256": "ef5d40ecf1d9dd71981ba16bbe3c93108b564d79937c1a2ad2bed4da02d94063",
+      "bytes": 842
+    },
+    "image-pull.log": {
+      "sha256": "a027da3fa061b460f74e3e4585a66a19c18b2eec276a562d464cc8454b145205",
+      "bytes": 1707
+    },
+    "logs/run_evaluation/patch-37849300774-2-2/agentic-posthoc-format-repair/django__django-13447/eval.sh": {
+      "sha256": "f54b11eaa22671724f7fdb6b826e84851a3004d2aaa7544cebe093df427e93b6",
+      "bytes": 1828
+    },
+    "logs/run_evaluation/patch-37849300774-2-2/agentic-posthoc-format-repair/django__django-13447/patch.diff": {
+      "sha256": "7dcd57d75bb799f9e8f513b4fbc5b1a290e974658612b4b293378240c363ce9a",
+      "bytes": 2351
+    },
+    "logs/run_evaluation/patch-37849300774-2-2/agentic-posthoc-format-repair/django__django-13447/report.json": {
+      "sha256": "4d8c2c54240a98e505ec87040f46e9c777384c7d75a97aecda5d5767920e30f2",
+      "bytes": 1253
+    },
+    "logs/run_evaluation/patch-37849300774-2-2/agentic-posthoc-format-repair/django__django-13447/run_instance.log": {
+      "sha256": "27d77165fd97086e43f9618515ad7b3bc8d4c2cb78a80756a27a8cb86bd2fb48",
+      "bytes": 7565
+    },
+    "logs/run_evaluation/patch-37849300774-2-2/agentic-posthoc-format-repair/django__django-13447/test_output.txt": {
+      "sha256": "e5dbd41d313eb646e20469f70f34bb829b995cc6f0fab650cf6787ee613c5c25",
+      "bytes": 1817215
+    },
+    "logs/run_evaluation/patch-37849300774-2-2/run.json": {
+      "sha256": "70541391344fbd73493368bfabd0cff1b56009317f2705b447071ea31a971177",
+      "bytes": 214
+    },
+    "predictions.jsonl": {
+      "sha256": "f72bfc9accb9f1b7248d5c91d9bc5c4ef4f5f5efc652502344098f740069c618",
+      "bytes": 2536
+    },
+    "summary/agentic-posthoc-format-repair.patch-37849300774-2-2.json": {
+      "sha256": "d23211063f66baecd6641c8e8b0f5d9ba12eb97549286685ad06fd1e0d083a8e",
+      "bytes": 838
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "e5dbd41d313eb646e20469f70f34bb829b995cc6f0fab650cf6787ee613c5c25",
+    "raw_lines": 39223,
+    "start_line": 39061,
+    "stop_line": 39220,
+    "truncated": true,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

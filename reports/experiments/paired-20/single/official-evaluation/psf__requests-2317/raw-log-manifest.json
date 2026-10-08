@@ -1,0 +1,51 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37850192309",
+  "artifact_name": "patch-shard-11",
+  "files": {
+    "harness.log": {
+      "sha256": "57676b601e13ef9baab78d15aa2aa5b81cd5ec3fb3c378da2130b6ff548658af",
+      "bytes": 1052
+    },
+    "image-pull.log": {
+      "sha256": "29689f40c7415d5948dfc632bcac47c88ebe70b5d0d77b9f08c4f742d6141621",
+      "bytes": 1613
+    },
+    "logs/run_evaluation/patch-37850192309-11-11/agentic-controls-single/psf__requests-2317/eval.sh": {
+      "sha256": "3c269c3490659672d0f0385db22880344d9f0dc08e8462b11ae5d9c40d1bd183",
+      "bytes": 1164
+    },
+    "logs/run_evaluation/patch-37850192309-11-11/agentic-controls-single/psf__requests-2317/patch.diff": {
+      "sha256": "9bc65f87df1eff2c778f47eb214e1a21e4a03ace09bbb04429349ee98a2779e2",
+      "bytes": 265
+    },
+    "logs/run_evaluation/patch-37850192309-11-11/agentic-controls-single/psf__requests-2317/run_instance.log": {
+      "sha256": "eac4bb91cc61e2e5d2899093ad9ce5b68db4933d2205bef1ebc553c70679a27b",
+      "bytes": 2585
+    },
+    "logs/run_evaluation/patch-37850192309-11-11/agentic-controls-single/psf__requests-2317/test_output.txt": {
+      "sha256": "19240362f2b810fd00cdf03a403b858206252a73eabc54ab3149ec7ad7e5a309",
+      "bytes": 40787
+    },
+    "logs/run_evaluation/patch-37850192309-11-11/run.json": {
+      "sha256": "27453deaa92a969059a00c6fd1f7602b26260acf3e3b968aa25c1db2900b6f93",
+      "bytes": 213
+    },
+    "predictions.jsonl": {
+      "sha256": "99a3368a0e0ddadff966b05e115ae199cfd4e559209a39fd4d7a23e758ef747a",
+      "bytes": 385
+    },
+    "summary/agentic-controls-single.patch-37850192309-11-11.json": {
+      "sha256": "55d679eeee8670da4e4f4c1c7fb3266924377c22ef5a84b69918d497516bb1e2",
+      "bytes": 883
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "19240362f2b810fd00cdf03a403b858206252a73eabc54ab3149ec7ad7e5a309",
+    "raw_lines": 1066,
+    "start_line": 1057,
+    "stop_line": 1066,
+    "truncated": false,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

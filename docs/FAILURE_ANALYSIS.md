@@ -72,6 +72,13 @@ association. Source-priority selection and a matched recent-window control are i
 to investigate it, without claiming this correlation proves causation.
 [Separate protocol and results](EXPERIMENTS.md).
 
+Completed follow-up: all 17 originally invalid candidates became applicable and **11/17
+resolved officially**; six remain functional failures. The original 48/100 is unchanged.
+The two matched window arms each resolved the same 10/20 tasks. Replaying all original
+ledgers found 13 partial source-loss cases (nine abstentions), but none lost every source
+read. These observations do not justify claiming a causal or functional gain from the
+window policy. [Replay](../reports/experiments/historical-context-replay.json).
+
 The default role ceiling is now seven calls with a final-answer turn and a shared global
 ceiling. The paired experiments freeze their own equal budgets and report actual costs.
 Longer test timeouts are another separate protocol change; preserve the 600-second results

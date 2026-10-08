@@ -1,0 +1,14 @@
+{
+  "instance_id": "pallets__flask-5063",
+  "status": "unresolved",
+  "resolved": false,
+  "image": "swebench/sweb.eval.x86_64.pallets_1776_flask-5063:latest",
+  "patch_sha256": "856a41dea09b0e8afcea5358938e755a7e968c3c0344c33b0f24ce9d9a754723",
+  "image_id": "sha256:c253a21fce4f73b6b2f78c79aa60f401c4d2facca34133a4fe661fb50ed41856",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.pallets_1776_flask-5063@sha256:05369549db34553599f6f96d65ee9c75173c02d9285d283422f6b6e49f0b8df2"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

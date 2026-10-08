@@ -25,8 +25,13 @@ fixture checks plumbing and cannot establish real-world multi-agent benefit.
 | Retrieval baseline on all 100 pre-fix snapshots | **100 completed; Hit@1 40%; Hit@5 71%; MRR@5 0.5202** |
 | Real LLM run on all 100 issues | **90 cited diagnoses, 10 abstentions; file Hit@1 87%, Hit@5 88%** |
 | Generated-patch resolution | **48/100 resolved** in official SWE-bench tests; 23 failed, 27 empty, 2 timed out |
-| Patch repair and evidence handoff | Bounded apply-error feedback, synthesis source reads, source-priority context; separate experiments |
-| Matched single-agent / evidence-window experiments | Same model and call/tool ceilings; see [experiment protocol and results](docs/EXPERIMENTS.md) |
+| Selected post-hoc patch repair | **17/17 applicable; 11/17 officially resolved** after bounded correction; separate from original 48/100 |
+| Matched 20-task controls | **Single 11/20; both routed windows 10/20** with equal model/tool call ceilings; [protocol and results](docs/EXPERIMENTS.md) |
+
+The single arm used fewer calls and reported tokens; this pilot does not show a routed
+advantage. The two window policies each resolved the same 10/20 tasks. Source
+priority retains more source but has not demonstrated higher resolution. Repair results
+use additional inference on previously invalid candidates and are not a new pass@1 score.
 
 Baseline numbers measure **file localization against maintainer patches**, not bug-fix accuracy.
 The real run uses `gpt-6.1-sol` through a locally authenticated Codex CLI, with a frozen
@@ -86,7 +91,8 @@ The default handoff retains up to 24 distinct observations, prioritizing source 
 tests/logs over search snippets. The full citation ledger is preserved. Applicability errors
 can trigger two format-repair attempts within the shared 18-model-call / 18-tool-call ceilings.
 All attempts and original candidates are retained. New/deleted text files are supported;
-renames, binaries and symlinks are rejected. `ASSISTANT_WORKFLOW=single` uses one conversation.
+renames, binaries and symlinks are rejected. `ASSISTANT_WORKFLOW=single` uses one investigation
+conversation; set `ASSISTANT_PATCH_REPAIR_ATTEMPTS=0` for a pure single-conversation control.
 
 Existing affected files must occur in registered source-read citations; declared new files
 still require a genuine existing-source citation. This verifies provenance, not

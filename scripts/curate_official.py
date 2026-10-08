@@ -18,7 +18,7 @@ def sha(path: Path) -> str:
 
 def curate(predictions: Path, artifacts: Path, destination: Path, workflow: str):
     if destination.exists() or not re.fullmatch(
-        r"https://github.com/YeDonS/agentic-code-search/actions/runs/\d+", workflow
+        r"https://github.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/actions/runs/\d+", workflow
     ):
         raise ValueError("new destination and exact evaluation workflow URL required")
     result = aggregate(predictions, artifacts)

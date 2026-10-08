@@ -78,6 +78,17 @@ def test_valid_or_unsafe_patch_never_spends_repair_model_calls(tools, tmp_path):
         assert agent.calls == 0
 
 
+def test_rechecking_a_frozen_diagnosis_replaces_stale_checker_limitation(tools, tmp_path):
+    initial = diagnosis(tools, GOOD)
+    initial.limitations = [
+        "No functional tests yet.",
+        "Candidate patch was withheld: applicability check status invalid.",
+    ]
+    agent = ToolCallingAgent(ProtocolModel(responses=[]), tools.settings, tools.logger)
+    result = check_and_repair_patch(initial, tools, agent, tmp_path / "audit", {})
+    assert result.proposed_patch and result.limitations == ["No functional tests yet."]
+
+
 def test_repair_respects_remaining_global_model_budget(tools, tmp_path):
     tools.settings.max_model_calls = 2
     initial = diagnosis(tools)

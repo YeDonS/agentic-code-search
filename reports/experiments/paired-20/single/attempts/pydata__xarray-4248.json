@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/xarray/core/formatting.py\n+++ b/xarray/core/formatting.py\n@@ -285,6 +285,10 @@\n     else:\n         dims_str = \"\"\n     front_str = f\"{first_col}{dims_str}{var.dtype} \"\n+    units = var.attrs.get(\"units\")\n+    if units:\n+        units = str(units).replace(\"\\t\", \"\\\\t\").replace(\"\\n\", \"\\\\n\")\n+        front_str += f\"[{units}] \"\n \n     values_width = max_width - len(front_str)\n     values_str = inline_variable_array_repr(var, values_width)\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "f04343beced33087afb37e6b0e9443d0e9b6752e7fe68ede02ee4756c4d91658",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "f04343beced33087afb37e6b0e9443d0e9b6752e7fe68ede02ee4756c4d91658"
+    }
+  }
+]

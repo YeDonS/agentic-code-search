@@ -50,6 +50,8 @@ def patch_paths(patch: str) -> list[tuple[str | None, str | None]]:
         re.M,
     ):
         raise ValueError("renames, copies and special file modes are not supported")
+    if re.search(r"^index .* (?:120000|160000)$", patch, re.M):
+        raise ValueError("symlink and gitlink index modes are not supported")
     lines = patch.splitlines()
     pairs = []
     for i, line in enumerate(lines):
@@ -109,6 +111,10 @@ def check_patch(root: Path, patch: str, allowed_files: set[str]) -> tuple[str, d
         or not (root / path).resolve().is_relative_to(root.resolve())
         or any(
             (root / Path(*Path(path).parts[:i])).is_symlink()
+            or (
+                (root / Path(*Path(path).parts[:i])).exists()
+                and not (root / Path(*Path(path).parts[:i])).is_dir()
+            )
             for i in range(1, len(Path(path).parts))
         )
         for path in paths

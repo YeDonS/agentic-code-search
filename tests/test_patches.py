@@ -73,3 +73,9 @@ def test_disagreeing_git_headers_and_symlink_modes_are_rejected(tmp_path):
     assert not check_patch(tmp_path, patch, {"new.py", "escape.py"})[0]
     patch = "diff --git a/new.py b/new.py\nnew file mode 120000\n--- /dev/null\n+++ b/new.py\n@@ -0,0 +1 @@\n+/tmp/secret\n"
     assert not check_patch(tmp_path, patch, {"new.py"})[0]
+
+
+def test_new_file_parent_must_be_directory_if_it_exists(tmp_path):
+    (tmp_path / "parent.py").write_text("value = 1\n")
+    patch = "--- /dev/null\n+++ b/parent.py/child.py\n@@ -0,0 +1 @@\n+value = 2\n"
+    assert not check_patch(tmp_path, patch, {"parent.py/child.py"})[0]

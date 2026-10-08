@@ -37,10 +37,13 @@ conclusion (identified|insufficient_evidence),
 root_cause (string), affected_files (array of relative paths), evidence_ids (array of IDs),
 suggested_fix (string), proposed_patch (unified diff string or empty string),
 confidence (low|medium|high), limitations (array of strings).
-Every affected file must occur in source evidence and at least one cited ID must be a source
-read. If the evidence does not establish a cause, say so, use low confidence, and no patch.
+Every existing affected file must occur in source evidence and at least one cited ID must
+be a source read. A new file may be declared in affected_files with a /dev/null old header;
+cite real existing source explaining why it is needed. If evidence does not establish a
+cause, say so, use low confidence, and no patch.
 When the cause is established, propose a minimal fix as a valid unified diff with --- a/path,
-+++ b/path and @@ hunk headers. Copy original context exactly from read_file observations,
++++ b/path and @@ hunk headers (use /dev/null for the absent side of additions/deletions).
+Copy original context exactly from read_file observations,
 omit displayed line-number prefixes, and list every edited file in affected_files.
 Describe baseline tests honestly. A suggested patch is UNVERIFIED, even when baseline tests pass.
 """,

@@ -88,7 +88,8 @@ can trigger two format-repair attempts within the shared 18-model-call / 18-tool
 All attempts and original candidates are retained. New/deleted text files are supported;
 renames, binaries and symlinks are rejected. `ASSISTANT_WORKFLOW=single` uses one conversation.
 
-Affected files must occur in registered source-read citations. This verifies provenance, not
+Existing affected files must occur in registered source-read citations; declared new files
+still require a genuine existing-source citation. This verifies provenance, not
 semantic correctness. Missing evidence or model abstention returns `insufficient_evidence`.
 Search passes, model turns, tool calls, reads, test duration, and output size are capped.
 [Architecture and limitations](docs/ARCHITECTURE.md).

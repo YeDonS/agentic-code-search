@@ -52,7 +52,11 @@ def validate_diagnosis(diagnosis: Diagnosis, tools: RepositoryTools) -> bool:
     sources = [cited[i] for i in diagnosis.evidence_ids if cited[i].kind == "source"]
     source_paths = {e.path for e in sources}
     try:
-        creations = {new for old, new in patch_paths(diagnosis.proposed_patch) if old is None}
+        creations = {
+            new
+            for old, new in patch_paths(diagnosis.proposed_patch)
+            if old is None and not (tools.root / new).exists()
+        }
     except ValueError:
         creations = set()
     return bool(

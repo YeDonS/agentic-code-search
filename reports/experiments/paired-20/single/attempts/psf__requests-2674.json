@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/requests/adapters.py\n+++ b/requests/adapters.py\n@@ -27,9 +27,10 @@\n from .packages.urllib3.exceptions import ReadTimeoutError\n from .packages.urllib3.exceptions import SSLError as _SSLError\n from .packages.urllib3.exceptions import ResponseError\n+from .packages.urllib3.exceptions import TimeoutError as _TimeoutError\n from .cookies import extract_cookies_to_jar\n from .exceptions import (ConnectionError, ConnectTimeout, ReadTimeout, SSLError,\n-                         ProxyError, RetryError)\n+                         ProxyError, RetryError, Timeout)\n from .auth import _basic_auth_str\n \n DEFAULT_POOLBLOCK = False\n@@ -429,6 +430,10 @@\n                 raise SSLError(e, request=request)\n             elif isinstance(e, ReadTimeoutError):\n                 raise ReadTimeout(e, request=request)\n+            elif isinstance(e, ConnectTimeoutError):\n+                raise ConnectTimeout(e, request=request)\n+            elif isinstance(e, _TimeoutError):\n+                raise Timeout(e, request=request)\n             else:\n                 raise\n \n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "f24d8ba4f9745226dbb430484f85ec307d80ecc5112a258add7ee38c6dc4d1e5",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "f24d8ba4f9745226dbb430484f85ec307d80ecc5112a258add7ee38c6dc4d1e5"
+    }
+  }
+]

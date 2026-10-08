@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "harness_version": "5.0.2",
+  "total_instances": 3,
+  "submitted_ids": [
+    "astropy__astropy-12907",
+    "django__django-16255",
+    "matplotlib__matplotlib-23964"
+  ],
+  "resolved_ids": [
+    "astropy__astropy-12907",
+    "django__django-16255",
+    "matplotlib__matplotlib-23964"
+  ],
+  "unresolved_ids": [],
+  "error_ids": [],
+  "empty_patch_ids": [],
+  "missing_outcome_ids": [],
+  "completed_ids": [
+    "astropy__astropy-12907",
+    "django__django-16255",
+    "matplotlib__matplotlib-23964"
+  ],
+  "patch_resolution_rate": 1.0,
+  "complete": true,
+  "predictions_sha256": "c6e9e6ee7cfd77286f763404db5fa8216a6cffbe4620f54d6355a3a7424cd8ec",
+  "per_issue": [
+    {
+      "instance_id": "astropy__astropy-12907",
+      "status": "resolved",
+      "resolved": true,
+      "image": "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest",
+      "image_id": "sha256:9b1cabf7bcd83a28469f67e3852d8e2207e90d45aa71f436bb7e600bdee8bae2",
+      "image_digests": [
+        "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907@sha256:e082963099ed7d5a5f75a0be46e338be36faae33b2cba5289a9ddbd505997f1f"
+      ],
+      "harness_exit_code": 0,
+      "failure_reason": null,
+      "infra_failure": false
+    },
+    {
+      "instance_id": "django__django-16255",
+      "status": "resolved",
+      "resolved": true,
+      "image": "swebench/sweb.eval.x86_64.django_1776_django-16255:latest",
+      "image_id": "sha256:fb1593929bbd32a6856c86c56f9f5badf56e2fadd4eeb7b81885b37d2bfcd862",
+      "image_digests": [
+        "swebench/sweb.eval.x86_64.django_1776_django-16255@sha256:32b922f258d8a318319caee863c0c6cbe6122dd8efe5642ad9ab7359975ed45b"
+      ],
+      "harness_exit_code": 0,
+      "failure_reason": null,
+      "infra_failure": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23964",
+      "status": "resolved",
+      "resolved": true,
+      "image": "swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-23964:latest",
+      "image_id": "sha256:7ece7743b01284b7384fe85511adbab4501c32ff41f23db4be388334221afb0f",
+      "image_digests": [
+        "swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-23964@sha256:1268aa88cfc19ec17849e353b12a69189e20820e1937cac82b5773fb227b80f2"
+      ],
+      "harness_exit_code": 0,
+      "failure_reason": null,
+      "infra_failure": false
+    }
+  ],
+  "github_run_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37822223997"
+}

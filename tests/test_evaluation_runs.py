@@ -109,3 +109,25 @@ def test_human_and_official_per_issue_metrics_are_populated(tmp_path):
         summary, [{"instance_id": "a", "model_patch": "patch"}], harness_report=report
     )
     assert summary["per_issue"][0]["resolved"] is True
+
+
+def test_batch_freeze_requires_completed_records_and_retains_task_order(tmp_path):
+    spec = importlib.util.spec_from_file_location(
+        "batch_freeze", PROJECT_ROOT / "scripts/freeze_batch.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    source = tmp_path / "source"
+    source.mkdir()
+    (source / "manifest.json").write_text(json.dumps({"count": 3, "task_ids": ["a", "b", "c"]}))
+    write_jsonl(source / "predictions.jsonl", [{"instance_id": "b"}, {"instance_id": "a"}])
+    with (source / "predictions.jsonl").open("ab") as stream:
+        stream.write(b'{"instance_id":"c","root_cause":"\xe4')
+    module.freeze(source, tmp_path / "batch", 0, 2, 1)
+    assert [p["instance_id"] for p in read_jsonl(tmp_path / "batch/predictions.jsonl")] == [
+        "a",
+        "b",
+    ]
+    with pytest.raises(ValueError, match="unfinished"):
+        module.freeze(source, tmp_path / "incomplete", 0, 3, 2)
+    assert not (tmp_path / "incomplete").exists()

@@ -1,0 +1,14 @@
+{
+  "expected": 3,
+  "reviewed": 3,
+  "verdict_counts": {
+    "correct": 3,
+    "partial": 0,
+    "incorrect": 0,
+    "unscorable": 0
+  },
+  "automated_root_cause_match_rate": 1.0,
+  "root_cause_accuracy": null,
+  "human_review": false,
+  "metric_scope": "automated comparison with maintainer fixes; same-model bias; not human-validated accuracy"
+}

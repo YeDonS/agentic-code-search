@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from code_assistant.benchmark import export_swebench, read_jsonl, write_jsonl
+from code_assistant.benchmark import export_swebench, write_jsonl
 from code_assistant.telemetry import write_json
 
 
@@ -13,7 +13,11 @@ def freeze(source: Path, destination: Path, start: int, stop: int, batch: int) -
     manifest = json.loads((source / "manifest.json").read_text())
     if destination.exists() or not 0 <= start < stop <= manifest["count"]:
         raise ValueError("new destination and valid nonempty task interval required")
-    predictions = read_jsonl(source / "predictions.jsonl")
+    # The inference process may be appending a long UTF-8 record concurrently.
+    # Only a newline-terminated record is committed; ignore an unfinished tail.
+    data = (source / "predictions.jsonl").read_bytes()
+    complete = data[: data.rfind(b"\n") + 1]
+    predictions = [json.loads(line) for line in complete.splitlines() if line.strip()]
     rows = {r["instance_id"]: r for r in predictions}
     if len(rows) != len(predictions):
         raise ValueError("duplicate predictions")

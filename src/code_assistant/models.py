@@ -33,7 +33,7 @@ class Diagnosis(StrictModel):
 
 
 class RouteDecision(StrictModel):
-    agent: Literal["code_search", "test_runner", "synthesis"]
+    agent: Literal["code_search", "test_runner", "synthesis", "single_agent"]
     reason: str
 
 

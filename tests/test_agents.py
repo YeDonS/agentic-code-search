@@ -125,3 +125,49 @@ def test_provider_key_from_dotenv_is_passed_without_logging(tmp_path, monkeypatc
     settings = Settings(_env_file=env, mode="model")
     assert get_model(settings) == "model"
     assert captured["api_key"] == "private-configured-test-key"
+
+
+def test_single_conversation_uses_source_tools_and_validates_final_citations(source_repo, tmp_path):
+    diagnosis = {
+        "conclusion": "identified",
+        "root_cause": "Falsey zero gets the default.",
+        "affected_files": ["billing.py"],
+        "evidence_ids": ["e0001"],
+        "suggested_fix": "Check None.",
+        "proposed_patch": "",
+        "confidence": "medium",
+        "limitations": [],
+    }
+    model = ProtocolModel(
+        responses=[
+            AIMessage(
+                content="",
+                tool_calls=[
+                    {
+                        "name": "read_file",
+                        "args": {"path": "billing.py"},
+                        "id": "read",
+                        "type": "tool_call",
+                    }
+                ],
+            ),
+            AIMessage(content=json.dumps(diagnosis)),
+        ]
+    )
+    result = debug_repository(
+        source_repo,
+        "zero incorrectly selects default",
+        Settings(mode="model", workflow="single", runs_dir=tmp_path),
+        model=model,
+    )
+    assert result.status == "diagnosed" and [r.agent for r in result.routes] == ["single_agent"]
+    assert len(model._seen[1]) > len(model._seen[0])
+
+
+def test_global_model_call_ceiling_survives_repeated_role_invocations(tools, tmp_path):
+    settings = tools.settings.model_copy(update={"max_model_calls": 2})
+    model = ProtocolModel(responses=[AIMessage(content="done")] * 2)
+    agent = ToolCallingAgent(model, settings, RunLogger(tmp_path / "agent", "budget"))
+    for _ in range(4):
+        agent.run("code_search", {}, [])
+    assert agent.calls == model.position == 2

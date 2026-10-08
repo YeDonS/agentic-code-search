@@ -3,8 +3,13 @@
 [![CI](https://github.com/YeDonS/agentic-code-search/actions/workflows/ci.yml/badge.svg)](https://github.com/YeDonS/agentic-code-search/actions/workflows/ci.yml)
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-基于 **LangChain、LangGraph、FastAPI 和 Docker** 的开发助手。三个专职 agent
-分别定位代码、复现失败、综合诊断，输出附带源码引用和修复建议，不直接修改仓库。
+基于 **LangChain、LangGraph、FastAPI 和 Docker** 的开发助手。历史成绩来自
+**代码搜索 → 综合诊断** 两步流程，输出带源码引用的诊断与补丁，不直接修改仓库。
+对显式允许执行的可信仓库，还提供测试 agent 及“测试失败后回到搜索”的路由。
+
+**原始 48/100 没有测试 agent 参与推理。** 100 条 trace 全部是搜索 → 综合，官方
+容器测试在补丁冻结后单独执行。小型 checkout 示例只能验证流程连通，不能证明真实
+项目上的多 agent 优势。
 
 ## 实现与验证状态
 
@@ -17,13 +22,17 @@
 | 12 个仓库的 100 条历史问题 | 固定版本 SWE-bench Lite 子集，可重复选样 |
 | 100 个修复前快照的检索基线 | **全部完成；Hit@1 40%，Hit@5 71%，MRR@5 0.5202** |
 | 100 条真实模型运行 | **90 条带证据诊断，10 条证据不足；文件 Hit@1 87%，Hit@5 88%** |
-| 自动根因核对 | **87 条正确、1 条部分正确、2 条错误、10 条不可评分**；人工准确率未测 |
 | 生成补丁的官方测试 | **48/100 解决**；23 条未通过、27 条空补丁、2 条超时，全部计入分母 |
+| 补丁纠错与证据传递 | 已加入应用报错反馈、综合阶段读源码、源码优先窗口；改进单独评测 |
+| 单 agent 与证据窗口配对实验 | 同模型、相同调用预算上限；见[实验协议与结果](docs/EXPERIMENTS.md) |
 
 文件定位指标衡量“候选文件是否命中维护者补丁修改的文件”，与修复成功率分别计算。
 完整模型运行通过本地 Codex CLI 登录调用 `gpt-6.1-sol`，配置和源码指纹已冻结。
-自动根因核对由 LLM 对照维护者补丁进行，存在同模型评审偏差；功能解决率由官方测试
-计算。固定演示使用人工构造缺陷，排除在 100 条历史任务之外。
+BM25 仅作检索参考，不能充当同条件的 LLM 对照。自动根因评审保留作审计，不列为主成绩：
+被判正确的解释有 40 条没有解决，另有 1 条被判错误的补丁实际通过了官方测试。
+人工根因准确率仍未测。功能解决率依据官方测试。100 条按仓库均衡抽取，与 Lite 完整
+分布不同，**48% 不与其排行榜横比**；公开历史修复也可能已进入模型训练数据。
+固定演示排除在历史任务之外。
 [真实运行结果与日志](reports/README.md) · [复现模型评测](docs/MODEL_EVALUATION.md)。
 
 ## 快速运行
@@ -68,7 +77,12 @@ flowchart TD
 |---|---|
 | 代码搜索 | `search_repository`、`read_file` |
 | 测试 | `read_file`、`run_tests`、`inspect_logs` |
-| 综合 | 无执行工具，输出经校验的 JSON 诊断 |
+| 综合 / 有限补丁纠错 | `read_file`；输出经校验的 JSON，无执行工具 |
+
+默认窗口保留最多 24 条不同观察，优先源码读取，其次测试/日志，最后搜索片段；完整
+证据账本不丢弃。应用检查失败后最多纠错两次，共享每题 18 次模型、18 次工具调用上限，
+保留原始候选及每次尝试。支持文本文件新建/删除，拒绝重命名、二进制和符号链接。
+设置 `ASSISTANT_WORKFLOW=single` 可使用单一对话流程。
 
 受影响文件必须出现在真实登记的源码读取引用中。这能验证出处，不能自动证明因果解释
 正确。证据不足或模型主动放弃时返回 `insufficient_evidence`。检索轮数、模型轮数、
@@ -76,8 +90,23 @@ flowchart TD
 
 ## 接入真实模型与仓库
 
-也可以复用本地 [Codex CLI 登录](https://learn.chatgpt.com/docs/non-interactive-mode)，
-无需单独导出 API Key（已验证 CLI 0.162.0-alpha.2）：
+独立推理及部署服务优先使用模型 API Key，经 LangChain 直接调用 OpenAI 或 Anthropic，
+选择自己账号可用、支持工具调用的模型：
+
+```bash
+cp .env.example .env
+# 配置 ASSISTANT_MODE=model、ASSISTANT_MODEL=provider:model-id，
+# 以及对应的 ANTHROPIC_API_KEY 或 OPENAI_API_KEY。
+uv run code-assistant doctor
+uv run code-assistant debug /你的仓库路径 "描述实际行为、预期行为及复现条件"
+```
+
+`doctor` 仅检查配置，不代表推理通过。本次环境没有独立模型 API Key，原生 API
+适配器做了离线配置测试，尚无真实 API 调用验证。更换模型/提供商属于新实验，不能据此
+复现已发布模型的同一成绩。
+
+另提供可选的本地 [Codex CLI 适配器](https://learn.chatgpt.com/docs/non-interactive-mode)。
+历史实验使用 CLI 0.162.0-alpha.2 和账号特定的模型别名：
 
 ```bash
 codex login
@@ -92,14 +121,8 @@ uv run code-assistant debug /你的仓库路径 "描述实际行为、预期行�
 通过结构化 JSON 请求项目工具；仓库只向项目的白名单工具开放。登录凭证由 CLI 自行
 管理，不复制到公开 CI 或 Docker 镜像。
 
-也可以使用独立模型 API Key：
-
-```bash
-cp .env.example .env
-# 在 .env 中配置 ASSISTANT_MODE=model、ASSISTANT_MODEL=provider:model-id，
-# 以及对应的 ANTHROPIC_API_KEY 或 OPENAI_API_KEY。
-uv run code-assistant debug /你的仓库路径 "描述实际行为、预期行为及复现条件"
-```
+CLI 参数和模型可用性可能变化。将订阅登录用于服务前，应核对适用的账户条款和支持范围；
+本仓库不作合规或资格承诺。冻结补丁的官方复跑不依赖 CLI 登录或模型别名。
 
 CLI 的 `debug` 始终使用真实模型。请选择账号可用、支持工具调用的模型；配置示例中的
 模型名称可修改。密钥从环境变量或 `.env` 读取，相关源码片段会发送给配置的模型服务。

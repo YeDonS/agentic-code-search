@@ -337,14 +337,20 @@ class RepositoryTools:
         )
 
     def add_evidence(self, kind: str, text: str, **fields: Any) -> Evidence:
-        evidence = Evidence(
-            id=f"e{len(self.evidence) + 1:04d}", kind=kind, text=redact(text), **fields
+        # Restored ledgers may have non-contiguous IDs. Never overwrite a citation.
+        next_id = (
+            max((int(e.id[1:]) for e in self.evidence if re.fullmatch(r"e\d+", e.id)), default=0)
+            + 1
         )
+        evidence = Evidence(id=f"e{next_id:04d}", kind=kind, text=redact(text), **fields)
         self.evidence.append(evidence)
         return evidence
 
     def _call(self, name: str, function: Any, **arguments: Any) -> str:
         start = time.monotonic()
+        if self.calls >= self.settings.max_tool_calls:
+            self.logger.emit("tool_budget_exhausted", tool=name)
+            return json.dumps({"error": "tool budget exhausted"})
         self.calls += 1
         self.logger.emit("tool_start", tool=name, tool_call=self.calls)
         try:
@@ -452,4 +458,10 @@ class RepositoryTools:
             return [search_repository, read_file]
         if role == "test_runner":
             return [read_file, run_tests, inspect_logs]
+        if role in {"synthesis", "patch_repair"}:
+            return [read_file]
+        if role == "single_agent":
+            return [search_repository, read_file] + (
+                [run_tests, inspect_logs] if self.settings.test_executor != "disabled" else []
+            )
         return []

@@ -31,6 +31,9 @@ def publish(source: Path, destination: Path) -> None:
     write_json(destination / "log-audit.json", summarize_events(source))
     model_calls = [e for e in events if e["event"] == "model_response"]
     patch_checks = [e for e in events if e["event"] == "patch_check"]
+    final_checks = [
+        json.loads(p.read_text()) for p in (source / "agent_runs").glob("*/patch-check.json")
+    ]
     summary = {
         "tasks": len(predictions),
         "model_calls": len(model_calls),
@@ -39,8 +42,11 @@ def publish(source: Path, destination: Path) -> None:
         "cached_input_tokens": sum(e.get("cached_input_tokens") or 0 for e in model_calls),
         "builtin_tool_calls": sum(e.get("builtin_tool_calls") or 0 for e in model_calls),
         "transport_reconnects": sum(e.get("transport_reconnects") or 0 for e in model_calls),
-        "applicable_patches": sum(e["status"] == "applies" for e in patch_checks),
-        "withheld_patches": sum(e["status"] not in {"applies", "empty"} for e in patch_checks),
+        "applicable_patches": sum(bool(p.get("model_patch")) for p in predictions),
+        "withheld_patches": sum(e["status"] not in {"applies", "empty"} for e in final_checks),
+        "patch_check_attempts": len(patch_checks),
+        "repair_attempts": sum(e.get("repair_attempts", 0) for e in final_checks),
+        "recovered_patches": sum(e.get("recovered", False) for e in final_checks),
         "model_duration_ms": sum(e["duration_ms"] for e in model_calls),
     }
     write_json(destination / "model-usage.json", summary)

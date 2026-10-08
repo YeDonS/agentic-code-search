@@ -45,6 +45,23 @@ omit displayed line-number prefixes, and list every edited file in affected_file
 Describe baseline tests honestly. A suggested patch is UNVERIFIED, even when baseline tests pass.
 """,
 }
+PROMPTS["single_agent"] = (
+    COMMON
+    + "\nROLE: single_agent\nInvestigate this issue in one continuous conversation using the "
+    "provided search and read tools. Gather source evidence before diagnosing. Batch "
+    "independent reads. If test tools are available, reproduce with a narrow existing test "
+    "and inspect its logs. Finish with the diagnosis JSON specified below.\n"
+    + PROMPTS["synthesis"].split("ROLE: synthesis\n", 1)[1]
+)
+PROMPTS["patch_repair"] = (
+    COMMON
+    + "\nROLE: patch_repair\nThe previous candidate failed a pre-evaluation git apply check. "
+    "Use the checker error and read_file to verify exact original lines. Correct only the "
+    "unified diff formatting/context while preserving the intended fix, root cause and "
+    "affected_files. Do not use or infer reference solutions or test outcomes. Return the "
+    "same diagnosis JSON with a corrected proposed_patch.\n"
+    + PROMPTS["synthesis"].split("ROLE: synthesis\n", 1)[1]
+)
 
 
 class DemoModel(BaseChatModel):
@@ -138,17 +155,33 @@ class ToolCallingAgent:
 
     def __init__(self, model: BaseChatModel, settings: Settings, logger: RunLogger):
         self.model, self.settings, self.logger = model, settings, logger
+        self.calls = 0
 
-    def run(self, role: str, payload: dict[str, Any], tools: list[Any]) -> str:
+    def run(
+        self, role: str, payload: dict[str, Any], tools: list[Any], *, reserve_calls: int = 0
+    ) -> str:
         messages: list[BaseMessage] = [
             SystemMessage(content=PROMPTS[role]),
             HumanMessage(content=json.dumps(payload, ensure_ascii=False)),
         ]
         bound = self.model.bind_tools(tools) if tools else self.model
         by_name = {t.name: t for t in tools}
-        for step in range(self.settings.max_agent_steps):
+        steps = min(
+            self.settings.max_agent_steps,
+            max(0, self.settings.max_model_calls - self.calls - reserve_calls),
+        )
+        for step in range(steps):
             start = time.monotonic()
-            response = bound.invoke(messages)
+            self.calls += 1
+            if step == steps - 1 and tools:
+                messages.append(
+                    HumanMessage(
+                        content="The role's call budget ends after this response. Return your final finding or diagnosis JSON now, using the evidence already gathered."
+                    )
+                )
+                response = self.model.invoke(messages)
+            else:
+                response = bound.invoke(messages)
             if not isinstance(response, AIMessage):
                 raise ValueError("model did not return an AIMessage")
             usage = response.usage_metadata or {}
@@ -156,6 +189,7 @@ class ToolCallingAgent:
                 "model_response",
                 agent=role,
                 step=step,
+                model_call=self.calls,
                 model=self.settings.model
                 if self.settings.mode == "model"
                 else "scripted-demo-only",
@@ -193,5 +227,10 @@ class ToolCallingAgent:
                         output = json.dumps({"error": str(error)[:300]})
                         self.logger.emit("invalid_tool_arguments", agent=role, tool=call["name"])
                 messages.append(ToolMessage(content=output, tool_call_id=call["id"]))
-        self.logger.emit("agent_step_limit", agent=role, steps=self.settings.max_agent_steps)
-        return "Agent step limit reached. Use only the registered evidence and report limitations."
+        event = (
+            "model_budget_exhausted"
+            if self.calls + reserve_calls >= self.settings.max_model_calls
+            else "agent_step_limit"
+        )
+        self.logger.emit(event, agent=role, steps=steps, model_calls=self.calls)
+        return "Agent call budget reached. Use only the registered evidence and report limitations."

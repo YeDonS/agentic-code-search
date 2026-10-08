@@ -1,0 +1,14 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-15512",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-15512:latest",
+  "patch_sha256": "df38167db36c889c9aa4e22ebc9ff421102577732b0f88d32821a3cdb00bc26e",
+  "image_id": "sha256:8c6849492b5d40dcd6af658590329679e7c932332e4fcba1c0bfc9252d4eba1f",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-15512@sha256:b2854e68b923a7e27d3776a4041f8a861c1b5004f0c4bd3aa06dd0d4c40d8d0c"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

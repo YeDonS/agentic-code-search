@@ -1,0 +1,25 @@
++ : '>>>>> Start Test Output'
++ pytest -rA testing/io/test_saferepr.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-5.4.1.dev196+ga5c7fe97c.d20261008, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, inifile: tox.ini
+collected 11 items
+
+testing/io/test_saferepr.py ...........                                  [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED testing/io/test_saferepr.py::test_simple_repr
+PASSED testing/io/test_saferepr.py::test_maxsize
+PASSED testing/io/test_saferepr.py::test_maxsize_error_on_instance
+PASSED testing/io/test_saferepr.py::test_exceptions
+PASSED testing/io/test_saferepr.py::test_baseexception
+PASSED testing/io/test_saferepr.py::test_buggy_builtin_repr
+PASSED testing/io/test_saferepr.py::test_big_repr
+PASSED testing/io/test_saferepr.py::test_repr_on_newstyle
+PASSED testing/io/test_saferepr.py::test_unicode
+PASSED testing/io/test_saferepr.py::test_pformat_dispatch
+PASSED testing/io/test_saferepr.py::test_broken_getattribute
+============================== 11 passed in 0.02s ==============================
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

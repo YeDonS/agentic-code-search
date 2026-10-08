@@ -1,0 +1,14 @@
+{
+  "instance_id": "mwaskom__seaborn-3407",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3407:latest",
+  "patch_sha256": "414a062dc2a1f6ea8aff8cf33013eba9d9bac38a3d0a2823d82a720452d5f5c8",
+  "image_id": "sha256:3158ed1b4a82070fe39efe3a776d59b7688bdedb09b9ac477b68d2ec4798bb82",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3407@sha256:bd81f082cba400f12fc48d9e93a8a9c1a5323fa84caa57ebb7469f3fe1ffa8d1"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

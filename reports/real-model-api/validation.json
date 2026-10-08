@@ -1,0 +1,17 @@
+{
+  "health_status": 200,
+  "unauthenticated_status": 401,
+  "authenticated_status": 200,
+  "mode": "model",
+  "status": "diagnosed",
+  "test_status": "baseline_failed",
+  "routes": [
+    "code_search",
+    "test_runner",
+    "code_search",
+    "synthesis"
+  ],
+  "model": "codex-cli:gpt-6.1-sol",
+  "client_trust_env": false,
+  "fixture": "synthetic checkout, excluded from historical benchmark"
+}

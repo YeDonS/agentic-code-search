@@ -40,6 +40,21 @@ binary data, and files larger than 500 KB. It caps 20,000 files / 80 MB and logs
 Each evidence record has an immutable ID for that run. Source reads and search snippets have
 distinct kinds: a search snippet alone cannot satisfy the final source-read requirement.
 
+## Local-login model adapter
+
+[`codex_model.py`](../src/code_assistant/codex_model.py) implements LangChain's chat-model
+interface over non-interactive Codex CLI inference. Application tool schemas and messages
+travel over stdin; schema-validated JSON becomes `AIMessage.tool_calls` or a structured
+diagnosis. Authentication stays with the CLI's supported login.
+
+Each call runs in an empty temporary directory with user configuration/rules ignored and
+built-in execution, file operations, web search, connectors, plugins, and extra agents
+disabled. CLI events are checked and unexpected built-in activity fails the call. Only the
+application tools have the actor repository path. Time/output limits and safe error handling
+bound the subprocess. The model still receives the selected source excerpts in its input.
+The pinned run records CLI version, model identifier, reasoning effort, transport, usage,
+and reconnect counts. [Reproduction](MODEL_EVALUATION.md).
+
 ## Output and verification
 
 Synthesis produces a Pydantic `Diagnosis`: conclusion, causal explanation, affected files,
@@ -51,6 +66,18 @@ Citation checks establish provenance only. A model can still misunderstand genui
 Confidence is model-reported, not a calibrated probability. Semantic review and official
 regression tests are required for correctness claims. The service never applies patches;
 `patch_verified` remains false. Project tests separately verify the synthetic example's patch.
+
+[`patches.py`](../src/code_assistant/patches.py) separately validates diff paths against
+affected files that were actually read, mechanically recounts hunk lengths, and checks
+applicability on a temporary source copy. Invalid candidates are withheld with their original
+hashes preserved. It does not run regression tests. After inference freezes, official
+SWE-bench containers evaluate the submitted patch and retain separate functional results.
+
+Each historical issue has an isolated snapshot and trace. Concurrent workers share no actor
+state; the main thread persists complete predictions and restores task order at completion.
+Resumption rejects task, model, source, environment, budget, and worker-count mismatches.
+Four frozen batches preserve the full 100-task denominator and patch identities during
+official evaluation. Automated gold-based review occurs only after each prediction freezes.
 
 ## Execution and service boundaries
 

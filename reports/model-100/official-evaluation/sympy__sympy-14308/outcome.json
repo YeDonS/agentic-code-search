@@ -1,0 +1,14 @@
+{
+  "instance_id": "sympy__sympy-14308",
+  "status": "unresolved",
+  "resolved": false,
+  "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14308:latest",
+  "patch_sha256": "3a9f3f9327601472cd44e9b22ec1ddca6b0d6dc18115bcc3de7f91cb2163f93f",
+  "image_id": "sha256:eb0ea04bcc1222b564c1ed0ac73a042c109ff468099ea5a41b2d2a8533834f41",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.sympy_1776_sympy-14308@sha256:df074e8d710af0dd9b9ebe856211c83ec13759699d0854e390ab794e355494ea"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

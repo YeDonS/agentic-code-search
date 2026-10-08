@@ -1,0 +1,27 @@
++ : '>>>>> Start Test Output'
++ pytest -rA sklearn/cluster/tests/test_affinity_propagation.py
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 10 items
+
+sklearn/cluster/tests/test_affinity_propagation.py ..........            [100%]
+
+==================================== PASSES ====================================
+__________________________ test_affinity_propagation ___________________________
+----------------------------- Captured stdout call -----------------------------
+Converged after 58 iterations.
+=========================== short test summary info ============================
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_predict
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_predict_error
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_fit_non_convergence
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_equal_mutual_similarities
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_predict_non_convergence
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_non_convergence_regressiontest
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_equal_similarities_and_preferences
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_convergence_warning_dense_sparse[centers0]
+PASSED sklearn/cluster/tests/test_affinity_propagation.py::test_affinity_propagation_convergence_warning_dense_sparse[centers1]
+======================== 10 passed, 2 warnings in 0.18s ========================
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

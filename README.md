@@ -13,18 +13,20 @@ registered source citations. Patches are proposed without changing the repositor
 |---|---|
 | Search / test / synthesis agents and conditional routing | Implemented and covered by offline integration tests |
 | Search, source reads, pytest execution, log inspection | Real tools with budgets and structured events |
-| FastAPI, bearer authentication, OpenAPI docs | Locally tested |
+| FastAPI, bearer authentication, OpenAPI docs | Real-model HTTP check passed: 401 without token, 200 with token |
 | Docker service, restricted runner, Compose | Build and execution checks passed in GitHub Actions |
 | 100 historical issues across 12 repositories | Pinned, reproducible SWE-bench Lite subset |
 | Retrieval baseline on all 100 pre-fix snapshots | **100 completed; Hit@1 40%; Hit@5 71%; MRR@5 0.5202** |
-| Real-model root-cause accuracy | Integration and review workflow implemented; **not evaluated** |
-| Generated-patch resolution | Official harness export/scoring implemented; **not evaluated** |
+| Real LLM run on all 100 issues | **90 cited diagnoses, 10 abstentions; file Hit@1 87%, Hit@5 88%** |
+| Automated root-cause comparison | **87 correct, 1 partial, 2 incorrect, 10 unscorable**; human accuracy remains unmeasured |
+| Generated-patch resolution | **48/100 resolved** in official SWE-bench tests; 23 failed, 27 empty, 2 timed out |
 
 Baseline numbers measure **file localization against maintainer patches**, not bug-fix accuracy.
-The first three historical tasks have now been diagnosed with a real model through a locally
-authenticated Codex CLI. All three patches apply; official functional evaluation is separate.
+The real run uses `gpt-6.1-sol` through a locally authenticated Codex CLI, with a frozen
+configuration and source fingerprint. Automated causal comparison is a labeled LLM judgment
+with possible same-model bias. Functional resolution comes from the official SWE-bench harness.
 The scripted demo is synthetic and excluded from the 100 historical tasks.
-[Results and traces](reports/README.md).
+[Results and traces](reports/README.md) · [Reproduce real-model evaluation](docs/MODEL_EVALUATION.md).
 
 ## Quick start
 
@@ -120,10 +122,14 @@ and set `ASSISTANT_TEST_IMAGE` when needed. Historical patch evaluation uses off
 ```bash
 # Explicit local execution for the trusted bundled fixture:
 ASSISTANT_TEST_EXECUTOR=local uv run code-assistant serve
-curl http://127.0.0.1:8000/v1/debug \
+curl --noproxy 127.0.0.1 http://127.0.0.1:8000/v1/debug \
   -H 'Content-Type: application/json' \
   -d '{"repository":"checkout","issue":"Passing discount=0 to calculate_total(100, discount=0) returns 90 instead of 100."}'
 ```
+
+Set `ASSISTANT_MODE=model` when serving with the real-model configuration above.
+The [authenticated real-model HTTP check](reports/real-model-api/validation.json)
+completed search → test → search → synthesis on the trusted synthetic fixture.
 
 Open [interactive API docs](http://127.0.0.1:8000/docs). For other repositories, configure
 `ASSISTANT_WORKSPACE_ROOT` and pass a relative directory. Configure `ASSISTANT_API_TOKEN` and
@@ -170,8 +176,8 @@ responses contain source excerpts and are ignored by Git.
 index truncation, invalid synthesis, and incomplete traces. [Logging walkthrough](docs/INTERVIEW.md).
 
 ```bash
-uv run ruff check src tests
-uv run ruff format --check src tests
+uv run ruff check src tests scripts
+uv run ruff format --check src tests scripts
 uv run pytest --cov=code_assistant
 uv build
 ```

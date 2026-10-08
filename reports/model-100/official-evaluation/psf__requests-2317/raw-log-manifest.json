@@ -1,0 +1,49 @@
+{
+  "artifact_name": "patch-shard-0",
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37823468905",
+  "files": {
+    "harness.log": {
+      "sha256": "693c054d5ff06fda17a66311255bcfb56765e4c5a9b84e82c18cd78ac35ad0c8",
+      "bytes": 1063
+    },
+    "image-pull.log": {
+      "sha256": "8698aa4ac6277d72ac7411bec77be2d0aad330144c9c582682c7d786440edbf6",
+      "bytes": 1635
+    },
+    "logs/run_evaluation/patch-37823468905-0-5/agentic-code-search-gpt-6.1-sol/psf__requests-2317/eval.sh": {
+      "sha256": "3c269c3490659672d0f0385db22880344d9f0dc08e8462b11ae5d9c40d1bd183",
+      "bytes": 1164
+    },
+    "logs/run_evaluation/patch-37823468905-0-5/agentic-code-search-gpt-6.1-sol/psf__requests-2317/patch.diff": {
+      "sha256": "67bad5b72181faa8bc821474662df1c7fa042d94a8a94f8f81d4a413c7c477e4",
+      "bytes": 250
+    },
+    "logs/run_evaluation/patch-37823468905-0-5/agentic-code-search-gpt-6.1-sol/psf__requests-2317/run_instance.log": {
+      "sha256": "3dc086cb5db344c1bb00eebeb38416f03578a17f6ebff9657bcfbd0ef23c1f88",
+      "bytes": 2601
+    },
+    "logs/run_evaluation/patch-37823468905-0-5/agentic-code-search-gpt-6.1-sol/psf__requests-2317/test_output.txt": {
+      "sha256": "8b856dfc43e3a846556fc0cf0e68aa5b125a31056cbcdd1e01f9eed46b3c38f8",
+      "bytes": 40787
+    },
+    "logs/run_evaluation/patch-37823468905-0-5/run.json": {
+      "sha256": "09f3f03e273ed6c6b457c49c11b723ac7c63f0998caec7f1c9767ccc33a8cd45",
+      "bytes": 212
+    },
+    "predictions.jsonl": {
+      "sha256": "d0e5722032e3800e25b81fdcf1fdc478511c00f67efebacd320f8b504190d415",
+      "bytes": 373
+    },
+    "summary/agentic-code-search-gpt-6.1-sol.patch-37823468905-0-5.json": {
+      "sha256": "55d679eeee8670da4e4f4c1c7fb3266924377c22ef5a84b69918d497516bb1e2",
+      "bytes": 883
+    }
+  },
+  "test_output_sha256": "8b856dfc43e3a846556fc0cf0e68aa5b125a31056cbcdd1e01f9eed46b3c38f8",
+  "raw_lines": 1066,
+  "excerpt_start_line": 1057,
+  "excerpt_stop_line": 1067,
+  "truncated": true,
+  "trailing_whitespace_removed_for_display": true,
+  "original": "GitHub Actions artifact; ignored local runs/official-100-artifacts"
+}

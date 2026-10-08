@@ -1,0 +1,1015 @@
+{
+  "expected": 100,
+  "submitted": 100,
+  "failed_or_missing": 10,
+  "file_hit_at_1": 0.87,
+  "file_hit_at_5": 0.88,
+  "mrr_at_5": 0.875,
+  "mean_changed_file_recall_at_5": 0.88,
+  "root_cause_accuracy": null,
+  "patch_resolution_rate": 0.48,
+  "metric_scope": "file localization against maintainer patches; not semantic correctness or test resolution",
+  "per_issue": [
+    {
+      "instance_id": "astropy__astropy-12907",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "astropy__astropy-14182",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "astropy__astropy-14365",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "astropy__astropy-14995",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "astropy__astropy-6938",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "astropy__astropy-7746",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "django__django-10914",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "django__django-11001",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "django__django-11742",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "django__django-12184",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "django__django-12497",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "django__django-12983",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "django__django-13401",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "django__django-13447",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "django__django-13448",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "django__django-13757",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "django__django-14997",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "django__django-16255",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-18869",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23314",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23964",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-24149",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-24265",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-24334",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25079",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25332",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25498",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-26011",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-26020",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "mwaskom__seaborn-2848",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3010",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3190",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3407",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pallets__flask-4045",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pallets__flask-4992",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pallets__flask-5063",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "psf__requests-1963",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "psf__requests-2148",
+      "status": "diagnosed",
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 0.5,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "psf__requests-2317",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "psf__requests-2674",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "psf__requests-3362",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "psf__requests-863",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pydata__xarray-3364",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pydata__xarray-4094",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pydata__xarray-4248",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pydata__xarray-4493",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pydata__xarray-5131",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pylint-dev__pylint-5859",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pylint-dev__pylint-6506",
+      "status": "diagnosed",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7080",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7114",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7228",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7993",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11148",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5103",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5227",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5413",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5495",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5692",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7168",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7373",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7490",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-8365",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-8906",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-11040",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13142",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13497",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13584",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14087",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14092",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14894",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14983",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-15512",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-25500",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-25638",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-25747",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-7686",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-7738",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-7975",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8273",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8282",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8435",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8506",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8595",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8713",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8721",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8801",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sympy__sympy-11870",
+      "status": "diagnosed",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sympy__sympy-12419",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sympy__sympy-13437",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sympy__sympy-13480",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sympy__sympy-13647",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sympy__sympy-13895",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sympy__sympy-14308",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sympy__sympy-18087",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sympy__sympy-19487",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": true
+    },
+    {
+      "instance_id": "sympy__sympy-20154",
+      "status": "diagnosed",
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank_at_5": 1.0,
+      "changed_file_recall_at_5": 1.0,
+      "root_cause_correct": null,
+      "resolved": false
+    },
+    {
+      "instance_id": "sympy__sympy-20590",
+      "status": "insufficient_evidence",
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank_at_5": 0,
+      "changed_file_recall_at_5": 0.0,
+      "root_cause_correct": null,
+      "resolved": false
+    }
+  ],
+  "harness_report_sha256": "734b68d844bcd29f5aa8ca2788d7e6471b580ef54ab9b38c28ea16bdec61d7c9"
+}

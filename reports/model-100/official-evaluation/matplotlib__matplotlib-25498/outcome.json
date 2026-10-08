@@ -1,0 +1,14 @@
+{
+  "instance_id": "matplotlib__matplotlib-25498",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-25498:latest",
+  "patch_sha256": "7c2d5ffc633b16e8b6453defc8e41b8af2fb6869668c8291482990363ddeb735",
+  "image_id": "sha256:339b6341c969c2ef9476870dbf6326e955af4bc81a2585ee3ece542bf00596c9",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-25498@sha256:8d06579eade2be0cde2c0ccab60756a6f9c0c4bf523f22f8eb95de71f30f252e"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

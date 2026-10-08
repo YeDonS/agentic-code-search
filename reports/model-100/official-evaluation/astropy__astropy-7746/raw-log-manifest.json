@@ -1,0 +1,53 @@
+{
+  "artifact_name": "patch-shard-4",
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37823468905",
+  "files": {
+    "harness.log": {
+      "sha256": "18ceabc23e58e4407b7f93268ae5983cead562374b2d8b4624f8d6c3fc3022a4",
+      "bytes": 846
+    },
+    "image-pull.log": {
+      "sha256": "c51d0c9d08c17df150b4da3af5515cb807d860da7ece04a104f0c60628f7c2f7",
+      "bytes": 1710
+    },
+    "logs/run_evaluation/patch-37823468905-4-24/agentic-code-search-gpt-6.1-sol/astropy__astropy-7746/eval.sh": {
+      "sha256": "7ed949854c93a898c6b107d2ea131ecb09b5ab1acfb1a1425fad65e80e33ebf9",
+      "bytes": 1652
+    },
+    "logs/run_evaluation/patch-37823468905-4-24/agentic-code-search-gpt-6.1-sol/astropy__astropy-7746/patch.diff": {
+      "sha256": "d6d45effdfe38ff33e407c5de4317e9e2e31d42b484b7eaf98e13ede490f4207",
+      "bytes": 852
+    },
+    "logs/run_evaluation/patch-37823468905-4-24/agentic-code-search-gpt-6.1-sol/astropy__astropy-7746/report.json": {
+      "sha256": "dfa5c02b6667a0ba8c2a72a283f29b768da5874f08e7b051282ce93d0bb275f6",
+      "bytes": 4964
+    },
+    "logs/run_evaluation/patch-37823468905-4-24/agentic-code-search-gpt-6.1-sol/astropy__astropy-7746/run_instance.log": {
+      "sha256": "dadfdfa6842d3bd36729ec61956d1c2f52637f790ab624371d406fa82ddf67ce",
+      "bytes": 7562
+    },
+    "logs/run_evaluation/patch-37823468905-4-24/agentic-code-search-gpt-6.1-sol/astropy__astropy-7746/test_output.txt": {
+      "sha256": "99bc736ce2ec540b7bb29c4d8416347498a51116227060b5947b5dc4415e67b5",
+      "bytes": 445642
+    },
+    "logs/run_evaluation/patch-37823468905-4-24/run.json": {
+      "sha256": "783631fbc570394c7ebfc71b2c3d3903574e4218b20f5aacdc03697eb0be5e2b",
+      "bytes": 215
+    },
+    "predictions.jsonl": {
+      "sha256": "f6883f16c1b60658ae8c6e0e01c51d3d57d855f3e966a60b63513a5dd5233649",
+      "bytes": 991
+    },
+    "summary/agentic-code-search-gpt-6.1-sol.patch-37823468905-4-24.json": {
+      "sha256": "34e083880c5689647ca8ab2274daa1642be44bfdeb4a2da62ee2312ef9b6893e",
+      "bytes": 842
+    }
+  },
+  "test_output_sha256": "99bc736ce2ec540b7bb29c4d8416347498a51116227060b5947b5dc4415e67b5",
+  "raw_lines": 10811,
+  "excerpt_start_line": 10705,
+  "excerpt_stop_line": 10807,
+  "truncated": false,
+  "trailing_whitespace_removed_for_display": true,
+  "original": "GitHub Actions artifact; ignored local runs/official-100-artifacts"
+}

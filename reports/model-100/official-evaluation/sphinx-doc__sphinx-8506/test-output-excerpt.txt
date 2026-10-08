@@ -1,0 +1,160 @@
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91mWARNING: term term2 not found in case sensitive match.made a reference to TERM2 instead.[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case1.rst:4: WARNING: glossary terms must not be separated by empty lines[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case2.rst:2: WARNING: glossary seems to be misformatted, check indentation[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case2.rst:3: WARNING: glossary term must be preceded by empty line[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case3.rst:4: WARNING: glossary term must be preceded by empty line[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case3.rst:2: WARNING: duplicate term description of term1, other instance in case1[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case3.rst:4: WARNING: duplicate term description of term2, other instance in case1[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/case4.rst:3: WARNING: duplicate term description of term-case4, other instance in case4[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/fd07f2193[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+============================= slowest 25 durations =============================
+0.45s setup    tests/test_domain_std.py::test_cmd_option_with_optional_value
+0.33s call     tests/test_domain_std.py::test_productionlist
+0.02s call     tests/test_domain_std.py::test_cmd_option_with_optional_value
+0.02s setup    tests/test_domain_std.py::test_cmdoption
+0.02s setup    tests/test_domain_std.py::test_glossary_alphanumeric
+0.02s setup    tests/test_domain_std.py::test_cmd_option_starting_with_bracket
+0.02s setup    tests/test_domain_std.py::test_disabled_docref
+0.02s setup    tests/test_domain_std.py::test_glossary
+0.02s setup    tests/test_domain_std.py::test_glossary_comment
+0.02s setup    tests/test_domain_std.py::test_glossary_conflicted_labels
+0.02s setup    tests/test_domain_std.py::test_glossary_sorted
+0.02s setup    tests/test_domain_std.py::test_glossary_comment2
+0.02s setup    tests/test_domain_std.py::test_glossary_warning
+0.02s setup    tests/test_domain_std.py::test_multiple_cmdoptions
+0.02s setup    tests/test_domain_std.py::test_productionlist
+0.01s call     tests/test_domain_std.py::test_glossary_warning
+0.01s call     tests/test_domain_std.py::test_glossary
+0.01s call     tests/test_domain_std.py::test_multiple_cmdoptions
+0.01s call     tests/test_domain_std.py::test_glossary_alphanumeric
+0.01s call     tests/test_domain_std.py::test_glossary_comment
+0.01s call     tests/test_domain_std.py::test_glossary_sorted
+
+(4 durations < 0.005s hidden.  Use -vv to show these durations.)
+[36m[1m=========================== short test summary info ============================[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_process_doc_handle_figure_caption[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_process_doc_handle_table_title[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_get_full_qualified_name[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary_warning[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary_comment[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary_comment2[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary_sorted[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary_alphanumeric[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_glossary_conflicted_labels[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_cmdoption[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_multiple_cmdoptions[0m
+[32mPASSED[0m tests/test_domain_std.py::[1mtest_disabled_docref[0m
+[31mFAILED[0m tests/test_domain_std.py::[1mtest_cmd_option_with_optional_value[0m - AssertionError: The node '[1][0][0][0]' is not '-j': <#text: '-j[=N]'>
+[31mFAILED[0m tests/test_domain_std.py::[1mtest_cmd_option_starting_with_bracket[0m - AssertionError: The node '[1][0][0][0]' is not '[enable': <#text: '[enable=...
+[31mFAILED[0m tests/test_domain_std.py::[1mtest_productionlist[0m - assert 3 == 2
+[31m================= [31m[1m3 failed[0m, [32m13 passed[0m, [33m1057 warnings[0m[31m in 1.37s[0m[31m ==================[0m
+py39: exit 1 (2.06 seconds) /testbed> python -X dev -m pytest -rA --durations 25 tests/test_domain_std.py pid=78
+  py39: FAIL code 1 (2.07=setup[0.01]+cmd[2.06] seconds)
+  evaluation failed :( (2.18 seconds)
+>>>>> Test Exit Code: 1
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

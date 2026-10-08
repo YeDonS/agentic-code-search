@@ -1,0 +1,35 @@
++ : '>>>>> Start Test Output'
++ pytest -rA tests/checkers/unittest_misc.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-7.4.4, pluggy-1.5.0
+benchmark: 3.4.1 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: /testbed
+configfile: setup.cfg
+plugins: timeout-2.3.1, cov-3.0.0, xdist-2.5.0, profiling-1.7.0, forked-1.6.0, benchmark-3.4.1
+collected 11 items
+
+tests/checkers/unittest_misc.py ...........                              [100%]
+
+=============================== warnings summary ===============================
+../opt/miniconda3/envs/testbed/lib/python3.9/site-packages/astroid/interpreter/_import/util.py:7
+  /opt/miniconda3/envs/testbed/lib/python3.9/site-packages/astroid/interpreter/_import/util.py:7: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_fixme_with_message
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_todo_without_message
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_xxx_without_space
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_xxx_middle
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_without_space_fixme
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_non_alphanumeric_codetag
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_absent_codetag
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_other_present_codetag
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_issue_2321_should_not_trigger
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_issue_2321_should_trigger
+PASSED tests/checkers/unittest_misc.py::TestFixme::test_dont_trigger_on_todoist
+======================== 11 passed, 1 warning in 0.03s =========================
+>>>>> Test Exit Code: 0
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

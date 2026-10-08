@@ -1,0 +1,112 @@
++ : '>>>>> Start Test Output'
++ pytest -rA xarray/tests/test_groupby.py
+============================= test session starts ==============================
+platform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0
+rootdir: /testbed
+configfile: setup.cfg
+plugins: xdist-3.6.1, hypothesis-6.114.0, env-1.1.5, cov-5.0.0
+collected 34 items
+
+xarray/tests/test_groupby.py ..................................          [100%]
+
+=============================== warnings summary ===============================
+xarray/__init__.py:1
+  /testbed/xarray/__init__.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+xarray/core/dask_array_compat.py:61
+xarray/core/dask_array_compat.py:61
+  /testbed/xarray/core/dask_array_compat.py:61: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion("2.9.0"):
+
+xarray/core/dask_array_compat.py:98
+xarray/core/dask_array_compat.py:98
+  /testbed/xarray/core/dask_array_compat.py:98: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion("2.30.0"):
+
+xarray/core/dask_array_compat.py:155
+xarray/core/dask_array_compat.py:155
+  /testbed/xarray/core/dask_array_compat.py:155: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion("2021.03.0"):
+
+xarray/core/npcompat.py:87
+  /testbed/xarray/core/npcompat.py:87: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(np.__version__) >= "1.20.0":
+
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+  /opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+
+xarray/core/pdcompat.py:45
+  /testbed/xarray/core/pdcompat.py:45: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pd.__version__) < "0.25.0":
+
+xarray/coding/cftimeindex.py:62
+xarray/coding/cftimeindex.py:62
+  /testbed/xarray/coding/cftimeindex.py:62: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pd.__version__) > LooseVersion("1.2.3"):
+
+xarray/tests/__init__.py:59
+xarray/tests/__init__.py:59
+xarray/tests/__init__.py:59
+xarray/tests/__init__.py:59
+xarray/tests/__init__.py:59
+xarray/tests/__init__.py:59
+  /testbed/xarray/tests/__init__.py:59: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    return version.LooseVersion(vstring)
+
+xarray/tests/test_groupby.py: 12 warnings
+  /testbed/xarray/core/groupby.py:207: FutureWarning: is_monotonic is deprecated and will be removed in a future version. Use is_monotonic_increasing instead.
+    return index.is_unique and index.is_monotonic
+
+xarray/tests/test_groupby.py: 10 warnings
+  /testbed/xarray/core/dataset.py:3915: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    or LooseVersion(np.__version__) < LooseVersion("1.17")
+
+xarray/tests/test_groupby.py: 72 warnings
+  /testbed/xarray/core/variable.py:1933: DeprecationWarning: the `interpolation=` argument to nanquantile was renamed to `method=`, which has additional options.
+  Users of the modes 'nearest', 'lower', 'higher', or 'midpoint' are encouraged to review the method they used. (Deprecated NumPy 1.22)
+    return np.moveaxis(_quantile_func(npa, **kwargs), 0, -1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED xarray/tests/test_groupby.py::test_consolidate_slices
+PASSED xarray/tests/test_groupby.py::test_groupby_dims_property
+PASSED xarray/tests/test_groupby.py::test_multi_index_groupby_map
+PASSED xarray/tests/test_groupby.py::test_multi_index_groupby_sum
+PASSED xarray/tests/test_groupby.py::test_groupby_da_datetime
+PASSED xarray/tests/test_groupby.py::test_groupby_duplicate_coordinate_labels
+PASSED xarray/tests/test_groupby.py::test_groupby_input_mutation
+PASSED xarray/tests/test_groupby.py::test_groupby_map_shrink_groups[obj0]
+PASSED xarray/tests/test_groupby.py::test_groupby_map_shrink_groups[obj1]
+PASSED xarray/tests/test_groupby.py::test_groupby_map_change_group_size[obj0]
+PASSED xarray/tests/test_groupby.py::test_groupby_map_change_group_size[obj1]
+PASSED xarray/tests/test_groupby.py::test_da_groupby_map_func_args
+PASSED xarray/tests/test_groupby.py::test_ds_groupby_map_func_args
+PASSED xarray/tests/test_groupby.py::test_da_groupby_empty
+PASSED xarray/tests/test_groupby.py::test_da_groupby_quantile
+PASSED xarray/tests/test_groupby.py::test_ds_groupby_quantile
+PASSED xarray/tests/test_groupby.py::test_da_groupby_assign_coords
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj0-x]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj0-y]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj0-z]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj0-month]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj1-x]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj1-y]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj1-z]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr[obj1-month]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr_datetime[obj0]
+PASSED xarray/tests/test_groupby.py::test_groupby_repr_datetime[obj1]
+PASSED xarray/tests/test_groupby.py::test_groupby_drops_nans
+PASSED xarray/tests/test_groupby.py::test_groupby_grouping_errors
+PASSED xarray/tests/test_groupby.py::test_groupby_reduce_dimension_error
+PASSED xarray/tests/test_groupby.py::test_groupby_multiple_string_args
+PASSED xarray/tests/test_groupby.py::test_groupby_bins_timeseries
+PASSED xarray/tests/test_groupby.py::test_groupby_none_group_name
+PASSED xarray/tests/test_groupby.py::test_groupby_getitem
+======================= 34 passed, 113 warnings in 3.17s =======================
+>>>>> Test Exit Code: 0
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

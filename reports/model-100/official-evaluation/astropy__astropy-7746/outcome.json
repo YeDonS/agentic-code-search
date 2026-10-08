@@ -1,0 +1,14 @@
+{
+  "instance_id": "astropy__astropy-7746",
+  "status": "unresolved",
+  "resolved": false,
+  "image": "swebench/sweb.eval.x86_64.astropy_1776_astropy-7746:latest",
+  "patch_sha256": "d6d45effdfe38ff33e407c5de4317e9e2e31d42b484b7eaf98e13ede490f4207",
+  "image_id": "sha256:4c1d95e5e7b1b872e12e42f309a45eead57fd1cc3ba00683888b5a3f6880c129",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.astropy_1776_astropy-7746@sha256:8b0a5d3e7a868fb494f1bf1f4d82f7ecca662a5fe9094de4950de921163138fb"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

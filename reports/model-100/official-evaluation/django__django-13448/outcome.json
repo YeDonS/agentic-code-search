@@ -1,0 +1,14 @@
+{
+  "instance_id": "django__django-13448",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.django_1776_django-13448:latest",
+  "patch_sha256": "62fd6f2ce086fc506b464f0836e381eb583ce2cee9a7cb5f04a6780e1e884833",
+  "image_id": "sha256:7603e96ef50ed96a70b41f2569d1532d4b8e39ecf57dfdf1ece09bf285c15ea9",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.django_1776_django-13448@sha256:2df440d37ad5e6bfa5d0803ab92184c99eddd8ec837115aea458a8183406439a"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

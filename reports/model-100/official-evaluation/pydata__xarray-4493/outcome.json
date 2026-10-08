@@ -1,0 +1,14 @@
+{
+  "instance_id": "pydata__xarray-4493",
+  "status": "unresolved",
+  "resolved": false,
+  "image": "swebench/sweb.eval.x86_64.pydata_1776_xarray-4493:latest",
+  "patch_sha256": "e2df54b30e2022cc07b3cabded1546595c30bcbe37d5c977b2bfd1e4d2e57b23",
+  "image_id": "sha256:0a179c47d0f46a4fd8695c1f433cdaa129501cca2b4a0bd43b035daba0514550",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.pydata_1776_xarray-4493@sha256:5c94544db403737d9f88cfb75afeb9444226072860af86e830ebbc7478287c20"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

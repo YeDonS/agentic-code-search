@@ -1,0 +1,60 @@
+{
+  "artifact_name": "patch-shard-4",
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37823608201",
+  "files": {
+    "harness.log": {
+      "sha256": "4c05778bbc25f23dbbfce18485cf9a268203bed826d805b488e71c75b22d32a2",
+      "bytes": 842
+    },
+    "image-pull.log": {
+      "sha256": "1419e467dde146ff2916220c976a9c852844b9998b270491259caeeeafd5b0a1",
+      "bytes": 1668
+    },
+    "logs/run_evaluation/patch-37823608201-4-4/agentic-code-search-gpt-6.1-sol/psf__requests-3362/eval.sh": {
+      "sha256": "e1472d70f6ac96791588cd4b8c9c487179d0af95bc4d568f395317bf968c1343",
+      "bytes": 1427
+    },
+    "logs/run_evaluation/patch-37823608201-4-4/agentic-code-search-gpt-6.1-sol/psf__requests-3362/patch.diff": {
+      "sha256": "3635832af3dbe21fcf743f0eeca9cb84d581b42d8d3e7f245e81bc09ef603b96",
+      "bytes": 263
+    },
+    "logs/run_evaluation/patch-37823608201-4-4/agentic-code-search-gpt-6.1-sol/psf__requests-3362/report.json": {
+      "sha256": "6886d1011c8f5d04fc761167d7d2e96862fcac7787164557cfd69447086e63ce",
+      "bytes": 8011
+    },
+    "logs/run_evaluation/patch-37823608201-4-4/agentic-code-search-gpt-6.1-sol/psf__requests-3362/run_instance.log": {
+      "sha256": "9fc5f6f0b0db93dc7238d2d4d57349046c1b7b7ec1274d0ad234773dea8001da",
+      "bytes": 8888
+    },
+    "logs/run_evaluation/patch-37823608201-4-4/agentic-code-search-gpt-6.1-sol/psf__requests-3362/test_output.txt": {
+      "sha256": "24ba63adfed82d2d7ef429ef0ee8b88a36527cb434b6ec65d35d48e08be94a18",
+      "bytes": 144134
+    },
+    "logs/run_evaluation/patch-37823608201-4-4/run.json": {
+      "sha256": "64854ee36d5293e63d88e5bddbd2a27f9844b869ec119c469d7865070668c052",
+      "bytes": 212
+    },
+    "predictions.jsonl": {
+      "sha256": "408db464d90627ed74531b461bec4fcbe595cf50fbb7ea33fb58b3e3ffb4b25c",
+      "bytes": 389
+    },
+    "summary/agentic-code-search-gpt-6.1-sol.patch-37823608201-4-4.json": {
+      "sha256": "8bc552298b8e1a2f9d03d0ae70a08560cd777d07627d3f381e004a3014317f8e",
+      "bytes": 830
+    }
+  },
+  "test_output_sha256": "24ba63adfed82d2d7ef429ef0ee8b88a36527cb434b6ec65d35d48e08be94a18",
+  "raw_lines": 2732,
+  "excerpt_start_line": 2569,
+  "excerpt_stop_line": 2728,
+  "truncated": true,
+  "trailing_whitespace_removed_for_display": true,
+  "original": "GitHub Actions artifact; ignored local runs/official-100-artifacts",
+  "display_annotations": [
+    {
+      "excerpt_line": 158,
+      "prefix": "[pytest summary] ",
+      "reason": "Avoid interpreting a seven-equals pytest divider as a Git conflict marker."
+    }
+  ]
+}

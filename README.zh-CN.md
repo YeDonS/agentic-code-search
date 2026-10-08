@@ -12,17 +12,19 @@
 |---|---|
 | 搜索、测试、综合三个 agent 及条件路由 | 已实现，离线集成测试覆盖 |
 | 仓库搜索、源码读取、pytest 执行、日志读取 | 真实工具，具有调用预算和事件日志 |
-| FastAPI、Bearer 认证、交互式接口文档 | 本地已验证 |
+| FastAPI、Bearer 认证、交互式接口文档 | 真实模型 HTTP 验证通过：无令牌 401，有令牌 200 |
 | Docker 服务、受限测试镜像、Compose | GitHub Actions 构建及运行验证均通过 |
 | 12 个仓库的 100 条历史问题 | 固定版本 SWE-bench Lite 子集，可重复选样 |
 | 100 个修复前快照的检索基线 | **全部完成；Hit@1 40%，Hit@5 71%，MRR@5 0.5202** |
-| 真实模型根因正确率 | 接入与人工评分流程已实现；**尚未评测** |
-| 生成补丁的回归测试通过率 | 官方评测导出与评分已实现；**尚未评测** |
+| 100 条真实模型运行 | **90 条带证据诊断，10 条证据不足；文件 Hit@1 87%，Hit@5 88%** |
+| 自动根因核对 | **87 条正确、1 条部分正确、2 条错误、10 条不可评分**；人工准确率未测 |
+| 生成补丁的官方测试 | **48/100 解决**；23 条未通过、27 条空补丁、2 条超时，全部计入分母 |
 
-这些数字衡量“候选文件是否命中维护者补丁修改的文件”，不是修复成功率。
-已通过本地 Codex CLI 登录对前三条历史问题运行真实模型，三个补丁均通过应用检查；
-功能测试由官方评测另行验证。固定演示使用人工构造缺陷，排除在 100 条历史任务之外。
-[真实运行结果与日志](reports/README.md)。
+文件定位指标衡量“候选文件是否命中维护者补丁修改的文件”，与修复成功率分别计算。
+完整模型运行通过本地 Codex CLI 登录调用 `gpt-6.1-sol`，配置和源码指纹已冻结。
+自动根因核对由 LLM 对照维护者补丁进行，存在同模型评审偏差；功能解决率由官方测试
+计算。固定演示使用人工构造缺陷，排除在 100 条历史任务之外。
+[真实运行结果与日志](reports/README.md) · [复现模型评测](docs/MODEL_EVALUATION.md)。
 
 ## 快速运行
 
@@ -116,10 +118,14 @@ uv run code-assistant debug /你的仓库路径 "问题描述" --executor docker
 ```bash
 # 显式允许执行可信的内置演示测试。
 ASSISTANT_TEST_EXECUTOR=local uv run code-assistant serve
-curl http://127.0.0.1:8000/v1/debug \
+curl --noproxy 127.0.0.1 http://127.0.0.1:8000/v1/debug \
   -H 'Content-Type: application/json' \
   -d '{"repository":"checkout","issue":"Passing discount=0 to calculate_total(100, discount=0) returns 90 instead of 100."}'
 ```
+
+使用上面的真实模型配置启动服务时，另设 `ASSISTANT_MODE=model`。
+[真实模型 HTTP 验证](reports/real-model-api/validation.json)已通过认证并完成可信示例的
+“搜索 → 测试 → 再搜索 → 综合”。
 
 打开[交互式接口文档](http://127.0.0.1:8000/docs)。其他仓库通过
 `ASSISTANT_WORKSPACE_ROOT` 指定父目录，请求传相对目录。向回环地址之外开放前应配置
@@ -165,8 +171,8 @@ token 用量。事件日志不记录提示词、源码正文和隐藏推理。�
 及未完成运行。[面试讲解](docs/INTERVIEW.md)。
 
 ```bash
-uv run ruff check src tests
-uv run ruff format --check src tests
+uv run ruff check src tests scripts
+uv run ruff format --check src tests scripts
 uv run pytest --cov=code_assistant
 uv build
 ```

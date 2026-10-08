@@ -1,0 +1,14 @@
+{
+  "instance_id": "pytest-dev__pytest-7168",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7168:latest",
+  "patch_sha256": "72cb30bbdb995d494e7e07199a4341aa10cddc808bf64b61d01e10f983a8b7d4",
+  "image_id": "sha256:fa2614449afb464c272c3bd0c5ebc66d7cd6a046b4a98ac65ee1b0df2594a9ff",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7168@sha256:9eef4ab057f209925aaf40a4f644f82c2aa3b525e02e341d800a9794225fa68e"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

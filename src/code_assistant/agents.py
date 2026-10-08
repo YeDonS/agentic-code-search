@@ -7,7 +7,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_core.outputs import ChatGeneration, ChatResult
 
-from code_assistant.codex_model import CodexCliModel
+from code_assistant.codex_model import CodexCliModel, CodexModelError
 from code_assistant.config import Settings
 from code_assistant.telemetry import RunLogger
 
@@ -37,14 +37,34 @@ conclusion (identified|insufficient_evidence),
 root_cause (string), affected_files (array of relative paths), evidence_ids (array of IDs),
 suggested_fix (string), proposed_patch (unified diff string or empty string),
 confidence (low|medium|high), limitations (array of strings).
-Every affected file must occur in source evidence and at least one cited ID must be a source
-read. If the evidence does not establish a cause, say so, use low confidence, and no patch.
+Every existing affected file must occur in source evidence and at least one cited ID must
+be a source read. A new file may be declared in affected_files with a /dev/null old header;
+cite real existing source explaining why it is needed. If evidence does not establish a
+cause, say so, use low confidence, and no patch.
 When the cause is established, propose a minimal fix as a valid unified diff with --- a/path,
-+++ b/path and @@ hunk headers. Copy original context exactly from read_file observations,
++++ b/path and @@ hunk headers (use /dev/null for the absent side of additions/deletions).
+Copy original context exactly from read_file observations,
 omit displayed line-number prefixes, and list every edited file in affected_files.
 Describe baseline tests honestly. A suggested patch is UNVERIFIED, even when baseline tests pass.
 """,
 }
+PROMPTS["single_agent"] = (
+    COMMON
+    + "\nROLE: single_agent\nInvestigate this issue in one continuous conversation using the "
+    "provided search and read tools. Gather source evidence before diagnosing. Batch "
+    "independent reads. If test tools are available, reproduce with a narrow existing test "
+    "and inspect its logs. Finish with the diagnosis JSON specified below.\n"
+    + PROMPTS["synthesis"].split("ROLE: synthesis\n", 1)[1]
+)
+PROMPTS["patch_repair"] = (
+    COMMON
+    + "\nROLE: patch_repair\nThe previous candidate failed a pre-evaluation git apply check. "
+    "Use the checker error and read_file to verify exact original lines. Correct only the "
+    "unified diff formatting/context while preserving the intended fix, root cause and "
+    "affected_files. Do not use or infer reference solutions or test outcomes. Return the "
+    "same diagnosis JSON with a corrected proposed_patch.\n"
+    + PROMPTS["synthesis"].split("ROLE: synthesis\n", 1)[1]
+)
 
 
 class DemoModel(BaseChatModel):
@@ -138,17 +158,47 @@ class ToolCallingAgent:
 
     def __init__(self, model: BaseChatModel, settings: Settings, logger: RunLogger):
         self.model, self.settings, self.logger = model, settings, logger
+        self.calls = 0
 
-    def run(self, role: str, payload: dict[str, Any], tools: list[Any]) -> str:
+    def run(
+        self, role: str, payload: dict[str, Any], tools: list[Any], *, reserve_calls: int = 0
+    ) -> str:
         messages: list[BaseMessage] = [
             SystemMessage(content=PROMPTS[role]),
             HumanMessage(content=json.dumps(payload, ensure_ascii=False)),
         ]
         bound = self.model.bind_tools(tools) if tools else self.model
         by_name = {t.name: t for t in tools}
-        for step in range(self.settings.max_agent_steps):
+        steps = min(
+            self.settings.max_agent_steps,
+            max(0, self.settings.max_model_calls - self.calls - reserve_calls),
+        )
+        for step in range(steps):
             start = time.monotonic()
-            response = bound.invoke(messages)
+            self.calls += 1
+            self.logger.emit("model_request", agent=role, step=step, model_call=self.calls)
+            try:
+                if step == steps - 1 and tools:
+                    messages.append(
+                        HumanMessage(
+                            content="The role's call budget ends after this response. Return your final finding or diagnosis JSON now, using the evidence already gathered."
+                        )
+                    )
+                    response = self.model.invoke(messages)
+                else:
+                    response = bound.invoke(messages)
+            except Exception as error:
+                self.logger.emit(
+                    "model_error",
+                    agent=role,
+                    model_call=self.calls,
+                    error_type=type(error).__name__,
+                    message=str(error)[:300]
+                    if isinstance(error, CodexModelError)
+                    else "Provider invocation failed; raw response omitted.",
+                    duration_ms=round((time.monotonic() - start) * 1000),
+                )
+                raise
             if not isinstance(response, AIMessage):
                 raise ValueError("model did not return an AIMessage")
             usage = response.usage_metadata or {}
@@ -156,6 +206,7 @@ class ToolCallingAgent:
                 "model_response",
                 agent=role,
                 step=step,
+                model_call=self.calls,
                 model=self.settings.model
                 if self.settings.mode == "model"
                 else "scripted-demo-only",
@@ -193,5 +244,10 @@ class ToolCallingAgent:
                         output = json.dumps({"error": str(error)[:300]})
                         self.logger.emit("invalid_tool_arguments", agent=role, tool=call["name"])
                 messages.append(ToolMessage(content=output, tool_call_id=call["id"]))
-        self.logger.emit("agent_step_limit", agent=role, steps=self.settings.max_agent_steps)
-        return "Agent step limit reached. Use only the registered evidence and report limitations."
+        event = (
+            "model_budget_exhausted"
+            if self.calls + reserve_calls >= self.settings.max_model_calls
+            else "agent_step_limit"
+        )
+        self.logger.emit(event, agent=role, steps=steps, model_calls=self.calls)
+        return "Agent call budget reached. Use only the registered evidence and report limitations."

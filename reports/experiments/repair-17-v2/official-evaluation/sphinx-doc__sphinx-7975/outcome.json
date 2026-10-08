@@ -1,0 +1,14 @@
+{
+  "instance_id": "sphinx-doc__sphinx-7975",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-7975:latest",
+  "patch_sha256": "f37eb656d2f75da6fa1c43977dabe0b40fbd1ba4849320f32d6cea1a85b7e075",
+  "image_id": "sha256:cf5afc95e7afe1360e9a355e2a7da6b5114f7dc77ecd419ccc9ef3fd29416034",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-7975@sha256:6599f73068049dd8fe352bc84b617b8fa2d5b376083160f8f3c1e9a47e6751f2"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

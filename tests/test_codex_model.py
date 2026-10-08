@@ -157,3 +157,13 @@ def test_timeout_kills_process_group(monkeypatch):
     with pytest.raises(CodexModelError, match="timeout"):
         CodexCliModel(model_name="model", timeout=1).invoke([HumanMessage(content="bug")])
     assert killed == [12345]
+
+
+def test_failure_categories_never_expose_arbitrary_provider_text():
+    from code_assistant.codex_model import failure_category
+
+    assert (
+        failure_category("private-key: xyz; error code context_length_exceeded") == "context_limit"
+    )
+    assert failure_category("private source snippet and arbitrary diagnostic") == "unknown"
+    assert failure_category("429 rate limit") == "rate_or_quota"

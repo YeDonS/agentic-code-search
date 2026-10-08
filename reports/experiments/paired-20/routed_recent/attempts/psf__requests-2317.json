@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/requests/sessions.py\n+++ b/requests/sessions.py\n@@ -428,4 +428,4 @@\n-        method = builtin_str(method)\n+        method = to_native_string(method)\n \n         # Create the Request.\n         req = Request(\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "2438c4b0eaeaacaefc0732343b6dd88c54a557052ded092bfe6a25e531d064c8",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "2438c4b0eaeaacaefc0732343b6dd88c54a557052ded092bfe6a25e531d064c8"
+    }
+  }
+]

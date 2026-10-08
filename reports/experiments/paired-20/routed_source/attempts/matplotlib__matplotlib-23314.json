@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/lib/mpl_toolkits/mplot3d/axes3d.py\n+++ b/lib/mpl_toolkits/mplot3d/axes3d.py\n@@ -388,6 +388,9 @@\n     @martist.allow_rasterization\n     def draw(self, renderer):\n+        if not self.get_visible():\n+            return\n+\n         self._unstale_viewLim()\n \n         # draw the background patch\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "cb96b641ae8e1e0bb454dad4f5841940bb99e18347736a2e797d048cc7337a4e",
+      "hunks_recounted": true,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "4dbcd3aad6a5f00f224f753b186b718e8e2c6f0e7d0906fd554cdd48563eca49"
+    }
+  }
+]

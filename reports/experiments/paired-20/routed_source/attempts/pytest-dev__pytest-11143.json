@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/_pytest/assertion/rewrite.py\n+++ b/src/_pytest/assertion/rewrite.py\n@@ -677,6 +677,7 @@\n                 expect_docstring\n                 and isinstance(item, ast.Expr)\n                 and isinstance(item.value, ast.Constant)\n+                and isinstance(item.value.value, str)\n             ):\n                 doc = item.value.value\n                 if self.is_rewrite_disabled(doc):\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "c9b1764d9fa4f5ac8f447d278a4df9a8f4a3681d1a1498ba9e0d94d92b39724c",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "c9b1764d9fa4f5ac8f447d278a4df9a8f4a3681d1a1498ba9e0d94d92b39724c"
+    }
+  }
+]

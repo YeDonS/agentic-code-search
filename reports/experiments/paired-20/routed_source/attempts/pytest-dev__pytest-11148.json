@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/_pytest/pathlib.py\n+++ b/src/_pytest/pathlib.py\n@@ -518,6 +518,9 @@\n     if mode is ImportMode.importlib:\n         module_name = module_name_from_path(path, root)\n \n+        if module_name in sys.modules:\n+            return sys.modules[module_name]\n+\n         for meta_importer in sys.meta_path:\n             spec = meta_importer.find_spec(module_name, [str(path.parent)])\n             if spec is not None:\n--- a/testing/test_pathlib.py\n+++ b/testing/test_pathlib.py\n@@ -301,7 +301,9 @@\n-    def test_importmode_twice_is_different_module(\n+    def test_importmode_twice_is_same_module(\n         self, simple_module: Path, tmp_path: Path\n     ) -> None:\n-        \"\"\"`importlib` mode always returns a new module.\"\"\"\n+        \"\"\"`importlib` mode preserves module identity and state.\"\"\"\n         module1 = import_path(simple_module, mode=\"importlib\", root=tmp_path)\n+        module1.state = object()  # type: ignore[attr-defined]\n         module2 = import_path(simple_module, mode=\"importlib\", root=tmp_path)\n-        assert module1 is not module2\n+        assert module1 is module2\n+        assert module2.state is module1.state  # type: ignore[attr-defined]\n@@ -324,2 +326,3 @@\n+        monkeypatch.delitem(sys.modules, module.__name__)\n         with pytest.raises(ImportError):\n             import_path(simple_module, mode=\"importlib\", root=tmp_path)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "8dec460d30053cbeb2acfadeaed3823ec979c6f50b26f6a2c1c11120d9d01f46",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: testing/test_pathlib.py:301\nerror: testing/test_pathlib.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "8dec460d30053cbeb2acfadeaed3823ec979c6f50b26f6a2c1c11120d9d01f46"
+    }
+  }
+]

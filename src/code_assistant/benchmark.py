@@ -180,7 +180,15 @@ def environment_manifest() -> dict[str, Any]:
         "source_tree_sha256": digest.hexdigest(),
         "packages": {
             name: importlib.metadata.version(name)
-            for name in ["langchain", "langgraph", "fastapi", "numpy", "rank-bm25"]
+            for name in [
+                "langchain",
+                "langgraph",
+                "langchain-openai",
+                "langchain-anthropic",
+                "fastapi",
+                "numpy",
+                "rank-bm25",
+            ]
         },
     }
 
@@ -291,6 +299,11 @@ def run_benchmark(
         "max_tool_calls": settings.max_tool_calls,
         "max_search_passes": settings.max_search_passes,
         "max_agent_steps": settings.max_agent_steps,
+        "max_model_calls": settings.max_model_calls,
+        "workflow": settings.workflow,
+        "evidence_policy": settings.evidence_policy,
+        "evidence_limit": settings.evidence_limit,
+        "patch_repair_attempts": settings.patch_repair_attempts,
         "model_timeout": settings.model_timeout,
         "codex_reasoning_effort": settings.codex_reasoning_effort if mode == "model" else None,
         "codex_transport": settings.codex_transport if mode == "model" else None,

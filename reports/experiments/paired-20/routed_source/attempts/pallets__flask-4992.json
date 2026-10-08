@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/flask/config.py\n+++ b/src/flask/config.py\n@@ -233,6 +233,7 @@\n         self,\n         filename: str,\n         load: t.Callable[[t.IO[t.Any]], t.Mapping],\n         silent: bool = False,\n+        mode: str = \"t\",\n     ) -> bool:\n         \"\"\"Update the values in the config from a file that is loaded\n@@ -254,6 +255,8 @@\n         :type load: ``Callable[[Reader], Mapping]`` where ``Reader``\n             implements a ``read`` method.\n         :param silent: Ignore the file if it doesn't exist.\n+        :param mode: Open in text mode (``\"t\"``, the default) or binary\n+            mode (``\"b\"``, for loaders such as ``tomllib.load``).\n         :return: ``True`` if the file was loaded successfully.\n \n         .. versionadded:: 2.0\n@@ -262,7 +265,7 @@\n \n         try:\n-            with open(filename) as f:\n+            with open(filename, \"r\" + mode) as f:\n                 obj = load(f)\n         except OSError as e:\n             if silent and e.errno in (errno.ENOENT, errno.EISDIR):\n                 return False\n--- a/tests/test_config.py\n+++ b/tests/test_config.py\n@@ -37,6 +37,19 @@\n     common_object_test(app)\n \n \n+def test_config_from_file_binary():\n+    app = flask.Flask(__name__)\n+    current_dir = os.path.dirname(os.path.abspath(__file__))\n+\n+    def load(file):\n+        data = file.read()\n+        assert isinstance(data, bytes)\n+        return json.loads(data)\n+\n+    filename = os.path.join(current_dir, \"static\", \"config.json\")\n+    assert app.config.from_file(filename, load, mode=\"b\")\n+    common_object_test(app)\n+\n+\n def test_from_prefixed_env(monkeypatch):\n     monkeypatch.setenv(\"FLASK_STRING\", \"value\")\n     monkeypatch.setenv(\"FLASK_BOOL\", \"true\")\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "22ec55425e9712ed635644bbdfcbd7ff27c80bc77bf5d5e5307f6c55cb9e12ed",
+      "hunks_recounted": true,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "1cd43d91c44d33cd6edddd5f945b33ce22fec2fac74b510b8f4ba61344102c12"
+    }
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/pylint/reporters/text.py\n+++ b/pylint/reporters/text.py\n@@ -177,10 +177,14 @@\n         # Check to see if all parameters in the template are attributes of the Message\n-        arguments = re.findall(r\"\\{(.+?)(:.*)?\\}\", template)\n-        for argument in arguments:\n-            if argument[0] not in MESSAGE_FIELDS:\n-                warnings.warn(\n-                    f\"Don't recognize the argument '{argument[0]}' in the --msg-template. \"\n-                    \"Are you sure it is supported on the current version of pylint?\"\n-                )\n-                template = re.sub(r\"\\{\" + argument[0] + r\"(:.*?)?\\}\", \"\", template)\n-        self._fixed_template = template\n+        def replace(match: re.Match[str]) -> str:\n+            argument = match.group(1)\n+            if argument is None or argument in MESSAGE_FIELDS:\n+                return match.group(0)\n+            warnings.warn(\n+                f\"Don't recognize the argument '{argument}' in the --msg-template. \"\n+                \"Are you sure it is supported on the current version of pylint?\"\n+            )\n+            return \"\"\n+\n+        self._fixed_template = re.sub(\n+            r\"\\{\\{|\\}\\}|\\{([^{}:]+)(:[^{}]*)?\\}\", replace, template\n+        )\n--- a/tests/reporters/unittest_reporting.py\n+++ b/tests/reporters/unittest_reporting.py\n@@ -47,6 +47,20 @@\n     assert output.getvalue() == \"************* Module 0123\\nC0301:001\\nC0301:002\\n\"\n \n \n+def test_template_option_escaped_braces(linter) -> None:\n+    output = StringIO()\n+    linter.reporter.out = output\n+    linter.config.msg_template = '{{ \"Category\": \"{category}\" }}'\n+    linter.open()\n+    with warnings.catch_warnings():\n+        warnings.simplefilter(\"error\")\n+        linter.set_current_module(\"my_module\")\n+        linter.add_message(\"C0301\", line=1, args=(1, 2))\n+    assert output.getvalue() == (\n+        '************* Module my_module\\n{ \"Category\": \"convention\" }\\n'\n+    )\n+\n+\n def test_template_option_default(linter) -> None:\n     \"\"\"Test the default msg-template setting.\"\"\"\n     output = StringIO()\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "cd5bcb9c5f13756759819413adc01bec5bf43afa4c991c12f04d18e89e55b191",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: pylint/reporters/text.py:177\nerror: pylint/reporters/text.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "cd5bcb9c5f13756759819413adc01bec5bf43afa4c991c12f04d18e89e55b191"
+    }
+  },
+  {
+    "candidate": "--- a/pylint/reporters/text.py\n+++ b/pylint/reporters/text.py\n@@ -174,16 +174,20 @@\n         # Set template to the currently selected template\n         self._template = template\n \n         # Check to see if all parameters in the template are attributes of the Message\n-        arguments = re.findall(r\"\\{(.+?)(:.*)?\\}\", template)\n-        for argument in arguments:\n-            if argument[0] not in MESSAGE_FIELDS:\n-                warnings.warn(\n-                    f\"Don't recognize the argument '{argument[0]}' in the --msg-template. \"\n-                    \"Are you sure it is supported on the current version of pylint?\"\n-                )\n-                template = re.sub(r\"\\{\" + argument[0] + r\"(:.*?)?\\}\", \"\", template)\n-        self._fixed_template = template\n+        def replace(match: re.Match[str]) -> str:\n+            argument = match.group(1)\n+            if argument is None or argument in MESSAGE_FIELDS:\n+                return match.group(0)\n+            warnings.warn(\n+                f\"Don't recognize the argument '{argument}' in the --msg-template. \"\n+                \"Are you sure it is supported on the current version of pylint?\"\n+            )\n+            return \"\"\n+\n+        self._fixed_template = re.sub(\n+            r\"\\{\\{|\\}\\}|\\{([^{}:]+)(:[^{}]*)?\\}\", replace, template\n+        )\n \n     def write_message(self, msg: Message) -> None:\n         \"\"\"Convenience method to write a formatted message with class default\n--- a/tests/reporters/unittest_reporting.py\n+++ b/tests/reporters/unittest_reporting.py\n@@ -48,6 +48,20 @@\n     assert output.getvalue() == \"************* Module 0123\\nC0301:001\\nC0301:002\\n\"\n \n \n+def test_template_option_escaped_braces(linter) -> None:\n+    output = StringIO()\n+    linter.reporter.out = output\n+    linter.config.msg_template = '{{ \"Category\": \"{category}\" }}'\n+    linter.open()\n+    with warnings.catch_warnings():\n+        warnings.simplefilter(\"error\")\n+        linter.set_current_module(\"my_module\")\n+        linter.add_message(\"C0301\", line=1, args=(1, 2))\n+    assert output.getvalue() == (\n+        '************* Module my_module\\n{ \"Category\": \"convention\" }\\n'\n+    )\n+\n+\n def test_template_option_default(linter) -> None:\n     \"\"\"Test the default msg-template setting.\"\"\"\n     output = StringIO()\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "70d34650ba84028e74c6ac450004dddcceb063f0310b0ff78c9849aac322d1cd",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "70d34650ba84028e74c6ac450004dddcceb063f0310b0ff78c9849aac322d1cd"
+    }
+  }
+]

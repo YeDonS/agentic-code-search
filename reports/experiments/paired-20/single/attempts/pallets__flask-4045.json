@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/flask/blueprints.py\n+++ b/src/flask/blueprints.py\n@@ -188,6 +188,9 @@\n             template_folder=template_folder,\n             root_path=root_path,\n         )\n+        if \".\" in name:\n+            raise ValueError(\"'name' may not contain a dot '.' character.\")\n+\n         self.name = name\n         self.url_prefix = url_prefix\n         self.subdomain = subdomain\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "cf8ce0e23fe269e390dc1e06309ee30fe3868ed8428c73f5c982104bbdd73165",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "cf8ce0e23fe269e390dc1e06309ee30fe3868ed8428c73f5c982104bbdd73165"
+    }
+  }
+]

@@ -1,0 +1,160 @@
+
+[100 rows x 13 columns]
+
+    def test_unfilled_marker_edgecolor_warning(self, long_df):  # GH2636
+
+>       with pytest.warns(None) as record:
+
+tests/test_relational.py:1712:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WarningsChecker(record=True), expected_warning = None, match_expr = None
+
+    def __init__(
+        self,
+        expected_warning: type[Warning] | tuple[type[Warning], ...] = Warning,
+        match_expr: str | Pattern[str] | None = None,
+        *,
+        _ispytest: bool = False,
+    ) -> None:
+        check_ispytest(_ispytest)
+        super().__init__(_ispytest=True)
+
+        msg = "exceptions must be derived from Warning, not %s"
+        if isinstance(expected_warning, tuple):
+            for exc in expected_warning:
+                if not issubclass(exc, Warning):
+                    raise TypeError(msg % type(exc))
+            expected_warning_tup = expected_warning
+        elif isinstance(expected_warning, type) and issubclass(
+            expected_warning, Warning
+        ):
+            expected_warning_tup = (expected_warning,)
+        else:
+>           raise TypeError(msg % type(expected_warning))
+E           TypeError: exceptions must be derived from Warning, not <class 'NoneType'>
+
+/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/_pytest/recwarn.py:280: TypeError
+=============================== warnings summary ===============================
+seaborn/cm.py:1582
+seaborn/cm.py:1582
+seaborn/cm.py:1582
+seaborn/cm.py:1582
+seaborn/cm.py:1582
+seaborn/cm.py:1582
+  /testbed/seaborn/cm.py:1582: MatplotlibDeprecationWarning: The register_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps.register(name)`` instead.
+    mpl_cm.register_cmap(_name, _cmap)
+
+seaborn/cm.py:1583
+seaborn/cm.py:1583
+seaborn/cm.py:1583
+seaborn/cm.py:1583
+seaborn/cm.py:1583
+seaborn/cm.py:1583
+  /testbed/seaborn/cm.py:1583: MatplotlibDeprecationWarning: The register_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps.register(name)`` instead.
+    mpl_cm.register_cmap(_name + "_r", _cmap_r)
+
+tests/test_relational.py: 107 warnings
+  /opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pandas/core/dtypes/cast.py:1429: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+  See https://numpy.org/devdocs/release/1.25.0-notes.html and the docs for more information.  (Deprecated NumPy 1.25)
+    return np.find_common_type(types, [])
+
+tests/test_relational.py::TestRelationalPlotter::test_wide_df_variables
+tests/test_relational.py::TestRelationalPlotter::test_wide_df_with_nonnumeric_variables
+tests/test_relational.py::TestRelationalPlotter::test_wide_array_variables
+tests/test_relational.py::TestRelationalPlotter::test_flat_array_variables
+  /opt/miniconda3/envs/testbed/lib/python3.9/site-packages/_pytest/python.py:159: DeprecationWarning: `product` is deprecated as of NumPy 1.25.0, and will be removed in NumPy 2.0. Please use `prod` instead.
+    result = testfunction(**testargs)
+
+tests/test_relational.py: 39 warnings
+  /testbed/seaborn/axisgrid.py:86: UserWarning: The figure layout has changed to tight
+    self._figure.tight_layout(*args, **kwargs)
+
+tests/test_relational.py::TestScatterPlotter::test_supplied_color_array
+  /testbed/tests/test_relational.py:1605: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+    cmap = mpl.cm.get_cmap("Blues")
+
+tests/test_relational.py::TestScatterPlotter::test_size_norm_extrapolation
+tests/test_relational.py::TestScatterPlotter::test_size_norm_extrapolation
+  /testbed/tests/test_relational.py:1690: MatplotlibDeprecationWarning: The legendHandles attribute was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use legend_handles instead.
+    for label, handle in zip(legend.get_texts(), legend.legendHandles)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_df_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_df_with_nonnumeric_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_array_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_flat_array_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_flat_list_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_flat_series_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_list_of_series_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_list_of_arrays_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_list_of_list_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_dict_of_series_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_dict_of_arrays_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_wide_dict_of_lists_variables
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_complex
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_vectors[series]
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_vectors[numpy]
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_vectors[list]
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_wide
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_hues
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_sizes
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_styles
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_stringy_numerics
+PASSED tests/test_relational.py::TestRelationalPlotter::test_relplot_data
+PASSED tests/test_relational.py::TestRelationalPlotter::test_facet_variable_collision
+PASSED tests/test_relational.py::TestRelationalPlotter::test_ax_kwarg_removal
+PASSED tests/test_relational.py::TestLinePlotter::test_legend_data
+PASSED tests/test_relational.py::TestLinePlotter::test_plot
+PASSED tests/test_relational.py::TestLinePlotter::test_axis_labels
+PASSED tests/test_relational.py::TestScatterPlotter::test_color
+PASSED tests/test_relational.py::TestScatterPlotter::test_legend_data
+PASSED tests/test_relational.py::TestScatterPlotter::test_plot
+PASSED tests/test_relational.py::TestScatterPlotter::test_axis_labels
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_axes
+PASSED tests/test_relational.py::TestScatterPlotter::test_literal_attribute_vectors
+PASSED tests/test_relational.py::TestScatterPlotter::test_supplied_color_array
+PASSED tests/test_relational.py::TestScatterPlotter::test_hue_order
+PASSED tests/test_relational.py::TestScatterPlotter::test_linewidths
+PASSED tests/test_relational.py::TestScatterPlotter::test_size_norm_extrapolation
+PASSED tests/test_relational.py::TestScatterPlotter::test_datetime_scale
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics0]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics1]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics2]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics3]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics4]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics5]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics6]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics7]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics8]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics9]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics10]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_vs_relplot[long_semantics11]
+PASSED tests/test_relational.py::TestScatterPlotter::test_scatterplot_smoke
+FAILED tests/test_relational.py::TestRelationalPlotter::test_relplot_simple
+FAILED tests/test_relational.py::TestRelationalPlotter::test_relplot_legend
+FAILED tests/test_relational.py::TestLinePlotter::test_color - pandas._config...
+FAILED tests/test_relational.py::TestLinePlotter::test_log_scale - pandas._co...
+FAILED tests/test_relational.py::TestLinePlotter::test_matplotlib_kwargs - pa...
+FAILED tests/test_relational.py::TestLinePlotter::test_nonmapped_dashes - pan...
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_axes - pandas...
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics0]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics1]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics2]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics3]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics4]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics5]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics6]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics7]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics8]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics9]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics10]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_vs_relplot[long_semantics11]
+FAILED tests/test_relational.py::TestLinePlotter::test_lineplot_smoke - panda...
+FAILED tests/test_relational.py::TestLinePlotter::test_ci_deprecation - panda...
+FAILED tests/test_relational.py::TestScatterPlotter::test_unfilled_marker_edgecolor_warning
+================= 22 failed, 51 passed, 165 warnings in 15.52s =================
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

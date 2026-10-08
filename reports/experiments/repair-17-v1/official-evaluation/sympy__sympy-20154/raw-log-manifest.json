@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37848457575",
+  "artifact_name": "patch-shard-16",
+  "files": {
+    "harness.log": {
+      "sha256": "e85dd329bef037ad9d4ceae8b41893a780347ea1aa4c004923e54aab523d5258",
+      "bytes": 843
+    },
+    "image-pull.log": {
+      "sha256": "4b4d4a4fd99b6ae23d85db41ff21cd4e797e780c852a2f5d69ac44fd47f11f2d",
+      "bytes": 1635
+    },
+    "logs/run_evaluation/patch-37848457575-16-16/agentic-posthoc-format-repair/sympy__sympy-20154/eval.sh": {
+      "sha256": "2133291d7cbb15c10220d2670827d8d1f89342ed0af7b4e9fc172ed8b66f8568",
+      "bytes": 2776
+    },
+    "logs/run_evaluation/patch-37848457575-16-16/agentic-posthoc-format-repair/sympy__sympy-20154/patch.diff": {
+      "sha256": "9e426e2dd81bdd5782f7af6a1c0b936a4b800542d83e4a3e95036f0c2a365c97",
+      "bytes": 2188
+    },
+    "logs/run_evaluation/patch-37848457575-16-16/agentic-posthoc-format-repair/sympy__sympy-20154/report.json": {
+      "sha256": "aaff017bcb2fd2b729f9cd856232ec12cd6e5c5665a5152ddc938d8dfc2e0d92",
+      "bytes": 2391
+    },
+    "logs/run_evaluation/patch-37848457575-16-16/agentic-posthoc-format-repair/sympy__sympy-20154/run_instance.log": {
+      "sha256": "08432754fe94e47b40baf7a4066e562b2ed1f0f1ff3618f9b00173a0a165ae00",
+      "bytes": 7911
+    },
+    "logs/run_evaluation/patch-37848457575-16-16/agentic-posthoc-format-repair/sympy__sympy-20154/test_output.txt": {
+      "sha256": "632249757d60f14a61d50163f4849b0395cbdea69dc0ad687bbb96b0411c1379",
+      "bytes": 436155
+    },
+    "logs/run_evaluation/patch-37848457575-16-16/run.json": {
+      "sha256": "8c2dc1a924ac624e1517ee85b3c5d96a6c9049e408ba4eaacfb6692dc1208a3f",
+      "bytes": 213
+    },
+    "predictions.jsonl": {
+      "sha256": "aac27939e8085fd215188827f77b6106636f05940d101058180399f506eb5512",
+      "bytes": 2366
+    },
+    "summary/agentic-posthoc-format-repair.patch-37848457575-16-16.json": {
+      "sha256": "143e0020057feda8076010538f6b2e681e92908ac1e63d9663aca8a26af7253f",
+      "bytes": 830
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "632249757d60f14a61d50163f4849b0395cbdea69dc0ad687bbb96b0411c1379",
+    "raw_lines": 10941,
+    "start_line": 10877,
+    "stop_line": 10937,
+    "truncated": false,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

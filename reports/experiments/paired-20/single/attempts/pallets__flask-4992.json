@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/flask/config.py\n+++ b/src/flask/config.py\n@@ -233,6 +233,7 @@\n         self,\n         filename: str,\n         load: t.Callable[[t.IO[t.Any]], t.Mapping],\n         silent: bool = False,\n+        mode: str = \"r\",\n     ) -> bool:\n         \"\"\"Update the values in the config from a file that is loaded\n@@ -255,6 +256,8 @@\n         :type load: ``Callable[[Reader], Mapping]`` where ``Reader``\n             implements a ``read`` method.\n         :param silent: Ignore the file if it doesn't exist.\n+        :param mode: The mode passed to :func:`open`. Defaults to\n+            ``\"r\"``. Use ``\"rb\"`` for loaders that require binary input.\n         :return: ``True`` if the file was loaded successfully.\n \n         .. versionadded:: 2.0\n@@ -263,7 +266,7 @@\n         filename = os.path.join(self.root_path, filename)\n \n         try:\n-            with open(filename) as f:\n+            with open(filename, mode) as f:\n                 obj = load(f)\n         except OSError as e:\n             if silent and e.errno in (errno.ENOENT, errno.EISDIR):\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "818d771abee109a85860354634bfacfd4bb8f3475883eeeafd278e53d6d84392",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "818d771abee109a85860354634bfacfd4bb8f3475883eeeafd278e53d6d84392"
+    }
+  }
+]

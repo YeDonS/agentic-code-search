@@ -1,0 +1,511 @@
+{
+  "kind": "exploratory_paired_results",
+  "comparisons": {
+    "architecture": {
+      "left": "routed_source",
+      "right": "single",
+      "N": 20,
+      "left_resolved": 10,
+      "right_resolved": 11,
+      "both_resolved": 10,
+      "left_only": [],
+      "right_only": [
+        "psf__requests-2674"
+      ],
+      "neither_resolved": [
+        "matplotlib__matplotlib-23563",
+        "pallets__flask-4045",
+        "pallets__flask-4992",
+        "psf__requests-2317",
+        "pydata__xarray-4248",
+        "pytest-dev__pytest-11148",
+        "sympy__sympy-13437",
+        "sympy__sympy-13895",
+        "sympy__sympy-18087"
+      ],
+      "resolution_rate_difference": -0.05,
+      "interpretation": "Descriptive paired pilot; no claim of causal superiority or population significance."
+    },
+    "evidence_window": {
+      "left": "routed_source",
+      "right": "routed_recent",
+      "N": 20,
+      "left_resolved": 10,
+      "right_resolved": 10,
+      "both_resolved": 10,
+      "left_only": [],
+      "right_only": [],
+      "neither_resolved": [
+        "matplotlib__matplotlib-23563",
+        "pallets__flask-4045",
+        "pallets__flask-4992",
+        "psf__requests-2317",
+        "psf__requests-2674",
+        "pydata__xarray-4248",
+        "pytest-dev__pytest-11148",
+        "sympy__sympy-13437",
+        "sympy__sympy-13895",
+        "sympy__sympy-18087"
+      ],
+      "resolution_rate_difference": 0.0,
+      "interpretation": "Descriptive paired pilot; no claim of causal superiority or population significance."
+    }
+  },
+  "arms": {
+    "routed_recent": {
+      "N": 20,
+      "status_counts": {
+        "insufficient_evidence": 1,
+        "diagnosed": 18,
+        "failed": 1
+      },
+      "applicable_patches": 15,
+      "official_resolved": 10,
+      "official_status_counts": {
+        "resolved": 10,
+        "empty_patch": 5,
+        "unresolved": 4,
+        "evaluation_error": 1
+      },
+      "usage": {
+        "tasks": 20,
+        "model_calls": 118,
+        "successful_model_responses": 117,
+        "failed_model_calls": 1,
+        "failed_runs": 1,
+        "token_scope": "provider-reported usage from completed responses; failed calls may have unknown usage",
+        "input_tokens": 1261205,
+        "output_tokens": 24485,
+        "cached_input_tokens": 140800,
+        "builtin_tool_calls": 0,
+        "transport_reconnects": 0,
+        "applicable_patches": 15,
+        "withheld_patches": 3,
+        "patch_check_attempts": 18,
+        "repair_attempts": 0,
+        "recovered_patches": 0,
+        "model_duration_ms": 1466253,
+        "model_call_scope": "complete run counters"
+      },
+      "call_ceilings_verified": true,
+      "model_ceiling_ids": [
+        "sympy__sympy-18087"
+      ],
+      "tool_ceiling_ids": [
+        "sympy__sympy-18087"
+      ],
+      "source_handoff_mechanism": {
+        "scope": "first synthesis handoff; unique immutable path/line-range observations; continuous single-agent history has no handoff",
+        "handoffs": 20,
+        "overflow_cases": 8,
+        "unique_source_drop_cases": 2,
+        "per_issue": [
+          {
+            "instance_id": "matplotlib__matplotlib-23314",
+            "available_records": 28,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "matplotlib__matplotlib-23563",
+            "available_records": 26,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "matplotlib__matplotlib-24149",
+            "available_records": 14,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "matplotlib__matplotlib-26011",
+            "available_records": 24,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "mwaskom__seaborn-2848",
+            "available_records": 20,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pallets__flask-4045",
+            "available_records": 24,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pallets__flask-4992",
+            "available_records": 7,
+            "available_unique_source_reads": 2,
+            "retained_unique_source_reads": 2,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "psf__requests-2317",
+            "available_records": 23,
+            "available_unique_source_reads": 5,
+            "retained_unique_source_reads": 5,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "psf__requests-2674",
+            "available_records": 27,
+            "available_unique_source_reads": 7,
+            "retained_unique_source_reads": 7,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pydata__xarray-4094",
+            "available_records": 8,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pydata__xarray-4248",
+            "available_records": 30,
+            "available_unique_source_reads": 5,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": [
+              [
+                "xarray/core/formatting.py",
+                260,
+                379
+              ]
+            ]
+          },
+          {
+            "instance_id": "pytest-dev__pytest-11143",
+            "available_records": 16,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pytest-dev__pytest-11148",
+            "available_records": 26,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pytest-dev__pytest-7490",
+            "available_records": 22,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "scikit-learn__scikit-learn-13584",
+            "available_records": 19,
+            "available_unique_source_reads": 5,
+            "retained_unique_source_reads": 5,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sphinx-doc__sphinx-8713",
+            "available_records": 31,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-13437",
+            "available_records": 17,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-13647",
+            "available_records": 13,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-13895",
+            "available_records": 40,
+            "available_unique_source_reads": 7,
+            "retained_unique_source_reads": 5,
+            "dropped_unique_source_reads": [
+              [
+                "sympy/core/numbers.py",
+                1850,
+                1969
+              ],
+              [
+                "sympy/simplify/simplify.py",
+                540,
+                659
+              ]
+            ]
+          },
+          {
+            "instance_id": "sympy__sympy-18087",
+            "available_records": 38,
+            "available_unique_source_reads": 6,
+            "retained_unique_source_reads": 6,
+            "dropped_unique_source_reads": []
+          }
+        ]
+      }
+    },
+    "routed_source": {
+      "N": 20,
+      "status_counts": {
+        "insufficient_evidence": 1,
+        "diagnosed": 19
+      },
+      "applicable_patches": 15,
+      "official_resolved": 10,
+      "official_status_counts": {
+        "resolved": 10,
+        "unresolved": 5,
+        "empty_patch": 5
+      },
+      "usage": {
+        "tasks": 20,
+        "model_calls": 121,
+        "model_call_scope": "complete run counters",
+        "successful_model_responses": 121,
+        "failed_model_calls": 0,
+        "failed_runs": 0,
+        "token_scope": "provider-reported usage from completed responses; failed calls may have unknown usage",
+        "input_tokens": 1299138,
+        "output_tokens": 26966,
+        "cached_input_tokens": 216832,
+        "builtin_tool_calls": 0,
+        "transport_reconnects": 0,
+        "applicable_patches": 15,
+        "withheld_patches": 4,
+        "patch_check_attempts": 19,
+        "repair_attempts": 0,
+        "recovered_patches": 0,
+        "model_duration_ms": 1561282
+      },
+      "call_ceilings_verified": true,
+      "model_ceiling_ids": [
+        "sympy__sympy-18087"
+      ],
+      "tool_ceiling_ids": [
+        "sympy__sympy-13895",
+        "sympy__sympy-18087"
+      ],
+      "source_handoff_mechanism": {
+        "scope": "first synthesis handoff; unique immutable path/line-range observations; continuous single-agent history has no handoff",
+        "handoffs": 20,
+        "overflow_cases": 10,
+        "unique_source_drop_cases": 0,
+        "per_issue": [
+          {
+            "instance_id": "matplotlib__matplotlib-23314",
+            "available_records": 26,
+            "available_unique_source_reads": 2,
+            "retained_unique_source_reads": 2,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "matplotlib__matplotlib-23563",
+            "available_records": 25,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "matplotlib__matplotlib-24149",
+            "available_records": 14,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "matplotlib__matplotlib-26011",
+            "available_records": 22,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "mwaskom__seaborn-2848",
+            "available_records": 32,
+            "available_unique_source_reads": 6,
+            "retained_unique_source_reads": 6,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pallets__flask-4045",
+            "available_records": 29,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pallets__flask-4992",
+            "available_records": 7,
+            "available_unique_source_reads": 2,
+            "retained_unique_source_reads": 2,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "psf__requests-2317",
+            "available_records": 31,
+            "available_unique_source_reads": 6,
+            "retained_unique_source_reads": 6,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "psf__requests-2674",
+            "available_records": 23,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pydata__xarray-4094",
+            "available_records": 14,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pydata__xarray-4248",
+            "available_records": 28,
+            "available_unique_source_reads": 6,
+            "retained_unique_source_reads": 6,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pytest-dev__pytest-11143",
+            "available_records": 17,
+            "available_unique_source_reads": 2,
+            "retained_unique_source_reads": 2,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pytest-dev__pytest-11148",
+            "available_records": 32,
+            "available_unique_source_reads": 4,
+            "retained_unique_source_reads": 4,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "pytest-dev__pytest-7490",
+            "available_records": 16,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "scikit-learn__scikit-learn-13584",
+            "available_records": 14,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sphinx-doc__sphinx-8713",
+            "available_records": 28,
+            "available_unique_source_reads": 2,
+            "retained_unique_source_reads": 2,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-13437",
+            "available_records": 17,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-13647",
+            "available_records": 11,
+            "available_unique_source_reads": 3,
+            "retained_unique_source_reads": 3,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-13895",
+            "available_records": 57,
+            "available_unique_source_reads": 7,
+            "retained_unique_source_reads": 7,
+            "dropped_unique_source_reads": []
+          },
+          {
+            "instance_id": "sympy__sympy-18087",
+            "available_records": 50,
+            "available_unique_source_reads": 5,
+            "retained_unique_source_reads": 5,
+            "dropped_unique_source_reads": []
+          }
+        ]
+      }
+    },
+    "single": {
+      "N": 20,
+      "status_counts": {
+        "insufficient_evidence": 1,
+        "diagnosed": 17,
+        "failed": 2
+      },
+      "applicable_patches": 16,
+      "official_resolved": 11,
+      "official_status_counts": {
+        "resolved": 11,
+        "empty_patch": 4,
+        "unresolved": 4,
+        "evaluation_error": 1
+      },
+      "usage": {
+        "tasks": 20,
+        "model_calls": 102,
+        "model_call_scope": "complete run counters",
+        "successful_model_responses": 100,
+        "failed_model_calls": 2,
+        "failed_runs": 2,
+        "token_scope": "provider-reported usage from completed responses; failed calls may have unknown usage",
+        "input_tokens": 1119272,
+        "output_tokens": 18638,
+        "cached_input_tokens": 230912,
+        "builtin_tool_calls": 0,
+        "transport_reconnects": 0,
+        "applicable_patches": 16,
+        "withheld_patches": 1,
+        "patch_check_attempts": 17,
+        "repair_attempts": 0,
+        "recovered_patches": 0,
+        "model_duration_ms": 1393036
+      },
+      "call_ceilings_verified": true,
+      "model_ceiling_ids": [
+        "sympy__sympy-18087"
+      ],
+      "tool_ceiling_ids": [
+        "sympy__sympy-13895"
+      ],
+      "source_handoff_mechanism": {
+        "scope": "first synthesis handoff; unique immutable path/line-range observations; continuous single-agent history has no handoff",
+        "handoffs": 0,
+        "overflow_cases": 0,
+        "unique_source_drop_cases": 0,
+        "per_issue": []
+      }
+    }
+  },
+  "limits": [
+    "20-task exploratory subset with one stochastic run per arm; no superiority claim.",
+    "Equal call/tool ceilings do not imply equal actual tokens or cost.",
+    "Provider errors and timeouts remain in the denominator; they confound small differences.",
+    "Arms ran sequentially; other repair inference overlapped part of the first two arms, so raw latency is not a controlled speed comparison.",
+    "Source-retention counts demonstrate the mechanism, not causality for functional outcomes."
+  ]
+}

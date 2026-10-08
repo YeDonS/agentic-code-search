@@ -34,8 +34,12 @@ Examples retained for inspection:
 - `astropy__astropy-14365`: the candidate applied, but the official
   `test_roundtrip[True]` regression still failed.
   [Report](../reports/model-100/official-evaluation/astropy__astropy-14365/report.json).
-- `psf__requests-2674`: automated review found that the diagnosis targeted
-  `ConnectTimeoutError`, while the maintainer correction handled `ClosedPoolError`.
+- `psf__requests-2674`: **the submitted patch resolved the official tests** although the
+  automated causal reviewer marked the explanation incorrect (`ConnectTimeoutError` versus
+  the maintainer's `ClosedPoolError`). This is a judge/functional disagreement, not an
+  unresolved patch. Tests do not prove every sentence of the explanation, and the reviewer
+  cannot substitute for the functional grade.
+  [Official passing report](../reports/model-100/official-evaluation/psf__requests-2674/report.json) ·
   [Review records](../reports/model-100/automated-review/reviews.jsonl).
 - `psf__requests-2317` and `sympy__sympy-11870`: patches applied and tests began, then
   timed out at 600 seconds. The logs do not establish an infrastructure-only cause;
@@ -52,19 +56,33 @@ occurred, so those messages alone do not invalidate the targeted grade. Both ori
 agent failures remain unresolved; the score stays 48/100.
 [Maintainer controls and reports](../reports/evaluation-controls/README.md).
 
-## Improvements to evaluate separately
+## Improvements evaluated separately
 
 The current implementation preserves original candidates, checks cited/read file membership,
 mechanically recounts diff hunk lengths, and validates applicability on an isolated copy.
 That prevented invalid suggestions from becoming submitted patches, but 17 candidates still
-failed the check. A future run could request a bounded model correction using only that
-pre-evaluation applicability error. It must freeze a new configuration and retain the
-original run as its baseline.
+failed the check. The revised implementation feeds that error back for at most two repairs,
+lets synthesis read exact source, and keeps the original candidate and every attempt.
+New/deleted regular text files are supported; path escape and symlinks remain forbidden.
+The original 100 predictions are immutable; the 17-candidate post-hoc study is separate.
 
-A larger investigation budget may reduce abstentions. Set `ASSISTANT_MAX_AGENT_STEPS=7`
-and use a new output directory to measure the tradeoff in tokens, latency, and resolution.
+The original window retained only the last 24 evidence records. Of 39 issues exceeding that
+window, 10 abstained; none of the other 61 did. Difficulty and search behavior confound this
+association. Source-priority selection and a matched recent-window control are implemented
+to investigate it, without claiming this correlation proves causation.
+[Separate protocol and results](EXPERIMENTS.md).
+
+Completed follow-up: all 17 originally invalid candidates became applicable and **11/17
+resolved officially**; six remain functional failures. The original 48/100 is unchanged.
+The two matched window arms each resolved the same 10/20 tasks. Replaying all original
+ledgers found 13 partial source-loss cases (nine abstentions), but none lost every source
+read. These observations do not justify claiming a causal or functional gain from the
+window policy. [Replay](../reports/experiments/historical-context-replay.json).
+
+The default role ceiling is now seven calls with a final-answer turn and a shared global
+ceiling. The paired experiments freeze their own equal budgets and report actual costs.
 Longer test timeouts are another separate protocol change; preserve the 600-second results
-and do not merge retries into the original score. Neither change has been claimed as tested.
+and do not merge retries into the original score.
 
 ## 中文说明
 
@@ -76,6 +94,10 @@ and do not merge retries into the original score. Neither change has been claime
 补丁可应用和功能修复是不同要求，自动评审也可能过于宽松。全部原始预测、被拒候选、
 官方结果、实际镜像 digest 和日志摘录均保留。增加轮数、补丁纠错或延长测试时间都应
 作为新的实验，不能回写本次冻结成绩。
+
+`psf__requests-2674` 的补丁实际通过官方测试，自动评审却把解释判错；已纠正此前将其
+混在失败示例中且未说明官方成功的文档。根因判断与功能验证不一致时分别保留，自动
+“87%”不再作为 README 主成绩，未用模型伪造人工抽检。
 
 另对两条出现夹具/依赖报错的失败样本运行维护者补丁对照，两份都通过官方指定回归，
 无关报错仍会出现。因此不能把这些报错直接当作排除失败样本的依据。对照单独记录，

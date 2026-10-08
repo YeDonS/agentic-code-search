@@ -1,0 +1,13 @@
+{
+  "status": "invalid",
+  "original_sha256": "7f35e87543d8186836ef2fa416e36e389fe2586a86f99f1be71c587c3bdb6487",
+  "hunks_recounted": false,
+  "functional_tests_run": false,
+  "error": "error: patch failed: xarray/core/formatting.py:281\nerror: xarray/core/formatting.py: patch does not apply",
+  "created_files": [],
+  "deleted_files": [],
+  "submitted_sha256": "7f35e87543d8186836ef2fa416e36e389fe2586a86f99f1be71c587c3bdb6487",
+  "initial_status": "invalid",
+  "repair_attempts": 0,
+  "recovered": false
+}

@@ -4,8 +4,14 @@
 [English](README.md) · [简体中文](README.zh-CN.md)
 
 An evidence-first developer assistant built with **LangChain, LangGraph, FastAPI, and Docker**.
-Three specialist agents locate code, reproduce failures, and synthesize a diagnosis with
-registered source citations. Patches are proposed without changing the repository.
+The measured historical configuration is a **code-search → synthesis pipeline** with
+registered source citations. A test specialist and failure-to-search route are available
+when execution is explicitly enabled for trusted repositories. Patches are proposed without
+changing the repository.
+
+**The frozen 48/100 result did not exercise the test agent.** All 100 traces used search →
+synthesis; testing happened afterward in official SWE-bench containers. The tiny checkout
+fixture checks plumbing and cannot establish real-world multi-agent benefit.
 
 ## Implementation and evidence
 
@@ -18,13 +24,23 @@ registered source citations. Patches are proposed without changing the repositor
 | 100 historical issues across 12 repositories | Pinned, reproducible SWE-bench Lite subset |
 | Retrieval baseline on all 100 pre-fix snapshots | **100 completed; Hit@1 40%; Hit@5 71%; MRR@5 0.5202** |
 | Real LLM run on all 100 issues | **90 cited diagnoses, 10 abstentions; file Hit@1 87%, Hit@5 88%** |
-| Automated root-cause comparison | **87 correct, 1 partial, 2 incorrect, 10 unscorable**; human accuracy remains unmeasured |
 | Generated-patch resolution | **48/100 resolved** in official SWE-bench tests; 23 failed, 27 empty, 2 timed out |
+| Selected post-hoc patch repair | **17/17 applicable; 11/17 officially resolved** after bounded correction; separate from original 48/100 |
+| Matched 20-task controls | **Single 11/20; both routed windows 10/20** with equal model/tool call ceilings; [protocol and results](docs/EXPERIMENTS.md) |
+
+The single arm used fewer calls and reported tokens; this pilot does not show a routed
+advantage. The two window policies each resolved the same 10/20 tasks. Source
+priority retains more source but has not demonstrated higher resolution. Repair results
+use additional inference on previously invalid candidates and are not a new pass@1 score.
 
 Baseline numbers measure **file localization against maintainer patches**, not bug-fix accuracy.
 The real run uses `gpt-6.1-sol` through a locally authenticated Codex CLI, with a frozen
-configuration and source fingerprint. Automated causal comparison is a labeled LLM judgment
-with possible same-model bias. Functional resolution comes from the official SWE-bench harness.
+configuration and source fingerprint. BM25 is a retrieval reference, **not a matched LLM control**.
+Automated root-cause judgments are retained for auditing, excluded from headline performance:
+40 explanations labeled correct did not resolve, while one labeled incorrect did resolve.
+Named human causal accuracy remains unmeasured. Functional resolution comes from official tests.
+The repository-balanced 100-task subset differs from Lite's full distribution; **48% is not
+comparable to its leaderboard**. Public historical fixes may occur in model training data.
 The scripted demo is synthetic and excluded from the 100 historical tasks.
 [Results and traces](reports/README.md) · [Reproduce real-model evaluation](docs/MODEL_EVALUATION.md).
 
@@ -69,17 +85,40 @@ agents have separate prompts, tool lists, and contexts, can share one model, and
 |---|---|
 | Code-search | `search_repository`, `read_file` |
 | Test-runner | `read_file`, `run_tests`, `inspect_logs` |
-| Synthesis | No execution tools; validated JSON diagnosis |
+| Synthesis / bounded patch repair | `read_file`; validated JSON diagnosis; no execution tools |
 
-Affected files must occur in registered source-read citations. This verifies provenance, not
+The default handoff retains up to 24 distinct observations, prioritizing source reads over
+tests/logs over search snippets. The full citation ledger is preserved. Applicability errors
+can trigger two format-repair attempts within the shared 18-model-call / 18-tool-call ceilings.
+All attempts and original candidates are retained. New/deleted text files are supported;
+renames, binaries and symlinks are rejected. `ASSISTANT_WORKFLOW=single` uses one investigation
+conversation; set `ASSISTANT_PATCH_REPAIR_ATTEMPTS=0` for a pure single-conversation control.
+
+Existing affected files must occur in registered source-read citations; declared new files
+still require a genuine existing-source citation. This verifies provenance, not
 semantic correctness. Missing evidence or model abstention returns `insufficient_evidence`.
 Search passes, model turns, tool calls, reads, test duration, and output size are capped.
 [Architecture and limitations](docs/ARCHITECTURE.md).
 
 ## Real model and repository
 
-You can use a local [Codex CLI login](https://learn.chatgpt.com/docs/non-interactive-mode)
-instead of configuring a separate provider API key (tested with CLI 0.162.0-alpha.2):
+For independent inference and service deployments, configure a provider API key. OpenAI and
+Anthropic adapters use LangChain directly; choose a tool-capable model available to your account:
+
+```bash
+cp .env.example .env
+# Set ASSISTANT_MODE=model, ASSISTANT_MODEL=provider:model-id,
+# and ANTHROPIC_API_KEY or OPENAI_API_KEY in .env.
+uv run code-assistant doctor
+uv run code-assistant debug /path/to/repository "Observed bug and expected behavior"
+```
+
+`doctor` checks configuration, not inference. No provider API key was available for a live
+API-provider run here; adapter configuration is tested offline. Changing provider/model
+creates a new experiment and cannot reproduce the published model's score.
+
+An optional local [Codex CLI adapter](https://learn.chatgpt.com/docs/non-interactive-mode)
+was used for the published research runs (CLI 0.162.0-alpha.2, account-specific model alias):
 
 ```bash
 codex login
@@ -95,14 +134,9 @@ disables built-in execution/search/connectors, and exchanges application tool ca
 structured JSON. Only the application's allowlisted tools see the repository. Authentication
 stays with the CLI; never copy its login files into public CI or Docker images.
 
-Alternatively, use a provider API key:
-
-```bash
-cp .env.example .env
-# Edit ASSISTANT_MODE=model, ASSISTANT_MODEL=provider:model-id,
-# and ANTHROPIC_API_KEY or OPENAI_API_KEY in .env.
-uv run code-assistant debug /path/to/repository "Observed bug and expected behavior"
-```
+CLI flags and model availability can change. Verify account terms and supported use before
+using subscription authentication in a service; this repository makes no eligibility or
+terms-compliance claim. Frozen-patch replay is independent of CLI access.
 
 `debug` always uses model mode. Choose a model available to your account that supports tools.
 The model name in `.env.example` is configurable. Keys load from environment variables or `.env`.

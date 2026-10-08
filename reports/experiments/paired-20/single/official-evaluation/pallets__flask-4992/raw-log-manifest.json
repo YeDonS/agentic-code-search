@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37850192309",
+  "artifact_name": "patch-shard-17",
+  "files": {
+    "harness.log": {
+      "sha256": "206adaed3c8f026037edf401e604d0c6ce43c3e77e68b23436877e27d63a9ea6",
+      "bytes": 838
+    },
+    "image-pull.log": {
+      "sha256": "c4973ed842060c93c1ce1ff556498bbc433991d1fc10c9d88efaab3dd3a214e4",
+      "bytes": 1704
+    },
+    "logs/run_evaluation/patch-37850192309-17-17/agentic-controls-single/pallets__flask-4992/eval.sh": {
+      "sha256": "7d609abda437c99ff9db2a7ff1fca2c508057f1ba7e5a8ca978dffd0eeb046da",
+      "bytes": 2038
+    },
+    "logs/run_evaluation/patch-37850192309-17-17/agentic-controls-single/pallets__flask-4992/patch.diff": {
+      "sha256": "818d771abee109a85860354634bfacfd4bb8f3475883eeeafd278e53d6d84392",
+      "bytes": 1048
+    },
+    "logs/run_evaluation/patch-37850192309-17-17/agentic-controls-single/pallets__flask-4992/report.json": {
+      "sha256": "0abacaee0377c85193a5f789ff6f1f3de03b8e2e7e633b2f95ee50fdddc766f1",
+      "bytes": 2081
+    },
+    "logs/run_evaluation/patch-37850192309-17-17/agentic-controls-single/pallets__flask-4992/run_instance.log": {
+      "sha256": "964b3bb00139c8eaf38b3740e101847dc9fc90361d13d15dec5b5bd7d1550078",
+      "bytes": 7068
+    },
+    "logs/run_evaluation/patch-37850192309-17-17/agentic-controls-single/pallets__flask-4992/test_output.txt": {
+      "sha256": "953e358b367bb1227d20ed4197b41d8e800605bbc939b41f39f29f46f88f2451",
+      "bytes": 69414
+    },
+    "logs/run_evaluation/patch-37850192309-17-17/run.json": {
+      "sha256": "6bd05a6cc5e974ba3bd9cb52e53901ca8d2bdcc5ff52bdfa6b82dc15497cd1ae",
+      "bytes": 214
+    },
+    "predictions.jsonl": {
+      "sha256": "a63ae3d4c1a98deb700635ebe20e38a604f0930cdcf65a9e54dfbdd9525dc5c1",
+      "bytes": 1192
+    },
+    "summary/agentic-controls-single.patch-37850192309-17-17.json": {
+      "sha256": "c5cf741d9bf34c062b2c3dc8a3eb2ff8f186a33b7a0adb3e1cabee3c06c4ca52",
+      "bytes": 834
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "953e358b367bb1227d20ed4197b41d8e800605bbc939b41f39f29f46f88f2451",
+    "raw_lines": 1887,
+    "start_line": 1837,
+    "stop_line": 1883,
+    "truncated": false,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

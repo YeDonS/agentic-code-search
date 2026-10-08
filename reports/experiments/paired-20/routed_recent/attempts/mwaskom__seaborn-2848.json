@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/seaborn/_oldcore.py\n+++ b/seaborn/_oldcore.py\n@@ -148,7 +148,10 @@\n         try:\n             # Use a value that's in the original data vector\n             value = self.lookup_table[key]\n         except KeyError:\n+            if self.norm is None:\n+                return (0, 0, 0, 0)\n+\n             # Use the colormap to interpolate between existing datapoints\n             # (e.g. in the context of making a continuous legend)\n             try:\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "2aae0a1c5119799220d7a3ebab8a76755caa52c8fd27a9ff2c3f9d1b0ffb45ad",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "2aae0a1c5119799220d7a3ebab8a76755caa52c8fd27a9ff2c3f9d1b0ffb45ad"
+    }
+  }
+]

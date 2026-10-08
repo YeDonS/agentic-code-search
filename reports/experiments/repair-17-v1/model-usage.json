@@ -1,0 +1,20 @@
+{
+  "tasks": 17,
+  "model_calls": 34,
+  "input_tokens": 441825,
+  "output_tokens": 18373,
+  "cached_input_tokens": 22528,
+  "builtin_tool_calls": 0,
+  "transport_reconnects": 0,
+  "applicable_patches": 14,
+  "withheld_patches": 0,
+  "patch_check_attempts": 34,
+  "repair_attempts": 17,
+  "recovered_patches": 14,
+  "model_duration_ms": 610437,
+  "successful_model_responses": 34,
+  "failed_model_calls": null,
+  "failed_runs": 3,
+  "model_call_scope": "completed responses only; failed invocations uncounted in v1",
+  "token_scope": "completed response usage only; failed call usage unknown"
+}

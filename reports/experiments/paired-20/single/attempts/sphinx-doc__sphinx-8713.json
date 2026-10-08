@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/sphinx/ext/napoleon/docstring.py\n+++ b/sphinx/ext/napoleon/docstring.py\n@@ -684,4 +684,9 @@\n     def _parse_other_parameters_section(self, section: str) -> List[str]:\n-        return self._format_fields(_('Other Parameters'), self._consume_fields())\n+        if self._config.napoleon_use_param:\n+            fields = self._consume_fields(multiple=True)\n+            return self._format_docutils_params(fields)\n+        else:\n+            fields = self._consume_fields()\n+            return self._format_fields(_('Other Parameters'), fields)\n \n     def _parse_parameters_section(self, section: str) -> List[str]:\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "35ab9b24144697ef594da09bb6693bd27289984f681322fc4ebd12045f2be0b1",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "35ab9b24144697ef594da09bb6693bd27289984f681322fc4ebd12045f2be0b1"
+    }
+  }
+]

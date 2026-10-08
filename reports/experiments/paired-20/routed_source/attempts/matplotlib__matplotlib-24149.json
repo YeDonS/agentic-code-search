@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/lib/matplotlib/axes/_axes.py\n+++ b/lib/matplotlib/axes/_axes.py\n@@ -2195,7 +2195,7 @@\n             dx = [convert(x0 + ddx) - x for ddx in dx]\n             if delist:\n                 dx = dx[0]\n-        except (ValueError, TypeError, AttributeError):\n+        except (ValueError, TypeError, AttributeError, StopIteration):\n             # if the above fails (for any reason) just fallback to what\n             # we do by default and convert dx by itself.\n             dx = convert(dx)\n--- a/lib/matplotlib/tests/test_axes.py\n+++ b/lib/matplotlib/tests/test_axes.py\n@@ -1715,6 +1715,12 @@\n def test_nan_bar_values():\n     fig, ax = plt.subplots()\n     ax.bar([0, 1], [np.nan, 4])\n+    for height in [0, np.nan]:\n+        bars = ax.bar([np.nan], [height])\n+        assert len(bars) == 1\n+        assert np.isnan(bars[0].get_x())\n+        np.testing.assert_equal(bars[0].get_height(), height)\n+        assert bars[0].get_width() == 0.8\n \n \n def test_bar_ticklabel_fail():\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "669a8dd4761da2239e823e4c1916aea946f3e91c3d87e1c545a73e60e28be3f2",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "669a8dd4761da2239e823e4c1916aea946f3e91c3d87e1c545a73e60e28be3f2"
+    }
+  }
+]

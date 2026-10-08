@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/django/utils/text.py\n+++ b/django/utils/text.py\n@@ -396,3 +396,3 @@\n     Convert to ASCII if 'allow_unicode' is False. Convert spaces to hyphens.\n     Remove characters that aren't alphanumerics, underscores, or hyphens.\n-    Convert to lowercase. Also strip leading and trailing whitespace.\n+    Convert to lowercase. Also strip leading and trailing whitespace, dashes, and underscores.\n@@ -405,2 +405,2 @@\n     value = re.sub(r'[^\\w\\s-]', '', value.lower()).strip()\n-    return re.sub(r'[-\\s]+', '-', value)\n+    return re.sub(r'[-\\s]+', '-', value).strip('-_')\n--- a/django/template/defaultfilters.py\n+++ b/django/template/defaultfilters.py\n@@ -214,5 +214,5 @@\n     Convert to ASCII. Convert spaces to hyphens. Remove characters that aren't\n     alphanumerics, underscores, or hyphens. Convert to lowercase. Also strip\n-    leading and trailing whitespace.\n+    leading and trailing whitespace, dashes, and underscores.\n     \"\"\"\n     return _slugify(value)\n--- a/tests/utils_tests/test_text.py\n+++ b/tests/utils_tests/test_text.py\n@@ -192,6 +192,12 @@\n         items = (\n             # given - expected - Unicode?\n             ('Hello, World!', 'hello-world', False),\n+            ('___This is a test ---', 'this-is-a-test', False),\n+            (' _- foo -_ ', 'foo', False),\n+            ('---', '', False),\n+            ('___', '', False),\n+            ('_-你好-_', '你好', True),\n+            ('_foo_bar-baz_', 'foo_bar-baz', False),\n             ('spam & eggs', 'spam-eggs', False),\n             ('spam & ıçüş', 'spam-ıçüş', True),\n             ('foo ıç bar', 'foo-ıç-bar', True),\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "21d35754f352e21abde94d487e44e861acb93a93459da107b35678f270ec5701",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: django/utils/text.py:396\nerror: django/utils/text.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "21d35754f352e21abde94d487e44e861acb93a93459da107b35678f270ec5701"
+    }
+  },
+  {
+    "candidate": "--- a/django/utils/text.py\n+++ b/django/utils/text.py\n@@ -393,16 +393,16 @@\n @keep_lazy_text\n def slugify(value, allow_unicode=False):\n     \"\"\"\n     Convert to ASCII if 'allow_unicode' is False. Convert spaces to hyphens.\n     Remove characters that aren't alphanumerics, underscores, or hyphens.\n-    Convert to lowercase. Also strip leading and trailing whitespace.\n+    Convert to lowercase. Also strip leading and trailing whitespace, dashes, and underscores.\n     \"\"\"\n     value = str(value)\n     if allow_unicode:\n         value = unicodedata.normalize('NFKC', value)\n     else:\n         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')\n     value = re.sub(r'[^\\w\\s-]', '', value.lower()).strip()\n-    return re.sub(r'[-\\s]+', '-', value)\n+    return re.sub(r'[-\\s]+', '-', value).strip('-_')\n \n \n--- a/django/template/defaultfilters.py\n+++ b/django/template/defaultfilters.py\n@@ -212,8 +212,8 @@\n def slugify(value):\n     \"\"\"\n     Convert to ASCII. Convert spaces to hyphens. Remove characters that aren't\n     alphanumerics, underscores, or hyphens. Convert to lowercase. Also strip\n-    leading and trailing whitespace.\n+    leading and trailing whitespace, dashes, and underscores.\n     \"\"\"\n     return _slugify(value)\n \n--- a/tests/utils_tests/test_text.py\n+++ b/tests/utils_tests/test_text.py\n@@ -190,10 +190,16 @@\n     def test_slugify(self):\n         items = (\n             # given - expected - Unicode?\n             ('Hello, World!', 'hello-world', False),\n+            ('___This is a test ---', 'this-is-a-test', False),\n+            (' _- foo -_ ', 'foo', False),\n+            ('---', '', False),\n+            ('___', '', False),\n+            ('_-你好-_', '你好', True),\n+            ('_foo_bar-baz_', 'foo_bar-baz', False),\n             ('spam & eggs', 'spam-eggs', False),\n             ('spam & ıçüş', 'spam-ıçüş', True),\n             ('foo ıç bar', 'foo-ıç-bar', True),\n             ('    foo ıç bar', 'foo-ıç-bar', True),\n             ('你好', '你好', True),\n             ('İstanbul', 'istanbul', True),\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "9d1e633dedf21513116c000fba6f6def1d84aec212b6e462df078b9dd926474a",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "9d1e633dedf21513116c000fba6f6def1d84aec212b6e462df078b9dd926474a"
+    }
+  }
+]

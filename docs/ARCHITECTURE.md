@@ -19,6 +19,13 @@ and tool list. Evidence and short findings cross role boundaries. This is sequen
 orchestration, not parallel independent model processes. The supervisor's rules are deliberate:
 they are cheap to audit and guarantee an evidence-gathering opportunity before synthesis.
 
+**Measured scope:** the original 100 historical tasks disabled test execution. Every trace
+was code_search → synthesis; no test specialist or failure-to-search loop participated.
+The full route was exercised only on the tiny synthetic checkout fixture. Official patch
+testing runs after freezing and is not an inference-time agent call. A `single` workflow
+provides a continuous-conversation control; [paired experiments](EXPERIMENTS.md) use equal
+model-call and tool-call ceilings and report actual tokens separately.
+
 ## Tool protocol
 
 [`agents.py`](../src/code_assistant/agents.py) uses LangChain `BaseChatModel.bind_tools`,
@@ -62,6 +69,11 @@ evidence IDs, proposed change, optional unified diff, confidence, and limitation
 or affected files absent from cited reads are rejected. The response includes the full route
 trace, real baseline test status, mode, and run ID.
 
+Synthesis has `read_file` to verify exact context before writing a diff. Existing affected
+files require cited source reads; explicitly declared new-file headers are allowed with at
+least one genuine source citation. The full ledger is retained. A bounded handoff defaults
+to 24 distinct records with source reads first, tests/logs next, and search snippets last.
+
 Citation checks establish provenance only. A model can still misunderstand genuine evidence.
 Confidence is model-reported, not a calibrated probability. Semantic review and official
 regression tests are required for correctness claims. The service never applies patches;
@@ -69,8 +81,11 @@ regression tests are required for correctness claims. The service never applies 
 
 [`patches.py`](../src/code_assistant/patches.py) separately validates diff paths against
 affected files that were actually read, mechanically recounts hunk lengths, and checks
-applicability on a temporary source copy. Invalid candidates are withheld with their original
-hashes preserved. It does not run regression tests. After inference freezes, official
+applicability on a temporary source copy. Text-file additions/deletions are supported;
+renames, linked paths, hidden paths, binaries and special modes are rejected. Up to two
+pre-evaluation repair requests feed back the apply error, share the global model/tool budget,
+and preserve every attempt. Invalid final candidates are withheld with original hashes.
+It does not run regression tests. After inference freezes, official
 SWE-bench containers evaluate the submitted patch and retain separate functional results.
 
 Each historical issue has an isolated snapshot and trace. Concurrent workers share no actor

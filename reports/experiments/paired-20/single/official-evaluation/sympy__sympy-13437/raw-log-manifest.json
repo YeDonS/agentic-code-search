@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37850192309",
+  "artifact_name": "patch-shard-8",
+  "files": {
+    "harness.log": {
+      "sha256": "35091663bc39dd14d26c549a9f90683585d0f5fa93c67df9b15f31e5558ae29c",
+      "bytes": 834
+    },
+    "image-pull.log": {
+      "sha256": "f0dfad83647fbec34b6d665a771317cc12482eeefbfdd2c4a6c65a956deb1316",
+      "bytes": 1701
+    },
+    "logs/run_evaluation/patch-37850192309-8-8/agentic-controls-single/sympy__sympy-13437/eval.sh": {
+      "sha256": "9673e14b4df428ffe0574d5f08a2637394314c5f0312c9cf29d9c6fced523fda",
+      "bytes": 1968
+    },
+    "logs/run_evaluation/patch-37850192309-8-8/agentic-controls-single/sympy__sympy-13437/patch.diff": {
+      "sha256": "e9fd3b4037c385b508956838dc46c5ca8bb8fb4823b38572fd06b8dde467ab50",
+      "bytes": 826
+    },
+    "logs/run_evaluation/patch-37850192309-8-8/agentic-controls-single/sympy__sympy-13437/report.json": {
+      "sha256": "f6c34bbbeed6bf2cab94d5eae8100b161e31e11d54ddf7ce642c58461f3ee220",
+      "bytes": 1352
+    },
+    "logs/run_evaluation/patch-37850192309-8-8/agentic-controls-single/sympy__sympy-13437/run_instance.log": {
+      "sha256": "75359838e0f8fad91d82f178576236d3df0e4eeff56c12f0073e962910d2ad79",
+      "bytes": 4608
+    },
+    "logs/run_evaluation/patch-37850192309-8-8/agentic-controls-single/sympy__sympy-13437/test_output.txt": {
+      "sha256": "d7b1523b5a659d8ef63cf3a82e9316503a98b39046096cf86643a931762f0a11",
+      "bytes": 356750
+    },
+    "logs/run_evaluation/patch-37850192309-8-8/run.json": {
+      "sha256": "3b56cba299ec921c743bb74e885d0b9a3143c05855cef81d2b3d74952f806b0d",
+      "bytes": 212
+    },
+    "predictions.jsonl": {
+      "sha256": "620f03f9ea6a6c2b82650b9cc78fe578a94d56b38b57a7105b3709c36a998d45",
+      "bytes": 955
+    },
+    "summary/agentic-controls-single.patch-37850192309-8-8.json": {
+      "sha256": "30cc78c6350793c3f4c500f601f7efff7cbbc80cb454cf0d47973fb8d8f383a3",
+      "bytes": 830
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "d7b1523b5a659d8ef63cf3a82e9316503a98b39046096cf86643a931762f0a11",
+    "raw_lines": 8999,
+    "start_line": 8937,
+    "stop_line": 8995,
+    "truncated": false,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

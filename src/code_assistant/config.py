@@ -29,8 +29,13 @@ class Settings(BaseSettings):
     test_image: str = "code-assistant-test:local"
     test_timeout: int = Field(default=30, ge=1, le=300)
     max_search_passes: int = Field(default=2, ge=1, le=4)
-    max_agent_steps: int = Field(default=5, ge=1, le=10)
+    max_agent_steps: int = Field(default=7, ge=1, le=10)
     max_tool_calls: int = Field(default=18, ge=1, le=50)
+    max_model_calls: int = Field(default=18, ge=2, le=60)
+    workflow: Literal["routed", "single"] = "routed"
+    evidence_policy: Literal["recent", "source_priority"] = "source_priority"
+    evidence_limit: int = Field(default=24, ge=1, le=100)
+    patch_repair_attempts: int = Field(default=2, ge=0, le=3)
     model_timeout: int = Field(default=120, ge=1, le=300)
     codex_reasoning_effort: Literal["low", "medium", "high", "xhigh", "max"] = "medium"
     codex_executable: str = "codex"

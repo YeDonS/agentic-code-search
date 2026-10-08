@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/_pytest/skipping.py\n+++ b/src/_pytest/skipping.py\n@@ -255,4 +255,8 @@\n-    yield\n+    try:\n+        yield\n+    finally:\n+        if xfailed is None and not item.config.option.runxfail:\n+            item._store[xfailed_key] = evaluate_xfail_marks(item)\n \n \n @hookimpl(hookwrapper=True)\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "a6dd8bc181e4387eae4e5280eb4643754ed8e4e90dea0d5ac8dbebb2bd194de0",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "a6dd8bc181e4387eae4e5280eb4643754ed8e4e90dea0d5ac8dbebb2bd194de0"
+    }
+  }
+]

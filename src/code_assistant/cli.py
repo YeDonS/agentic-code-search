@@ -15,6 +15,8 @@ from code_assistant.workflow import debug_repository
 app = typer.Typer(no_args_is_help=True)
 bench = typer.Typer(no_args_is_help=True)
 app.add_typer(bench, name="benchmark")
+experiment = typer.Typer(no_args_is_help=True)
+app.add_typer(experiment, name="experiment")
 
 
 @app.command()
@@ -176,3 +178,42 @@ def score(
     benchmark.incorporate_external_scores(summary, rows, reviews, harness_report)
     write_json(destination, summary)
     typer.echo(json.dumps({k: v for k, v in summary.items() if k != "per_issue"}, indent=2))
+
+
+@experiment.command("plan")
+def experiment_plan(
+    destination: Path,
+    model: Annotated[str, typer.Option()],
+    count: Annotated[int, typer.Option(min=1)] = 20,
+    tasks: Path = BENCHMARK_ROOT / "tasks.jsonl",
+    seed: int = 20261008,
+):
+    """Freeze an outcome-independent paired ablation before inference."""
+    from code_assistant.experiments import create_plan
+
+    typer.echo(json.dumps(create_plan(tasks, destination, model, count, seed), indent=2))
+
+
+@experiment.command("run")
+def experiment_run(
+    plan: Path,
+    arm: str,
+    output: Path,
+    cache: Path = Path(".cache"),
+    workers: Annotated[int, typer.Option(min=1, max=8)] = 4,
+    resume: bool = False,
+):
+    """Run one frozen arm with identical shared model/call/tool budget ceilings."""
+    from code_assistant.experiments import run_arm
+
+    run_arm(plan, arm, output, cache, workers, resume)
+
+
+@experiment.command("summarize")
+def experiment_summary(directory: Path, destination: Path):
+    """Compare paired arms only after complete official grading."""
+    from code_assistant.experiments import summarize_comparisons
+
+    summary = summarize_comparisons(directory)
+    write_json(destination, summary)
+    typer.echo(json.dumps(summary, indent=2))

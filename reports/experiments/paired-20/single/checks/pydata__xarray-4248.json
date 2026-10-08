@@ -1,0 +1,13 @@
+{
+  "status": "applies",
+  "original_sha256": "f04343beced33087afb37e6b0e9443d0e9b6752e7fe68ede02ee4756c4d91658",
+  "hunks_recounted": false,
+  "functional_tests_run": false,
+  "error": null,
+  "created_files": [],
+  "deleted_files": [],
+  "submitted_sha256": "f04343beced33087afb37e6b0e9443d0e9b6752e7fe68ede02ee4756c4d91658",
+  "initial_status": "applies",
+  "repair_attempts": 0,
+  "recovered": false
+}

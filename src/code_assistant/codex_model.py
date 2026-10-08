@@ -57,6 +57,22 @@ class CodexModelError(RuntimeError):
     """Safe-to-log provider failure; raw CLI stderr may contain sensitive context."""
 
 
+def failure_category(stderr: str) -> str:
+    """Extract only an allowlisted category; never expose raw provider diagnostics."""
+    lower = stderr.lower()
+    for category, patterns in {
+        "context_limit": ("context_length", "context window", "too many tokens"),
+        "rate_or_quota": ("rate_limit", "rate limit", "quota", "429"),
+        "authentication": ("unauthorized", "authentication", "401"),
+        "schema": ("invalid_schema", "invalid schema", "response_format"),
+        "connection": ("connection reset", "connection refused", "connect error"),
+        "server": ("internal server error", "502 bad gateway", "503 service"),
+    }.items():
+        if any(pattern in lower for pattern in patterns):
+            return category
+    return "unknown"
+
+
 def strict_schema(schema: dict[str, Any]) -> dict[str, Any]:
     """Codex structured output requires all object properties to be required."""
     result = json.loads(json.dumps(schema))
@@ -233,8 +249,10 @@ class CodexCliModel(BaseChatModel):
                         f"CLI model response exceeded {self.timeout}s timeout"
                     ) from error
                 if process.returncode:
+                    stderr.seek(0)
+                    category = failure_category(stderr.read(16000).decode(errors="replace"))
                     raise CodexModelError(
-                        f"CLI exited with status {process.returncode}; check codex login status and model access"
+                        f"CLI exited with status {process.returncode}; category={category}; raw stderr omitted"
                     )
                 if stdout.tell() > 8_000_000:
                     raise CodexModelError("CLI event output exceeded 8 MB limit")

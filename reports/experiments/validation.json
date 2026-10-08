@@ -1,0 +1,27 @@
+{
+  "offline_tests": 107,
+  "python": "3.12.13",
+  "coverage_percent": 84.91501416430594,
+  "cli_coverage_percent": 72.22222222222223,
+  "ruff_lint": "passed",
+  "ruff_format": "passed",
+  "wheel_build": "passed",
+  "historical_100_inference_test_agent_calls": 0,
+  "native_provider_api_live_test": false,
+  "human_root_cause_review_completed": false,
+  "observed_synthesis_source_reads_in_paired_source_arm": 5,
+  "observed_repair_source_reads_v2": 36,
+  "original_100_predictions_unchanged": true,
+  "review": "self-review, not independent human review",
+  "frozen_experiment_sources": {
+    "paired_20": "6b61f9a4ac9ac5b5420caf1eba7d3d503f33c9fb",
+    "repair_17_v2": "0c39f8a24d04ac8b690ed6db83b1714a7edb7b65"
+  },
+  "new_official_outcomes": 94,
+  "patch_and_source_hashes": "verified",
+  "credential_scan": "passed",
+  "ci_validated_commit": "a18c02c384d0958640c7ebc0d4fd2281b76044e8",
+  "ci_checks_passed": 8,
+  "ci_evidence": "github-ci.json",
+  "documentation_links": "checked; no missing targets"
+}

@@ -1,0 +1,1212 @@
+{
+  "kind": "deterministic_context_selection_replay_no_llm",
+  "input_sha256": "06e836f5d27e4f07bce1c423fbbf2b75b65604e6ac9d940c03621e9046cc343c",
+  "N": 100,
+  "scope": "final original ledger equals original synthesis handoff; source-only immutable kind/path/range provenance reconstructs deduplication",
+  "overflow_cases": 39,
+  "recent_dropped_source_cases": 13,
+  "priority_dropped_source_cases": 0,
+  "recent_lost_all_source_cases": 0,
+  "abstentions_with_partial_source_loss": 9,
+  "limitations": "Selection mechanism only: no regenerated diagnoses or functional tests. Partial loss may matter, but no original abstention lost all source; difficulty/search behavior confound the overflow association.",
+  "per_issue": [
+    {
+      "instance_id": "astropy__astropy-12907",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "astropy__astropy-14182",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "astropy__astropy-14365",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "astropy__astropy-14995",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "astropy__astropy-6938",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [
+        [
+          "astropy/io/fits/fitsrec.py",
+          1155,
+          1274
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "astropy__astropy-7746",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-10914",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-11001",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-11742",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-12184",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-12497",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-12983",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-13401",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [
+        [
+          "django/db/models/fields/__init__.py",
+          170,
+          280
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-13447",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-13448",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-13757",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-14997",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "django__django-16255",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-18869",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23314",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 1,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [
+        [
+          "lib/mpl_toolkits/mplot3d/axes3d.py",
+          370,
+          460
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23964",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-24149",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-24265",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-24334",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25079",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 9,
+      "recent_retained_unique_source_reads": 9,
+      "priority_retained_unique_source_reads": 9,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25332",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25498",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-26011",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-26020",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "mwaskom__seaborn-2848",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3010",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3190",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3407",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pallets__flask-4045",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pallets__flask-4992",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pallets__flask-5063",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "psf__requests-1963",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "psf__requests-2148",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "psf__requests-2317",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "psf__requests-2674",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [
+        [
+          "requests/adapters.py",
+          1,
+          80
+        ],
+        [
+          "requests/models.py",
+          640,
+          750
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "psf__requests-3362",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "psf__requests-863",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pydata__xarray-3364",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pydata__xarray-4094",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pydata__xarray-4248",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [
+        [
+          "xarray/core/formatting.py",
+          250,
+          365
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pydata__xarray-4493",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pydata__xarray-5131",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-5859",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-6506",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7080",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [
+        [
+          "pylint/lint/expand_modules.py",
+          40,
+          155
+        ],
+        [
+          "pylint/lint/pylinter.py",
+          585,
+          700
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7114",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7228",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pylint-dev__pylint-7993",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11148",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [
+        [
+          "src/_pytest/pathlib.py",
+          470,
+          580
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5103",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [
+        [
+          "src/_pytest/assertion/rewrite.py",
+          920,
+          1038
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5227",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5413",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5495",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5692",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7168",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7373",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7490",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-8365",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "pytest-dev__pytest-8906",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 1,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [
+        [
+          "src/_pytest/outcomes.py",
+          35,
+          151
+        ],
+        [
+          "testing/test_skipping.py",
+          1300,
+          1390
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-11040",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13142",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13497",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13584",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14087",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14092",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14894",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14983",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 7,
+      "recent_retained_unique_source_reads": 7,
+      "priority_retained_unique_source_reads": 7,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-15512",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-25500",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 6,
+      "recent_retained_unique_source_reads": 6,
+      "priority_retained_unique_source_reads": 6,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-25638",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-25747",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-7686",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-7738",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-7975",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8273",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8282",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [
+        [
+          "sphinx/ext/autodoc/__init__.py",
+          1200,
+          1319
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8435",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8506",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [
+        [
+          "sphinx/domains/std.py",
+          120,
+          239
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8595",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8713",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 2,
+      "recent_retained_unique_source_reads": 2,
+      "priority_retained_unique_source_reads": 2,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8721",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-8801",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-11870",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-12419",
+      "overflow": true,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-13437",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-13480",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-13647",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-13895",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 1,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [
+        [
+          "sympy/core/mul.py",
+          623,
+          710
+        ],
+        [
+          "sympy/core/numbers.py",
+          1650,
+          1769
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-14308",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 5,
+      "recent_retained_unique_source_reads": 5,
+      "priority_retained_unique_source_reads": 5,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-18087",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 4,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-19487",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-20154",
+      "overflow": false,
+      "abstained": false,
+      "available_unique_source_reads": 3,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 3,
+      "recent_dropped": [],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    },
+    {
+      "instance_id": "sympy__sympy-20590",
+      "overflow": true,
+      "abstained": true,
+      "available_unique_source_reads": 4,
+      "recent_retained_unique_source_reads": 3,
+      "priority_retained_unique_source_reads": 4,
+      "recent_dropped": [
+        [
+          "sympy/core/symbol.py",
+          180,
+          285
+        ]
+      ],
+      "priority_dropped": [],
+      "recent_lost_all_source": false
+    }
+  ]
+}

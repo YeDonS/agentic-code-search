@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/src/flask/cli.py\n+++ b/src/flask/cli.py\n@@ -1021,14 +1021,17 @@\n-    headers = (\"Endpoint\", \"Methods\", \"Rule\")\n+    headers = (\"Endpoint\", \"Methods\", \"Rule\", \"Subdomain\")\n     widths = (\n         max(len(rule.endpoint) for rule in rules),\n         max(len(methods) for methods in rule_methods),\n         max(len(rule.rule) for rule in rules),\n+        max(len(rule.subdomain or \"\") for rule in rules),\n     )\n     widths = [max(len(h), w) for h, w in zip(headers, widths)]\n-    row = \"{{0:<{0}}}  {{1:<{1}}}  {{2:<{2}}}\".format(*widths)\n+    row = \"{{0:<{0}}}  {{1:<{1}}}  {{2:<{2}}}  {{3:<{3}}}\".format(*widths)\n \n     click.echo(row.format(*headers).strip())\n     click.echo(row.format(*(\"-\" * width for width in widths)))\n \n     for rule, methods in zip(rules, rule_methods):\n-        click.echo(row.format(rule.endpoint, methods, rule.rule).rstrip())\n+        click.echo(\n+            row.format(rule.endpoint, methods, rule.rule, rule.subdomain or \"\").rstrip()\n+        )\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "6a73ee35f3040f37aad9503faef1f774d4c35feb87acc2527eb888989b28874b",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: src/flask/cli.py:1021\nerror: src/flask/cli.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "6a73ee35f3040f37aad9503faef1f774d4c35feb87acc2527eb888989b28874b"
+    }
+  },
+  {
+    "candidate": "--- a/src/flask/cli.py\n+++ b/src/flask/cli.py\n@@ -1018,20 +1018,23 @@\n         for rule in rules\n     ]\n \n-    headers = (\"Endpoint\", \"Methods\", \"Rule\")\n+    headers = (\"Endpoint\", \"Methods\", \"Rule\", \"Subdomain\")\n     widths = (\n         max(len(rule.endpoint) for rule in rules),\n         max(len(methods) for methods in rule_methods),\n         max(len(rule.rule) for rule in rules),\n+        max(len(rule.subdomain or \"\") for rule in rules),\n     )\n     widths = [max(len(h), w) for h, w in zip(headers, widths)]\n-    row = \"{{0:<{0}}}  {{1:<{1}}}  {{2:<{2}}}\".format(*widths)\n+    row = \"{{0:<{0}}}  {{1:<{1}}}  {{2:<{2}}}  {{3:<{3}}}\".format(*widths)\n \n     click.echo(row.format(*headers).strip())\n     click.echo(row.format(*(\"-\" * width for width in widths)))\n \n     for rule, methods in zip(rules, rule_methods):\n-        click.echo(row.format(rule.endpoint, methods, rule.rule).rstrip())\n+        click.echo(\n+            row.format(rule.endpoint, methods, rule.rule, rule.subdomain or \"\").rstrip()\n+        )\n \n \n cli = FlaskGroup(\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "856a41dea09b0e8afcea5358938e755a7e968c3c0344c33b0f24ce9d9a754723",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "856a41dea09b0e8afcea5358938e755a7e968c3c0344c33b0f24ce9d9a754723"
+    }
+  }
+]

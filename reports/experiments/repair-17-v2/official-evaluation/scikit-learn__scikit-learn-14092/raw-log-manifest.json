@@ -1,0 +1,55 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37849300774",
+  "artifact_name": "patch-shard-12",
+  "files": {
+    "harness.log": {
+      "sha256": "ea0ebfcf2052cc42fd79ca779956b0297340879768a271563aeecbd541a09ea8",
+      "bytes": 857
+    },
+    "image-pull.log": {
+      "sha256": "c413fe97e775b510896c769a9fadedc5054aed0335b5790cd0fe2c9a7faf1d03",
+      "bytes": 1743
+    },
+    "logs/run_evaluation/patch-37849300774-12-12/agentic-posthoc-format-repair/scikit-learn__scikit-learn-14092/eval.sh": {
+      "sha256": "16c6581209e81ce16400a149e7c5b0788f28b5f39d5a2e2fac3468709dd7c946",
+      "bytes": 2115
+    },
+    "logs/run_evaluation/patch-37849300774-12-12/agentic-posthoc-format-repair/scikit-learn__scikit-learn-14092/patch.diff": {
+      "sha256": "dee3a58d279dc300cceaf1a9ef0ae3090901491784b22f7b5f0f1703afba399c",
+      "bytes": 1920
+    },
+    "logs/run_evaluation/patch-37849300774-12-12/agentic-posthoc-format-repair/scikit-learn__scikit-learn-14092/report.json": {
+      "sha256": "e9d783d2167c5fcb4e9d636c0f61c50f654ac7878c4b90b23aa14f8c8b2015b0",
+      "bytes": 19019
+    },
+    "logs/run_evaluation/patch-37849300774-12-12/agentic-posthoc-format-repair/scikit-learn__scikit-learn-14092/run_instance.log": {
+      "sha256": "5460895eb82ade14888d98258c403a255ae1d9eb1b7b6cae7f351e93b3a7e99f",
+      "bytes": 20693
+    },
+    "logs/run_evaluation/patch-37849300774-12-12/agentic-posthoc-format-repair/scikit-learn__scikit-learn-14092/test_output.txt": {
+      "sha256": "cb4104d164f8b57218e77d81239b154526e7db505668875178a8aefecca8d17b",
+      "bytes": 365821
+    },
+    "logs/run_evaluation/patch-37849300774-12-12/run.json": {
+      "sha256": "2f11970155ea36f85fec1e585d40bf2f6dca5b9f23b565575257a00aeaf50218",
+      "bytes": 227
+    },
+    "predictions.jsonl": {
+      "sha256": "384e510cae0f75db7e3536a0a04a77e6c4009a25d971bfe78ece44e3843fccb8",
+      "bytes": 2094
+    },
+    "summary/agentic-posthoc-format-repair.patch-37849300774-12-12.json": {
+      "sha256": "e5cdd1e5fd28ec3d144f227829ad75abdea6a8cfb1855ea857c55fab89ec28a4",
+      "bytes": 886
+    }
+  },
+  "excerpt": {
+    "raw_sha256": "cb4104d164f8b57218e77d81239b154526e7db505668875178a8aefecca8d17b",
+    "raw_lines": 7766,
+    "start_line": 7604,
+    "stop_line": 7763,
+    "truncated": true,
+    "trailing_whitespace_removed": true,
+    "git_marker_lines_prefixed_for_display": true
+  }
+}

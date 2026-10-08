@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/src/flask/config.py\n+++ b/src/flask/config.py\n@@ -232,6 +232,7 @@\n     def from_file(\n         self,\n         filename: str,\n         load: t.Callable[[t.IO[t.Any]], t.Mapping],\n         silent: bool = False,\n+        mode: str = \"r\",\n     ) -> bool:\n@@ -248,2 +249,2 @@\n-            import toml\n-            app.config.from_file(\"config.toml\", load=toml.load)\n+            import tomllib\n+            app.config.from_file(\"config.toml\", load=tomllib.load, mode=\"rb\")\n@@ -257,3 +258,5 @@\n         :param silent: Ignore the file if it doesn't exist.\n+        :param mode: The mode used to open the file. Defaults to text\n+            reading (``\"r\"``). Use ``\"rb\"`` for binary loaders.\n         :return: ``True`` if the file was loaded successfully.\n \n@@ -264,3 +267,3 @@\n         try:\n-            with open(filename) as f:\n+            with open(filename, mode) as f:\n                 obj = load(f)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "9f9425aa2c288245272f8fc5d8ff97501b3fcaf272936baeb759227ef33bdbb8",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: src/flask/config.py:248\nerror: src/flask/config.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "9f9425aa2c288245272f8fc5d8ff97501b3fcaf272936baeb759227ef33bdbb8"
+    }
+  },
+  {
+    "candidate": "--- a/src/flask/config.py\n+++ b/src/flask/config.py\n@@ -232,34 +232,37 @@\n     def from_file(\n         self,\n         filename: str,\n         load: t.Callable[[t.IO[t.Any]], t.Mapping],\n         silent: bool = False,\n+        mode: str = \"r\",\n     ) -> bool:\n         \"\"\"Update the values in the config from a file that is loaded\n         using the ``load`` parameter. The loaded data is passed to the\n         :meth:`from_mapping` method.\n \n         .. code-block:: python\n \n             import json\n             app.config.from_file(\"config.json\", load=json.load)\n \n-            import toml\n-            app.config.from_file(\"config.toml\", load=toml.load)\n+            import tomllib\n+            app.config.from_file(\"config.toml\", load=tomllib.load, mode=\"rb\")\n \n         :param filename: The path to the data file. This can be an\n             absolute path or relative to the config root path.\n         :param load: A callable that takes a file handle and returns a\n             mapping of loaded data from the file.\n         :type load: ``Callable[[Reader], Mapping]`` where ``Reader``\n             implements a ``read`` method.\n         :param silent: Ignore the file if it doesn't exist.\n+        :param mode: The mode used to open the file. Defaults to text\n+            reading (``\"r\"``). Use ``\"rb\"`` for binary loaders.\n         :return: ``True`` if the file was loaded successfully.\n \n         .. versionadded:: 2.0\n         \"\"\"\n         filename = os.path.join(self.root_path, filename)\n \n         try:\n-            with open(filename) as f:\n+            with open(filename, mode) as f:\n                 obj = load(f)\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "fa9eb396883e07f8687377fc2b370773b09f849c2e671ed5482f94d2b1226c88",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "fa9eb396883e07f8687377fc2b370773b09f849c2e671ed5482f94d2b1226c88"
+    }
+  }
+]

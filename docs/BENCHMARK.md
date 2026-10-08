@@ -4,9 +4,9 @@
 
 The real-model experiment asks whether the assistant identifies the causal mechanism in
 real bug reports, as confirmed by merged maintainer fixes. The 100-task run is complete:
-90 cited diagnoses, 10 abstentions, Hit@1 87%, Hit@5 88%. An explicitly automated causal
-comparison scores 87 correct, 1 partial, 2 incorrect, and 10 unscorable. **Human-adjudicated
-root-cause accuracy remains unmeasured.** Functional resolution is measured separately by
+90 cited diagnoses, 10 abstentions, Hit@1 87%, Hit@5 88%. **Human-adjudicated
+root-cause accuracy remains unmeasured.** Automated judgments are audit data, not a primary
+performance metric. Functional resolution is measured separately by
 the pinned official harness: **48/100 resolved**, 23 unresolved, 27 empty patches,
 2 test timeouts (600 seconds). See [published results](../reports/README.md).
 
@@ -27,6 +27,31 @@ not test LLM reasoning or establish that multi-agent orchestration improves outc
   [`provenance.json`](../benchmarks/provenance.json).
 - `instance_id` ends in a **solution PR number**, not necessarily the original issue number.
   `maintainer_fix_url` correctly links to `/pull/<number>`.
+
+The pinned data's exact repository allocation is below. Small repositories are fully included
+while Django and SymPy are heavily subsampled. Thus **48/100 cannot be compared directly
+with SWE-bench Lite leaderboard percentages**, nor corrected into one using naive reweighting.
+
+| Repository | Selected | Pinned Lite total |
+|---|---:|---:|
+| astropy/astropy | 6 | 6 |
+| django/django | 12 | 114 |
+| matplotlib/matplotlib | 12 | 23 |
+| mwaskom/seaborn | 4 | 4 |
+| pallets/flask | 3 | 3 |
+| psf/requests | 6 | 6 |
+| pydata/xarray | 5 | 5 |
+| pylint-dev/pylint | 6 | 6 |
+| pytest-dev/pytest | 12 | 17 |
+| scikit-learn/scikit-learn | 12 | 23 |
+| sphinx-doc/sphinx | 11 | 16 |
+| sympy/sympy | 11 | 77 |
+| Total | 100 | 300 |
+
+Counts are computed from our pinned parquet, rather than inferred from a current website.
+Public historical fixes can have entered later model training; no contamination-free claim
+is made. The [official Lite overview](https://www.swebench.com/lite.html) describes the complete
+benchmark. [New matched pilot and separate repair study](EXPERIMENTS.md).
 
 [`tasks.jsonl`](../benchmarks/tasks.jsonl) contains actor inputs. Separate
 [`gold/reference.jsonl`](../benchmarks/gold/reference.jsonl) contains changed-file labels,

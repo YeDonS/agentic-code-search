@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/sympy/functions/combinatorial/numbers.py\n+++ b/sympy/functions/combinatorial/numbers.py\n@@ -435,4 +435,7 @@\n     @classmethod\n     def eval(cls, n, k_sym=None, symbols=None):\n+        if n is S.Infinity and k_sym is None and symbols is None:\n+            return S.Infinity\n+\n         if n.is_Integer and n.is_nonnegative:\n             if k_sym is None:\n--- a/sympy/functions/combinatorial/tests/test_comb_numbers.py\n+++ b/sympy/functions/combinatorial/tests/test_comb_numbers.py\n@@ -80,5 +80,9 @@\n def test_bell():\n     assert [bell(n) for n in range(8)] == [1, 1, 2, 5, 15, 52, 203, 877]\n+\n+    assert bell(S.Infinity) == S.Infinity\n+    n = Dummy('n')\n+    assert bell(n).limit(n, S.Infinity) == S.Infinity\n \n     assert bell(0, x) == 1\n     assert bell(1, x) == x\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "cf2cb41974f2d715c93e7f81ac6636943f333f35c3fe686801e374fafbc17c53",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "cf2cb41974f2d715c93e7f81ac6636943f333f35c3fe686801e374fafbc17c53"
+    }
+  }
+]

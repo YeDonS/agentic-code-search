@@ -91,6 +91,23 @@ def test_search_snippet_alone_is_not_source_read(tools):
     assert not validate_diagnosis(diagnosis, tools)
 
 
+def test_new_file_header_cannot_bypass_read_citation_for_existing_file(tools):
+    source = tools.read("billing.py")
+    diagnosis = Diagnosis(
+        conclusion="identified",
+        root_cause="Need a helper.",
+        affected_files=["helper.py"],
+        evidence_ids=[source["id"]],
+        suggested_fix="Create a helper.",
+        confidence="medium",
+        limitations=[],
+        proposed_patch="--- /dev/null\n+++ b/helper.py\n@@ -0,0 +1 @@\n+value = 1\n",
+    )
+    assert validate_diagnosis(diagnosis, tools)
+    (tools.root / "helper.py").write_text("existing = 1\n")
+    assert not validate_diagnosis(diagnosis, tools)
+
+
 def test_provider_failure_is_reported_without_secrets(source_repo, tmp_path, monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "private-value-test-123")
     monkeypatch.setattr(

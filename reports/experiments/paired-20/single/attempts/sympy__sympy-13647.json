@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/sympy/matrices/common.py\n+++ b/sympy/matrices/common.py\n@@ -86,7 +86,7 @@\n                 return self[i, j]\n             elif pos <= j < pos + other.cols:\n                 return other[i, j - pos]\n-            return self[i, j - pos - other.cols]\n+            return self[i, j - other.cols]\n \n         return self._new(self.rows, self.cols + other.cols,\n                          lambda i, j: entry(i, j))\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "0c5ca584fe11861c46731e2153829205d76b55a38cc1bb1110b24fa9ec72b796",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "0c5ca584fe11861c46731e2153829205d76b55a38cc1bb1110b24fa9ec72b796"
+    }
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/requests/sessions.py\n+++ b/requests/sessions.py\n@@ -428 +428 @@\n-        method = builtin_str(method)\n+        method = to_native_string(method)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "02571318562ba4a182e35f7a2701f3252e856b1dfea891803d3088ac327faf9f",
+      "hunks_recounted": true,
+      "functional_tests_run": false,
+      "error": "error: patch failed: requests/sessions.py:428\nerror: requests/sessions.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "6d4932daaa6dc142a4fd3555955ad785bced90af1cef69686055bc74aec162c5"
+    }
+  }
+]

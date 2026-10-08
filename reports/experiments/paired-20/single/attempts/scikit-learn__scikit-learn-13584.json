@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/sklearn/utils/_pprint.py\n+++ b/sklearn/utils/_pprint.py\n@@ -100,7 +100,7 @@\n     init_params = signature(init_func).parameters\n     init_params = {name: param.default for name, param in init_params.items()}\n     for k, v in params.items():\n-        if (v != init_params[k] and\n+        if (repr(v) != repr(init_params[k]) and\n                 not (is_scalar_nan(init_params[k]) and is_scalar_nan(v))):\n             filtered_params[k] = v\n     return filtered_params\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "91f7c185465817d3902cbf60b04d4d254cbf9976fc2d020fa7ba453ae33677a2",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "91f7c185465817d3902cbf60b04d4d254cbf9976fc2d020fa7ba453ae33677a2"
+    }
+  }
+]

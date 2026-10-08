@@ -2,12 +2,15 @@
 
 ## Decision and scope
 
-The future model experiment asks whether the assistant identifies the causal mechanism in
-real bug reports, as confirmed by merged maintainer fixes. Its primary diagnosis metric is
-**human-adjudicated root-cause accuracy**. Functional patch resolution is measured separately
-by the official SWE-bench harness. Both are currently unmeasured.
+The real-model experiment asks whether the assistant identifies the causal mechanism in
+real bug reports, as confirmed by merged maintainer fixes. The 100-task run is complete:
+90 cited diagnoses, 10 abstentions, Hit@1 87%, Hit@5 88%. An explicitly automated causal
+comparison scores 87 correct, 1 partial, 2 incorrect, and 10 unscorable. **Human-adjudicated
+root-cause accuracy remains unmeasured.** Functional resolution is measured separately by
+the pinned official harness: **48/100 resolved**, 23 unresolved, 27 empty patches,
+2 test timeouts (600 seconds). See [published results](../reports/README.md).
 
-The completed experiment is a **deterministic file-localization baseline**. It checks data
+The earlier completed experiment is a **deterministic file-localization baseline**. It checks data
 preparation, snapshot isolation, search/read tools, scoring, and per-issue telemetry. It does
 not test LLM reasoning or establish that multi-agent orchestration improves outcomes.
 
@@ -79,8 +82,8 @@ raw durations, trace conservation checks, and manifests are published in [report
 ## Model evaluation and causal rubric
 
 First run three pilot issues for environment/protocol debugging, then freeze the model,
-prompts, tools, budgets, and code before the 100-issue run. A full run requires provider
-credentials and incurs that provider's usage charges. Record actual token usage when supplied;
+prompts, tools, budgets, and code before the 100-issue run. A full run requires a provider
+key or supported local CLI login and consumes that account's allowance. Record token usage when supplied;
 unknown usage stays null. Do not alter the task set after viewing results.
 
 ```bash
@@ -115,6 +118,21 @@ Raw outcomes and latency distributions must accompany any comparison; do not inf
 benefits from the retrieval baseline versus an LLM treatment.
 
 ## Official patch evaluation
+
+The runnable evaluation path is [MODEL_EVALUATION.md](MODEL_EVALUATION.md), pinned to
+`swebench==5.0.2`. The 100 inference outputs are also frozen in four consecutive 25-task
+batches so Docker tests can overlap later inference. Batch selection follows the original
+task order and includes abstentions and invalid patches; no outcome-based filtering is used.
+Every nonempty evaluated patch has a SHA-256 checked against the final predictions. The
+four batch denominators sum to 100. The original dataset checksum and actual image digests
+are retained. The full run resolved 48/100; 23 nonempty patches failed tests, 27 predictions
+had empty patches, and 2 tests timed out. There are no missing outcomes or image-pull failures.
+The three-task pilot separately resolved all three cases; it does not enlarge the denominator.
+
+Two post-hoc maintainer-patch controls also passed official required regressions with the
+same image digests, despite incidental fixture/import errors in the larger test output.
+Those errors alone therefore do not justify excluding the original model failures.
+[Control evidence](../reports/evaluation-controls/README.md). The agent score remains 48/100.
 
 Use a separate environment with a recorded, pinned SWE-bench harness version and working Docker.
 Export the **same pinned source records** for official evaluation, instead of silently loading
@@ -157,12 +175,17 @@ and selected dataset hash before making a patch-correctness claim.
 
 ## 中文说明
 
-已完成的是 100 条真实历史问题的**文件定位基线**，不是 100 条大模型根因诊断或补丁修复。
-固定数据版本、2026 种子和按仓库轮转的选样规则均可核验，12 个仓库全部有覆盖。
+已完成 100 条历史问题的检索基线和真实模型运行。真实模型给出 90 条带证据诊断，
+10 条主动判断证据不足；文件 Hit@1 为 87%，Hit@5 为 88%。固定数据版本、2026 种子和
+按仓库轮转的选样规则均可核验，12 个仓库全部有覆盖。
 
 agent 只能访问修复前快照，参考补丁和隐藏测试放在外部；但公开历史问题可能存在训练
 污染，因此不能宣称完全不存在泄漏。文件命中率与因果正确性严格区分。
 
 人工根因评分要求说明触发条件、错误机制及责任代码，并与维护者补丁一致；相关文件命中
 但解释不全只能算部分正确。每条需要复核人和理由，全部复核后才生成根因正确率。
-功能修复率必须由官方 SWE-bench 环境运行回归测试确认。当前两者都没有结果，不填写数字。
+自动评审已对照维护者补丁产生 87 条正确、1 条部分正确、2 条错误及 10 条不可评分；
+这不是人工准确率。官方 SWE-bench 环境确认 **48/100** 修复；23 条未通过、27 条空补丁、
+2 条超时均保留在分母中，逐条报告、日志摘录与哈希已发布。100 条推理阶段关闭历史
+仓库测试执行，专职测试 agent 已在真实模型的可信
+示例中实际运行；官方隐藏测试仅在预测冻结后执行。

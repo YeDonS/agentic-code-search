@@ -1,0 +1,70 @@
+{
+  "predictions_sha256": "79185a1be9804ebe7eaedd7191ebfc069f1d7f227c7fa1872c2c02744817f4c2",
+  "batch_manifests": [
+    {
+      "kind": "automated_root_cause_comparison",
+      "reviewer_model": "codex-cli:gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "dataset_revision": "b0dde1093fe417d83b7184254edf8199c1f0dff5",
+      "dataset_sha256": "438e281d80587aa7be470896ce410557002fde02d2ceee3e099331d308f62dd3",
+      "predictions_sha256": "0347de1a434264eb5ed67729ac0d39185d7385e1637d581ea8298d48807dc4c1",
+      "prompt_sha256": "9a73191a16e0cbba1b24f7a3c29b6bdb7ecce51d14b97eddbe9ec970cdda004d",
+      "human_review": false,
+      "workers": 4,
+      "limitations": [
+        "Automated judgment can be wrong.",
+        "Using the same model family for diagnosis and review can inflate agreement.",
+        "Not a substitute for human adjudication or official patch tests."
+      ]
+    },
+    {
+      "kind": "automated_root_cause_comparison",
+      "reviewer_model": "codex-cli:gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "dataset_revision": "b0dde1093fe417d83b7184254edf8199c1f0dff5",
+      "dataset_sha256": "438e281d80587aa7be470896ce410557002fde02d2ceee3e099331d308f62dd3",
+      "predictions_sha256": "3e3e3741403ad4b82f806bb9169c142b4a37de98874d352486b10a0a8d7be4d6",
+      "prompt_sha256": "9a73191a16e0cbba1b24f7a3c29b6bdb7ecce51d14b97eddbe9ec970cdda004d",
+      "human_review": false,
+      "workers": 4,
+      "limitations": [
+        "Automated judgment can be wrong.",
+        "Using the same model family for diagnosis and review can inflate agreement.",
+        "Not a substitute for human adjudication or official patch tests."
+      ]
+    },
+    {
+      "kind": "automated_root_cause_comparison",
+      "reviewer_model": "codex-cli:gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "dataset_revision": "b0dde1093fe417d83b7184254edf8199c1f0dff5",
+      "dataset_sha256": "438e281d80587aa7be470896ce410557002fde02d2ceee3e099331d308f62dd3",
+      "predictions_sha256": "1e22d20ab26e6bd0ec61ae40b6f89c296fd8c4c582f21cfc4d4d85a740bda734",
+      "prompt_sha256": "9a73191a16e0cbba1b24f7a3c29b6bdb7ecce51d14b97eddbe9ec970cdda004d",
+      "human_review": false,
+      "workers": 4,
+      "limitations": [
+        "Automated judgment can be wrong.",
+        "Using the same model family for diagnosis and review can inflate agreement.",
+        "Not a substitute for human adjudication or official patch tests."
+      ]
+    },
+    {
+      "kind": "automated_root_cause_comparison",
+      "reviewer_model": "codex-cli:gpt-6.1-sol",
+      "reasoning_effort": "medium",
+      "dataset_revision": "b0dde1093fe417d83b7184254edf8199c1f0dff5",
+      "dataset_sha256": "438e281d80587aa7be470896ce410557002fde02d2ceee3e099331d308f62dd3",
+      "predictions_sha256": "fde8afb031da5f130f026f917ef35af9b8b455764ac0787e78a2f9bd8c037843",
+      "prompt_sha256": "9a73191a16e0cbba1b24f7a3c29b6bdb7ecce51d14b97eddbe9ec970cdda004d",
+      "human_review": false,
+      "workers": 4,
+      "limitations": [
+        "Automated judgment can be wrong.",
+        "Using the same model family for diagnosis and review can inflate agreement.",
+        "Not a substitute for human adjudication or official patch tests."
+      ]
+    }
+  ],
+  "human_review": false
+}

@@ -1,33 +1,54 @@
 # Published evidence / 运行证据
 
-The checked-in artifacts record real local execution on 2026-10-08. No model provider
-credentials or local Docker engine were available. Docker evidence is provided separately
-by the repository's [GitHub Actions runs](https://github.com/YeDonS/agentic-code-search/actions).
+Real execution on 2026-10-08 includes the original retrieval baseline, a complete 100-issue
+LLM run, post-freeze automated review, and official SWE-bench Docker tests on GitHub Actions.
+Model inference reused a local Codex login; authentication files and API secrets are excluded.
 
-| Artifact | Meaning |
+| Evidence | Meaning |
 |---|---|
-| `retrieval-100/manifest.json` | Ordered task IDs, data hash, settings, environment and implementation fingerprint |
-| `retrieval-100/predictions.jsonl` | Actual ranked files for all 100 issues; source excerpts omitted for publication |
-| `retrieval-100/scores.json` | Per-issue localization metrics and fixed 100-issue denominator |
-| `retrieval-100/trace-events.jsonl` | All per-issue structured events, grouped by run ID |
-| `retrieval-100/log-audit.json` | Run/tool conservation counts, failure-pattern counts, raw tool durations |
-| `retrieval-100/reproduction.json` | Equality check against the first full 100-issue run |
-| `demo/response.json` | Scripted diagnosis with actual source/test evidence from the original demo fixture |
-| `demo/events.jsonl` | Search → test → search → synthesis transitions and real tool events |
-| `validation.json` | Local checks and remaining evaluation limits |
-| `github-ci.json` | Successful Docker and Python 3.11/3.12/3.13 jobs for the implementation commit |
+| [Model manifest](model-100/manifest.json) | Fixed 100 tasks, model/reasoning/transport, budgets, environment, CLI version |
+| [Source proof](model-100/source-proof.json) | Inference source digest matches the recorded Git commit |
+| [Predictions](model-100/predictions.jsonl) | All 100 diagnoses/abstentions and submitted patches |
+| [Diagnoses and citation provenance](model-100/diagnoses.jsonl) | Causal explanations, source paths/lines, route history; source excerpts omitted |
+| [Localization scores](model-100/scores.json) and [final scores](model-100/final-scores.json) | File metrics and official 48/100 resolution; human accuracy remains null |
+| [Official results](model-100/official-evaluation/results.json) and [manifest](model-100/official-evaluation/manifest.json) | All 100 outcomes, exact patch hashes, image digests, 20 shard manifests |
+| [Failure analysis](../docs/FAILURE_ANALYSIS.md) and [counts](model-100/failure-analysis.json) | 23 test failures, 27 empty patches, 2 timeouts; complete denominator |
+| [Withheld candidates](model-100/withheld-patches.jsonl) | 17 original invalid patches retained for audit |
+| [Model usage](model-100/model-usage.json) | 541 responses, reported tokens, reconnects, patch checks |
+| [Events](model-100/trace-events.jsonl) and [audit](model-100/log-audit.json) | 844 paired tools, budgets/errors, raw durations and trace conservation |
+| [Automated causal review](model-100/automated-review/summary.json) | 87 correct, 1 partial, 2 incorrect, 10 unscorable; not human accuracy |
+| [Frozen batches](model-batches/) | Four consecutive 25-task batches for overlapping official evaluation |
+| [Pilot official results](model-pilot-3/official-evaluation/results.json) | Three real historical patches resolved; reports, test excerpts, raw-log hashes |
+| [Maintainer controls](evaluation-controls/README.md) | Two post-hoc gold-patch controls passed required tests with the same image digests; separate from agent score |
+| [Real-model checkout](real-model-checkout/) | Real search/test/synthesis routing, actual baseline failure and patched-copy success |
+| [Real-model HTTP](real-model-api/validation.json) | Bearer auth and actual three-role model workflow through FastAPI |
+| [Retrieval baseline](retrieval-100/scores.json) | Original Hit@1 40%, Hit@5 71%, MRR@5 0.5201667 |
+| [Retrieval reproduction](retrieval-100/reproduction.json) | Second full run produced identical ranked predictions |
+| [Validation](validation.json) and [CI](github-ci.json) | Local checks and actual multi-version/container evidence |
 
-All 100 historical runs completed. File Hit@1 = **0.40**, Hit@5 = **0.71**, MRR@5 = **0.5201667**.
-The audit records 100 complete runs and 399 paired tool calls, with no empty searches, tool
-errors, or index truncation. There are 29 localization misses despite successful tool execution.
+The LLM run completed **100/100**: 90 cited diagnoses and 10 explicit abstentions. File
+Hit@1 is **87%**, Hit@5 **88%**, MRR@5 **0.875**. The automated comparison rate is **87%**;
+named human adjudication remains unmeasured. There are 73 applicable patches, 17 withheld
+candidates, and 10 abstentions. The complete official evaluation resolved **48/100**;
+23 were unresolved, 27 had empty patches, and 2 tests timed out. No outcomes are missing.
+The fixed denominator includes all empty patches, failures, and timeouts.
 
-[The implementation CI run](https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547)
-passed all four jobs, including actual container API and restricted-runner checks.
-The final evidence-only documentation commit does not change the verified implementation.
+Official workflow runs: [batch 1](https://github.com/YeDonS/agentic-code-search/actions/runs/37823468905),
+[batch 2](https://github.com/YeDonS/agentic-code-search/actions/runs/37823608201),
+[batch 3](https://github.com/YeDonS/agentic-code-search/actions/runs/37824041242),
+[batch 4](https://github.com/YeDonS/agentic-code-search/actions/runs/37824921353).
+The [three-issue pilot](https://github.com/YeDonS/agentic-code-search/actions/runs/37822223997)
+resolved all three patches. Raw official logs remain in GitHub run artifacts and ignored
+local `runs/`; durable reports/excerpts/hashes are curated here. The synthetic fixture is
+excluded from the historical task set. Full source archives, prompts, and hidden reasoning
+are not published.
 
-Root-cause accuracy and patch resolution remain `null`: neither can be inferred from file
-localization. The demo is synthetic, uses a fixed model script, and is excluded from the
-historical benchmark. Full local responses and source archives remain in ignored directories.
+Two unresolved cases with incidental test environment errors received separate maintainer
+patch controls. Both controls satisfied official required regressions; unrelated errors
+still occurred in the larger test output. Both original model failures remain in the
+denominator. These controls do not explain the two test timeouts or change 48/100.
 
-中文：这些是实际运行产生的文件定位与工具验证证据。100 条全部跑完，71% 只表示前五
-候选文件命中维护者修改位置。真实模型根因正确率和官方回归通过率尚未产生，不填数字。
+中文：100 条真实模型运行及官方测试已完成，官方修复率 48/100；定位命中、自动根因
+核对和官方功能修复分别评分。
+自动核对 87% 不能称为人工根因准确率。所有失败和空补丁都保留在总分母中，原始预测
+不会根据测试结果修改。镜像 digest、补丁哈希、逐条结果和日志支持核验与复现。

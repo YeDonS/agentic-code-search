@@ -1,61 +1,116 @@
 {
   "date": "2026-10-08",
   "python": "3.12.13",
-  "tests_passed": 55,
-  "ruff": "passed",
-  "package_build": "passed",
-  "api_smoke": {
-    "health": {
-      "status": "ok",
-      "mode": "demo"
-    },
-    "http_debug": "passed",
-    "docs": "passed",
-    "test_status": "baseline_failed"
-  },
+  "tests_passed": 75,
+  "coverage_percent": 80.36,
+  "ruff": "passed (src/tests/scripts lint and format)",
+  "package_build": "passed; sdist and wheel",
   "wheel_smoke": {
-    "wheel_install": "passed",
-    "packaged_fixture": "passed",
+    "wheel_install": "passed in clean environment without benchmark extras",
+    "packaged_fixture": "actual baseline failure reproduced",
     "packaged_100_tasks": "passed",
+    "codex_adapter_import": "passed",
     "archive_privacy": "passed"
+  },
+  "real_model_api_smoke": {
+    "health_status": 200,
+    "unauthenticated_status": 401,
+    "authenticated_status": 200,
+    "mode": "model",
+    "status": "diagnosed",
+    "test_status": "baseline_failed",
+    "routes": [
+      "code_search",
+      "test_runner",
+      "code_search",
+      "synthesis"
+    ],
+    "model": "codex-cli:gpt-6.1-sol",
+    "client_trust_env": false,
+    "fixture": "synthetic checkout, excluded from historical benchmark"
+  },
+  "real_model_checkout": {
+    "applied_exit_code": 0,
+    "patched_test_exit_code": 0,
+    "test_output": "...                                                                      [100%]\n3 passed in 0.00s",
+    "synthetic_fixture": true,
+    "historical_benchmark": false,
+    "baseline_test_status": "baseline_failed",
+    "routes": [
+      "code_search",
+      "test_runner",
+      "code_search",
+      "synthesis"
+    ]
   },
   "historical_tasks": 100,
   "retrieval_hit_at_5": 0.71,
   "retrieval_reproduction_identical": true,
-  "docker_local": "not available; validation delegated to GitHub Actions",
-  "real_model_evaluation": "not run; provider credentials unavailable",
+  "real_model_evaluation": {
+    "status": "complete",
+    "model": "codex-cli:gpt-6.1-sol",
+    "authentication": "local Codex CLI login; no exported API key",
+    "diagnosed": 90,
+    "abstained": 10,
+    "file_hit_at_1": 0.87,
+    "file_hit_at_5": 0.88,
+    "source_commit": "3dc26ac14fe7573bb84ef851262645353842ef58",
+    "evidence": "model-100/manifest.json"
+  },
+  "automated_root_cause_match_rate": 0.87,
   "root_cause_accuracy": null,
-  "patch_resolution_rate": null,
+  "official_patch_evaluation": {
+    "harness_version": "5.0.2",
+    "resolved": 48,
+    "unresolved": 23,
+    "empty_patch": 27,
+    "test_timeout": 2,
+    "missing_outcomes": 0,
+    "total": 100,
+    "test_timeout_seconds": 600,
+    "evidence": "model-100/official-evaluation/results.json"
+  },
+  "patch_resolution_rate": 0.48,
+  "docker_local": "not installed; actual Linux container evaluation and image validation passed on GitHub Actions",
   "github_ci": {
-    "status": "completed",
     "conclusion": "success",
-    "headSha": "58736e5068c6cb51021e3c945a404f6ac5e29e68",
-    "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547",
+    "headSha": "8d65c4355ad350ef660a3e870bb89999fedb14ed",
     "jobs": [
       {
-        "name": "docker",
-        "status": "completed",
         "conclusion": "success",
-        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547/job/113452997547"
-      },
-      {
-        "name": "test (3.11)",
-        "status": "completed",
-        "conclusion": "success",
-        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547/job/113452997722"
-      },
-      {
         "name": "test (3.13)",
         "status": "completed",
-        "conclusion": "success",
-        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547/job/113452997856"
+        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827436311/job/113483792958"
       },
       {
+        "conclusion": "success",
         "name": "test (3.12)",
         "status": "completed",
+        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827436311/job/113483793288"
+      },
+      {
         "conclusion": "success",
-        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37818447547/job/113452998014"
+        "name": "test (3.11)",
+        "status": "completed",
+        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827436311/job/113483793350"
+      },
+      {
+        "conclusion": "success",
+        "name": "docker",
+        "status": "completed",
+        "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827436311/job/113483793504"
       }
-    ]
-  }
+    ],
+    "status": "completed",
+    "url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827436311"
+  },
+  "ci_scope": "Recorded CI commit with the same inference source and 75 tests; final evidence/documentation PR also runs CI.",
+  "maintainer_control_evaluation": {
+    "resolved": 2,
+    "total": 2,
+    "same_image_digests": true,
+    "included_in_agent_score": false,
+    "evidence": "evaluation-controls/results.json"
+  },
+  "artifact_integrity_checks": "passed: IDs, frozen predictions, patch/report/raw-log hashes, source digest, JSON, documentation links, credential-pattern scan"
 }

@@ -1,0 +1,67 @@
++ : '>>>>> Start Test Output'
++ pytest -rA lib/matplotlib/tests/test_backend_ps.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.4, pluggy-1.5.0
+rootdir: /testbed
+configfile: pytest.ini
+plugins: timeout-2.3.1, xdist-3.6.1, rerunfailures-15.0, cov-6.0.0
+collected 36 items
+
+lib/matplotlib/tests/test_backend_ps.py ................................ [ 88%]
+.ss.                                                                     [100%]
+
+==================================== PASSES ====================================
+__________ test_savefig_to_stringio[ps with distiller=xpdf-portrait] ___________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.backends.backend_ps:backend_ps.py:1166 [Errno 2] No such file or directory: 'pdftops'.  Distillation step skipped.
+WARNING  matplotlib.backends.backend_ps:backend_ps.py:1166 [Errno 2] No such file or directory: 'pdftops'.  Distillation step skipped.
+__________ test_savefig_to_stringio[ps with distiller=xpdf-landscape] __________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.backends.backend_ps:backend_ps.py:1166 [Errno 2] No such file or directory: 'pdftops'.  Distillation step skipped.
+WARNING  matplotlib.backends.backend_ps:backend_ps.py:1166 [Errno 2] No such file or directory: 'pdftops'.  Distillation step skipped.
+_____________________________ test_partial_usetex ______________________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.backends.backend_ps:backend_ps.py:583 The PS backend determines usetex status solely based on rcParams['text.usetex'] and does not support having usetex=True only for some elements; this element will thus be rendered as if usetex=False.
+_______________________________ test_useafm[eps] _______________________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.font_manager:font_manager.py:1485 findfont: Font family ['DejaVu Sans'] not found. Falling back to Helvetica.
+=========================== short test summary info ============================
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps with distiller=ghostscript-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps with distiller=ghostscript-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps with distiller=xpdf-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps with distiller=xpdf-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps with usetex-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[ps with usetex-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[eps-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[eps-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[eps afm-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[eps afm-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[eps with usetex-portrait]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_savefig_to_stringio[eps with usetex-landscape]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_patheffects
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_tilde_in_tempfilename
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_transparency[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_transparency_tex[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_bbox
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_failing_latex
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_partial_usetex
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_usetex_preamble
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_useafm[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_type3_font[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_colored_hatch_zero_linewidth[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_text_clip[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_d_glyph
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_type42_font_without_prep[eps]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_fonttype[3]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_fonttype[42]
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_linedash
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_empty_line
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_no_duplicate_definition
+PASSED lib/matplotlib/tests/test_backend_ps.py::test_path_collection[eps]
+SKIPPED [1] lib/matplotlib/tests/test_backend_ps.py:292: Font may be missing
+SKIPPED [1] lib/matplotlib/tests/test_backend_ps.py:305: Font may be missing
+======================== 34 passed, 2 skipped in 20.59s ========================
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

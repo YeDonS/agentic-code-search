@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "harness_version": "5.0.2",
+  "total_instances": 2,
+  "submitted_ids": [
+    "psf__requests-3362",
+    "pydata__xarray-4493"
+  ],
+  "resolved_ids": [
+    "psf__requests-3362",
+    "pydata__xarray-4493"
+  ],
+  "unresolved_ids": [],
+  "error_ids": [],
+  "empty_patch_ids": [],
+  "missing_outcome_ids": [],
+  "completed_ids": [
+    "psf__requests-3362",
+    "pydata__xarray-4493"
+  ],
+  "patch_resolution_rate": 1.0,
+  "complete": true,
+  "predictions_sha256": "3a3741c36e1072fc930081d794784c8008e4de2e8d28a708d5e1ce64897e2c68",
+  "per_issue": [
+    {
+      "instance_id": "psf__requests-3362",
+      "status": "resolved",
+      "resolved": true,
+      "image": "swebench/sweb.eval.x86_64.psf_1776_requests-3362:latest",
+      "patch_sha256": "23e64f2da841d5d49874221e915a084e9bb1def2fcd6d6a24fd8e7dce71fba8d",
+      "image_id": "sha256:99e1429866dc72aa1cc58848ae7816ce0ccbcc3b1d77dd71c38c029926cd2c05",
+      "image_digests": [
+        "swebench/sweb.eval.x86_64.psf_1776_requests-3362@sha256:c5dc4ba64a2d97d6cff6b82fe9c0561589df13f23df6883d05e99b630942bbd1"
+      ],
+      "harness_exit_code": 0,
+      "failure_reason": null,
+      "infra_failure": false
+    },
+    {
+      "instance_id": "pydata__xarray-4493",
+      "status": "resolved",
+      "resolved": true,
+      "image": "swebench/sweb.eval.x86_64.pydata_1776_xarray-4493:latest",
+      "patch_sha256": "22bc8533c9a98fcafe60dac9502e8196f2b7fd50cfd1e6225bb6f4be43522a47",
+      "image_id": "sha256:0a179c47d0f46a4fd8695c1f433cdaa129501cca2b4a0bd43b035daba0514550",
+      "image_digests": [
+        "swebench/sweb.eval.x86_64.pydata_1776_xarray-4493@sha256:5c94544db403737d9f88cfb75afeb9444226072860af86e830ebbc7478287c20"
+      ],
+      "harness_exit_code": 0,
+      "failure_reason": null,
+      "infra_failure": false
+    }
+  ]
+}

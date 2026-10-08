@@ -1,0 +1,160 @@
+collected 1 item
+
+test_record_testsuite_property_type_checking.py F                        [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_func1 __________________________________
+
+record_testsuite_property = <bound method LogXML.add_global_property of <_pytest.junitxml.LogXML object at 0x7f7b7f7fc070>>
+
+    def test_func1(record_testsuite_property):
+>       record_testsuite_property(1, 2)
+E       TypeError: name parameter needs to be a string, but int given
+
+test_record_testsuite_property_type_checking.py:2: TypeError
+- generated xml file: /tmp/pytest-of-root/pytest-0/test_record_testsuite_property_type_checking0/tests.xml -
+=========================== 1 failed in 0.01 seconds ===========================
+_____________ test_record_testsuite_property_type_checking[False] ______________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-5.0.2.dev186+g6ea011128.d20261008, py-1.11.0, pluggy-0.13.1
+rootdir: /tmp/pytest-of-root/pytest-0/test_record_testsuite_property_type_checking1
+collected 1 item
+
+test_record_testsuite_property_type_checking.py F                        [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_func1 __________________________________
+
+record_testsuite_property = <function record_testsuite_property.<locals>.record_func at 0x7f7b7f7b5a60>
+
+    def test_func1(record_testsuite_property):
+>       record_testsuite_property(1, 2)
+E       TypeError: name parameter needs to be a string, but int given
+
+test_record_testsuite_property_type_checking.py:2: TypeError
+=========================== 1 failed in 0.01 seconds ===========================
+________________________ test_set_suite_name[my_suite] _________________________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-5.0.2.dev186+g6ea011128.d20261008, py-1.11.0, pluggy-0.13.1
+rootdir: /tmp/pytest-of-root/pytest-0/test_set_suite_name0, inifile: tox.ini
+collected 1 item
+
+test_set_suite_name.py .                                                 [100%]
+
+- generated xml file: /tmp/pytest-of-root/pytest-0/test_set_suite_name0/junit.xml -
+=========================== 1 passed in 0.00 seconds ===========================
+____________________________ test_set_suite_name[] _____________________________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-5.0.2.dev186+g6ea011128.d20261008, py-1.11.0, pluggy-0.13.1
+rootdir: /tmp/pytest-of-root/pytest-0/test_set_suite_name1
+collected 1 item
+
+test_set_suite_name.py .                                                 [100%]
+
+- generated xml file: /tmp/pytest-of-root/pytest-0/test_set_suite_name1/junit.xml -
+=========================== 1 passed in 0.00 seconds ===========================
+______________________ test_escaped_skipreason_issue3533 _______________________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-5.0.2.dev186+g6ea011128.d20261008, py-1.11.0, pluggy-0.13.1
+rootdir: /tmp/pytest-of-root/pytest-0/test_escaped_skipreason_issue35330
+collected 1 item
+
+test_escaped_skipreason_issue3533.py s                                   [100%]
+
+- generated xml file: /tmp/pytest-of-root/pytest-0/test_escaped_skipreason_issue35330/junit.xml -
+========================== 1 skipped in 0.00 seconds ===========================
+_________ test_logging_passing_tests_disabled_does_not_log_test_output _________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-5.0.2.dev186+g6ea011128.d20261008, py-1.11.0, pluggy-0.13.1
+rootdir: /tmp/pytest-of-root/pytest-0/test_logging_passing_tests_disabled_does_not_log_test_output0, inifile: tox.ini
+collected 1 item
+
+test_logging_passing_tests_disabled_does_not_log_test_output.py .        [100%]
+
+- generated xml file: /tmp/pytest-of-root/pytest-0/test_logging_passing_tests_disabled_does_not_log_test_output0/junit.xml -
+=========================== 1 passed in 0.01 seconds ===========================
+------------------------------ Captured log call -------------------------------
+WARNING  root:test_logging_passing_tests_disabled_does_not_log_test_output.py:8 hello
+=========================== short test summary info ============================
+PASSED testing/test_junitxml.py::test_mangle_test_address
+PASSED testing/test_junitxml.py::test_dont_configure_on_slaves
+PASSED testing/test_junitxml.py::test_invalid_xml_escape
+PASSED testing/test_junitxml.py::test_logxml_path_expansion
+PASSED testing/test_junitxml.py::TestPython::test_summing_simple
+PASSED testing/test_junitxml.py::TestPython::test_summing_simple_with_errors
+PASSED testing/test_junitxml.py::TestPython::test_hostname_in_xml
+PASSED testing/test_junitxml.py::TestPython::test_timestamp_in_xml
+PASSED testing/test_junitxml.py::TestPython::test_timing_function
+PASSED testing/test_junitxml.py::TestPython::test_junit_duration_report[call]
+PASSED testing/test_junitxml.py::TestPython::test_junit_duration_report[total]
+PASSED testing/test_junitxml.py::TestPython::test_setup_error
+PASSED testing/test_junitxml.py::TestPython::test_teardown_error
+PASSED testing/test_junitxml.py::TestPython::test_call_failure_teardown_error
+PASSED testing/test_junitxml.py::TestPython::test_skip_contains_name_reason
+PASSED testing/test_junitxml.py::TestPython::test_mark_skip_contains_name_reason
+PASSED testing/test_junitxml.py::TestPython::test_mark_skipif_contains_name_reason
+PASSED testing/test_junitxml.py::TestPython::test_mark_skip_doesnt_capture_output
+PASSED testing/test_junitxml.py::TestPython::test_classname_instance
+PASSED testing/test_junitxml.py::TestPython::test_classname_nested_dir
+PASSED testing/test_junitxml.py::TestPython::test_internal_error
+PASSED testing/test_junitxml.py::TestPython::test_failure_function[no]
+PASSED testing/test_junitxml.py::TestPython::test_failure_function[system-out]
+PASSED testing/test_junitxml.py::TestPython::test_failure_function[system-err]
+PASSED testing/test_junitxml.py::TestPython::test_failure_verbose_message
+PASSED testing/test_junitxml.py::TestPython::test_failure_escape
+PASSED testing/test_junitxml.py::TestPython::test_junit_prefixing
+PASSED testing/test_junitxml.py::TestPython::test_xfailure_function
+PASSED testing/test_junitxml.py::TestPython::test_xfailure_marker
+PASSED testing/test_junitxml.py::TestPython::test_xfail_captures_output_once
+PASSED testing/test_junitxml.py::TestPython::test_xfailure_xpass
+PASSED testing/test_junitxml.py::TestPython::test_xfailure_xpass_strict
+PASSED testing/test_junitxml.py::TestPython::test_collect_error
+PASSED testing/test_junitxml.py::TestPython::test_unicode
+PASSED testing/test_junitxml.py::TestPython::test_assertion_binchars
+PASSED testing/test_junitxml.py::TestPython::test_pass_captures_stdout
+PASSED testing/test_junitxml.py::TestPython::test_pass_captures_stderr
+PASSED testing/test_junitxml.py::TestPython::test_setup_error_captures_stdout
+PASSED testing/test_junitxml.py::TestPython::test_setup_error_captures_stderr
+PASSED testing/test_junitxml.py::TestPython::test_avoid_double_stdout
+PASSED testing/test_junitxml.py::TestNonPython::test_summing_simple
+PASSED testing/test_junitxml.py::test_nullbyte
+PASSED testing/test_junitxml.py::test_nullbyte_replace
+PASSED testing/test_junitxml.py::test_logxml_changingdir
+PASSED testing/test_junitxml.py::test_logxml_makedir
+PASSED testing/test_junitxml.py::test_logxml_check_isdir
+PASSED testing/test_junitxml.py::test_escaped_parametrized_names_xml
+PASSED testing/test_junitxml.py::test_double_colon_split_function_issue469
+PASSED testing/test_junitxml.py::test_double_colon_split_method_issue469
+PASSED testing/test_junitxml.py::test_unicode_issue368
+PASSED testing/test_junitxml.py::test_record_property
+PASSED testing/test_junitxml.py::test_record_property_same_name
+PASSED testing/test_junitxml.py::test_record_fixtures_without_junitxml[record_property]
+PASSED testing/test_junitxml.py::test_record_fixtures_without_junitxml[record_xml_attribute]
+PASSED testing/test_junitxml.py::test_record_attribute
+PASSED testing/test_junitxml.py::test_record_fixtures_xunit2[record_xml_attribute]
+PASSED testing/test_junitxml.py::test_record_fixtures_xunit2[record_property]
+PASSED testing/test_junitxml.py::test_root_testsuites_tag
+PASSED testing/test_junitxml.py::test_runs_twice
+PASSED testing/test_junitxml.py::test_fancy_items_regression
+PASSED testing/test_junitxml.py::test_global_properties
+PASSED testing/test_junitxml.py::test_url_property
+PASSED testing/test_junitxml.py::test_record_testsuite_property
+PASSED testing/test_junitxml.py::test_record_testsuite_property_junit_disabled
+PASSED testing/test_junitxml.py::test_record_testsuite_property_type_checking[True]
+PASSED testing/test_junitxml.py::test_record_testsuite_property_type_checking[False]
+PASSED testing/test_junitxml.py::test_set_suite_name[my_suite]
+PASSED testing/test_junitxml.py::test_set_suite_name[]
+PASSED testing/test_junitxml.py::test_escaped_skipreason_issue3533
+PASSED testing/test_junitxml.py::test_logging_passing_tests_disabled_does_not_log_test_output
+SKIPPED [1] /testbed/testing/test_junitxml.py:1114: could not import 'xdist': No module named 'xdist'
+XFAIL testing/test_junitxml.py::test_runs_twice_xdist
+  reason: [NOTRUN] hangs
+=============== 70 passed, 1 skipped, 1 xfailed in 1.90 seconds ================
+>>>>> Test Exit Code: 0
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

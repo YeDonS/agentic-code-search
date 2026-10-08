@@ -1,0 +1,53 @@
+{
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827800765",
+  "artifact_name": "patch-shard-1",
+  "test_output_sha256": "0e6576af348976cc9d8abf9fce209a1ea9d5594da63736815b223f70ca113f3a",
+  "raw_lines": 7762,
+  "excerpt_start_line": 7600,
+  "excerpt_stop_line": 7759,
+  "trailing_whitespace_removed_for_display": true,
+  "display_annotations": [],
+  "files": {
+    "harness.log": {
+      "sha256": "7c65547d9b9a8c27963b63577797440bf295ac58d6e390c0c16572879de44562",
+      "bytes": 842
+    },
+    "image-pull.log": {
+      "sha256": "435a7f8546b7554cc732e624e7760343db6ec8003c4e42359ecc40a34c166596",
+      "bytes": 1671
+    },
+    "logs/run_evaluation/patch-37827800765-1-1/maintainer-gold-sanity-control/pydata__xarray-4493/eval.sh": {
+      "sha256": "b7b5b22031a9e482c6bc84c31fe00d4935bdbdbb579dfe4af3eeb071c5c5415a",
+      "bytes": 3748
+    },
+    "logs/run_evaluation/patch-37827800765-1-1/maintainer-gold-sanity-control/pydata__xarray-4493/patch.diff": {
+      "sha256": "22bc8533c9a98fcafe60dac9502e8196f2b7fd50cfd1e6225bb6f4be43522a47",
+      "bytes": 844
+    },
+    "logs/run_evaluation/patch-37827800765-1-1/maintainer-gold-sanity-control/pydata__xarray-4493/report.json": {
+      "sha256": "1a5da320ad588d10b8a39aa74992a6d365a991319351cbf5a6d70247d4023195",
+      "bytes": 158537
+    },
+    "logs/run_evaluation/patch-37827800765-1-1/maintainer-gold-sanity-control/pydata__xarray-4493/run_instance.log": {
+      "sha256": "a0a0aabd059f5a5f4ab8a617018a21133d0e9469ee819aca6462c50f0f5cae8e",
+      "bytes": 128066
+    },
+    "logs/run_evaluation/patch-37827800765-1-1/maintainer-gold-sanity-control/pydata__xarray-4493/test_output.txt": {
+      "sha256": "0e6576af348976cc9d8abf9fce209a1ea9d5594da63736815b223f70ca113f3a",
+      "bytes": 386866
+    },
+    "logs/run_evaluation/patch-37827800765-1-1/run.json": {
+      "sha256": "bd3a527fff6f30ab438e0b4e183587c1eb4fd0288db72268f0f48c5ee4cc6fdd",
+      "bytes": 213
+    },
+    "predictions.jsonl": {
+      "sha256": "d2b8221810830406c0f4e63369a76a17919727e90e93482886291714beb99828",
+      "bytes": 986
+    },
+    "summary/maintainer-gold-sanity-control.patch-37827800765-1-1.json": {
+      "sha256": "4721d491a157f1aacb62e16d6ec1d96573c2bcb40cc3abab5edecbba66689cd3",
+      "bytes": 834
+    }
+  },
+  "original": "GitHub Actions artifacts and ignored local runs/maintainer-controls-artifacts"
+}

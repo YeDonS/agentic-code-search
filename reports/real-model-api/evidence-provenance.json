@@ -1,0 +1,51 @@
+[
+  {
+    "id": "e0001",
+    "kind": "search",
+    "path": "tests/test_checkout.py",
+    "start_line": 6,
+    "end_line": 13
+  },
+  {
+    "id": "e0002",
+    "kind": "search",
+    "path": "checkout.py",
+    "start_line": 1,
+    "end_line": 7
+  },
+  {
+    "id": "e0003",
+    "kind": "search",
+    "path": "README.md",
+    "start_line": 1,
+    "end_line": 5
+  },
+  {
+    "id": "e0004",
+    "kind": "source",
+    "path": "checkout.py",
+    "start_line": 1,
+    "end_line": 7
+  },
+  {
+    "id": "e0005",
+    "kind": "source",
+    "path": "tests/test_checkout.py",
+    "start_line": 1,
+    "end_line": 13
+  },
+  {
+    "id": "e0006",
+    "kind": "test",
+    "path": null,
+    "start_line": null,
+    "end_line": null
+  },
+  {
+    "id": "e0007",
+    "kind": "log",
+    "path": null,
+    "start_line": null,
+    "end_line": null
+  }
+]

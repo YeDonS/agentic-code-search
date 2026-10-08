@@ -1,0 +1,160 @@
+[01mwriting additional pages... [39;49;00m searchdone
+[01mcopying static files... ... [39;49;00mdone
+[01mcopying extra files... [39;49;00mdone
+[01mdumping search index in English (code: en)... [39;49;00mdone
+[01mdumping object inventory... [39;49;00mdone
+[01mbuild succeeded, 1 warning.[39;49;00m
+
+The HTML pages are in ../tmp/pytest-of-root/pytest-0/ext-autosummary-skip-member/_build/html.
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autosummary-template
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autosummary-template/_build/html
+# status:
+[01mRunning Sphinx v3.1.0+/2dee19118[39;49;00m
+[autosummary] generating autosummary for: index.rst
+[autosummary] generating autosummary for: /tmp/pytest-of-root/pytest-0/ext-autosummary-template/generate/target.Foo.rst
+[01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
+[01mbuilding [html]: [39;49;00mtargets for 1 source files that are out of date
+[01mupdating environment: [39;49;00m[new config] 2 added, 0 changed, 0 removed
+[01mreading sources... [39;49;00m[ 50%] [35mgenerate/target.Foo[39;49;00m
+[01mreading sources... [39;49;00m[100%] [35mindex[39;49;00m
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mpreparing documents... [39;49;00mdone
+[01mwriting output... [39;49;00m[ 50%] [32mgenerate/target.Foo[39;49;00m
+[01mwriting output... [39;49;00m[100%] [32mindex[39;49;00m
+[01mgenerating indices... [39;49;00m genindexdone
+[01mwriting additional pages... [39;49;00m searchdone
+[01mcopying static files... ... [39;49;00mdone
+[01mcopying extra files... [39;49;00mdone
+[01mdumping search index in English (code: en)... [39;49;00mdone
+[01mdumping object inventory... [39;49;00mdone
+[01mbuild succeeded, 6 warnings.[39;49;00m
+
+The HTML pages are in ../tmp/pytest-of-root/pytest-0/ext-autosummary-template/_build/html.
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/ext-autosummary-template/index.rst:5:<autosummary>:: WARNING: toctree contains reference to document 'generate/target.Foo' that doesn't have a title: no link will be generated[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/ext-autosummary-template/index.rst:5:<autosummary>:: WARNING: toctree contains reference to document 'generate/target.Foo' that doesn't have a title: no link will be generated[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/ext-autosummary-template/index.rst:5:<autosummary>:: WARNING: toctree contains reference to document 'generate/target.Foo' that doesn't have a title: no link will be generated[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/ext-autosummary-template/index.rst:5:<autosummary>:: WARNING: toctree contains reference to document 'generate/target.Foo' that doesn't have a title: no link will be generated[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/ext-autosummary-template/index.rst:5:<autosummary>:: WARNING: toctree contains reference to document 'generate/target.Foo' that doesn't have a title: no link will be generated[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: dummy
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autosummary
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autosummary/_build/dummy
+# status:
+[01mRunning Sphinx v3.1.0+/2dee19118[39;49;00m
+[01mloading pickled environment... [39;49;00mdone
+[01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
+[01mbuilding [dummy]: [39;49;00mtargets for 6 source files that are out of date
+[01mupdating environment: [39;49;00m[config changed ('autosummary_generate')] 6 added, 0 changed, 0 removed
+[01mreading sources... [39;49;00m[ 16%] [35mgenerated/autosummary_dummy_module[39;49;00m
+[01mreading sources... [39;49;00m[ 33%] [35mgenerated/autosummary_dummy_module.Foo[39;49;00m
+[01mreading sources... [39;49;00m[ 50%] [35mgenerated/autosummary_dummy_module.Foo.Bar[39;49;00m
+[01mreading sources... [39;49;00m[ 66%] [35mgenerated/autosummary_dummy_module.bar[39;49;00m
+[01mreading sources... [39;49;00m[ 83%] [35mgenerated/autosummary_dummy_module.qux[39;49;00m
+[01mreading sources... [39;49;00m[100%] [35mindex[39;49;00m
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mpreparing documents... [39;49;00mdone
+[01mwriting output... [39;49;00m[ 16%] [32mgenerated/autosummary_dummy_module[39;49;00m
+[01mwriting output... [39;49;00m[ 33%] [32mgenerated/autosummary_dummy_module.Foo[39;49;00m
+[01mwriting output... [39;49;00m[ 50%] [32mgenerated/autosummary_dummy_module.Foo.Bar[39;49;00m
+[01mwriting output... [39;49;00m[ 66%] [32mgenerated/autosummary_dummy_module.bar[39;49;00m
+[01mwriting output... [39;49;00m[ 83%] [32mgenerated/autosummary_dummy_module.qux[39;49;00m
+[01mwriting output... [39;49;00m[100%] [32mindex[39;49;00m
+[01mbuild succeeded, 3 warnings.[39;49;00m
+
+The dummy builder generates no files.
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91mWARNING: don't know which module to import for autodocumenting 'Foo.Bar' (try placing a "module" or "currentmodule" directive in the document, or giving an explicit module name)[39;49;00m
+[91mWARNING: autosummary: failed to import autosummary_importfail[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: dummy
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autosummary
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autosummary/_build/dummy
+# status:
+[01mRunning Sphinx v3.1.0+/2dee19118[39;49;00m
+[01mloading pickled environment... [39;49;00mdone
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91mWARNING: autosummary_generate: file not found: unknown.rst[39;49;00m
+
+_________________________________ test_autogen _________________________________
+----------------------------- Captured stdout call -----------------------------
+[autosummary] generating autosummary for: autosummary_templating.txt
+[autosummary] writing to /tmp/pytest-of-root/pytest-0/test_autogen0
+[autosummary] generating autosummary for: /tmp/pytest-of-root/pytest-0/test_autogen0/sphinx.application.TemplateBridge.rst
+[autosummary] writing to /tmp/pytest-of-root/pytest-0/test_autogen0
+============================= slowest 25 durations =============================
+0.57s call     tests/test_ext_autosummary.py::test_get_items_summary
+0.14s call     tests/test_ext_autosummary.py::test_autosummary_skip_member
+0.12s call     tests/test_ext_autosummary.py::test_autosummary_template
+0.09s call     tests/test_ext_autosummary.py::test_autosummary_latex_table_colspec
+0.09s call     tests/test_ext_autosummary.py::test_empty_autosummary_generate
+0.09s setup    tests/test_ext_autosummary.py::test_autosummary_recursive
+0.06s call     tests/test_ext_autosummary.py::test_autosummary_generate
+0.05s setup    tests/test_ext_autosummary.py::test_autosummary_latex_table_colspec
+0.04s call     tests/test_ext_autosummary.py::test_autosummary_recursive
+0.04s setup    tests/test_ext_autosummary.py::test_escaping
+0.04s setup    tests/test_ext_autosummary.py::test_autosummary_generate_content_for_module
+0.03s setup    tests/test_ext_autosummary.py::test_autosummary_generate_content_for_module_skipped
+0.03s setup    tests/test_ext_autosummary.py::test_autosummary_generate_content_for_module_imported_members
+0.03s call     tests/test_ext_autosummary.py::test_autosummary_generate_overwrite2
+0.03s setup    tests/test_ext_autosummary.py::test_autosummary_generate
+0.03s call     tests/test_ext_autosummary.py::test_autosummary_generate_overwrite1
+0.03s call     tests/test_ext_autosummary.py::test_escaping
+0.02s setup    tests/test_ext_autosummary.py::test_autosummary_skip_member
+0.02s setup    tests/test_ext_autosummary.py::test_autosummary_imported_members
+0.02s setup    tests/test_ext_autosummary.py::test_autosummary_mock_imports
+0.02s setup    tests/test_ext_autosummary.py::test_autosummary_template
+0.02s setup    tests/test_ext_autosummary.py::test_generate_autosummary_docs_property
+0.02s call     tests/test_ext_autosummary.py::test_autosummary_imported_members
+0.02s call     tests/test_ext_autosummary.py::test_autosummary_mock_imports
+0.01s setup    tests/test_ext_autosummary.py::test_invalid_autosummary_generate
+=========================== short test summary info ============================
+PASSED tests/test_ext_autosummary.py::test_mangle_signature
+PASSED tests/test_ext_autosummary.py::test_escaping
+PASSED tests/test_ext_autosummary.py::test_autosummary_generate_content_for_module
+PASSED tests/test_ext_autosummary.py::test_autosummary_generate
+PASSED tests/test_ext_autosummary.py::test_autosummary_generate_overwrite1
+PASSED tests/test_ext_autosummary.py::test_autosummary_generate_overwrite2
+PASSED tests/test_ext_autosummary.py::test_autosummary_recursive
+PASSED tests/test_ext_autosummary.py::test_autosummary_latex_table_colspec
+PASSED tests/test_ext_autosummary.py::test_import_by_name
+PASSED tests/test_ext_autosummary.py::test_autosummary_imported_members
+PASSED tests/test_ext_autosummary.py::test_generate_autosummary_docs_property
+PASSED tests/test_ext_autosummary.py::test_autosummary_skip_member
+PASSED tests/test_ext_autosummary.py::test_autosummary_template
+PASSED tests/test_ext_autosummary.py::test_empty_autosummary_generate
+PASSED tests/test_ext_autosummary.py::test_invalid_autosummary_generate
+PASSED tests/test_ext_autosummary.py::test_autogen
+FAILED tests/test_ext_autosummary.py::test_extract_summary - ValueError: Empt...
+FAILED tests/test_ext_autosummary.py::test_get_items_summary - AssertionError...
+FAILED tests/test_ext_autosummary.py::test_autosummary_generate_content_for_module_skipped
+FAILED tests/test_ext_autosummary.py::test_autosummary_generate_content_for_module_imported_members
+FAILED tests/test_ext_autosummary.py::test_autosummary_mock_imports - Asserti...
+================= 5 failed, 16 passed, 1720 warnings in 2.05s ==================
+py39: exit 1 (2.64 seconds) /testbed> pytest -rA --durations 25 tests/roots/test-ext-autosummary/autosummary_dummy_module.py tests/test_ext_autosummary.py pid=78
+  py39: FAIL code 1 (2.65=setup[0.01]+cmd[2.64] seconds)
+  evaluation failed :( (2.75 seconds)
+>>>>> Test Exit Code: 1
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

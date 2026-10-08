@@ -1,0 +1,10 @@
+{
+  "test_output_sha256": "49244a0aa7dfb239e3c3d30f3d304beac566e28b96bdeb2424554035a4d02bc9",
+  "raw_bytes": 749687,
+  "raw_lines": 13686,
+  "excerpt_start_line": 13616,
+  "excerpt_stop_line": 13682,
+  "truncated": false,
+  "trailing_whitespace_removed_for_display": true,
+  "original": "GitHub Actions artifact and ignored local runs/patch-pilot-final"
+}

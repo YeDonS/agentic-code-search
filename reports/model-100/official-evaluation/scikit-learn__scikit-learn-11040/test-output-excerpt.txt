@@ -1,0 +1,105 @@
++ : '>>>>> Start Test Output'
++ pytest -rA sklearn/neighbors/tests/test_neighbors.py
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 47 items
+
+sklearn/neighbors/tests/test_neighbors.py ..F........................... [ 63%]
+............xx...                                                        [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_n_neighbors_datatype ___________________________
+
+    def test_n_neighbors_datatype():
+        # Test to check whether n_neighbors is integer
+        X = [[1, 1], [1, 1], [1, 1]]
+        expected_msg = "n_neighbors does not take .*float.* " \
+                       "value, enter integer value"
+        msg = "Expected n_neighbors > 0. Got -3"
+
+        neighbors_ = neighbors.NearestNeighbors(n_neighbors=3.)
+>       assert_raises_regex(TypeError, expected_msg, neighbors_.fit, X)
+
+sklearn/neighbors/tests/test_neighbors.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+sklearn/utils/_unittest_backport.py:224: in assertRaisesRegex
+    return context.handle('assertRaisesRegex', args, kwargs)
+sklearn/utils/_unittest_backport.py:113: in handle
+    callable_obj(*args, **kwargs)
+sklearn/neighbors/base.py:820: in fit
+    return self._fit(X)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = NearestNeighbors(algorithm='auto', leaf_size=30, metric='minkowski',
+         metric_params=None, n_jobs=1, n_neighbors=3.0, p=2, radius=1.0)
+X = [[1, 1], [1, 1], [1, 1]]
+
+    def _fit(self, X):
+        if self.n_neighbors is not None:
+            if not isinstance(self.n_neighbors, Integral):
+                raise ValueError("n_neighbors must be a positive integer; "
+>                                "got %r" % self.n_neighbors)
+E               ValueError: n_neighbors must be a positive integer; got 3.0
+
+sklearn/neighbors/base.py:162: ValueError
+==================================== PASSES ====================================
+_______________________________ test_precomputed _______________________________
+----------------------------- Captured stdout call -----------------------------
+<class 'sklearn.neighbors.classification.KNeighborsClassifier'>
+<class 'sklearn.neighbors.classification.RadiusNeighborsClassifier'>
+<class 'sklearn.neighbors.regression.KNeighborsRegressor'>
+<class 'sklearn.neighbors.regression.RadiusNeighborsRegressor'>
+=========================== short test summary info ============================
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_kneighbors
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_inputs
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_precomputed
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_precomputed_cross_validation
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_unsupervised_radius_neighbors
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_classifier
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_classifier_float_labels
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_classifier_predict_proba
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_classifier
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_classifier_when_no_neighbors
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_classifier_outlier_labeling
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_classifier_zero_distance
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_neighbors_regressors_zero_distance
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_boundary_handling
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_RadiusNeighborsClassifier_multioutput
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_classifier_sparse
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_KNeighborsClassifier_multioutput
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_regressor
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_KNeighborsRegressor_multioutput_uniform_weight
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_regressor_multioutput
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_regressor
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_RadiusNeighborsRegressor_multioutput_with_uniform_weight
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_RadiusNeighborsRegressor_multioutput
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_regressor_sparse
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_neighbors_iris
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_neighbors_digits
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_graph
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_kneighbors_graph_sparse
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_graph
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_radius_neighbors_graph_sparse
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_neighbors_badargs
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_neighbors_metrics
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_callable_metric
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_valid_brute_metric_for_auto_algorithm
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_metric_params_interface
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_predict_sparse_ball_kd_tree
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_non_euclidean_kneighbors
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_k_and_radius_neighbors_train_is_not_query
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_k_and_radius_neighbors_X_None
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_k_and_radius_neighbors_duplicates
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_include_self_neighbors_graph
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_dtype_convert
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_sparse_metric_callable
+PASSED sklearn/neighbors/tests/test_neighbors.py::test_pairwise_boolean_distance
+XFAIL sklearn/neighbors/tests/test_neighbors.py::test_same_knn_parallel
+  reason: [NOTRUN] yield tests were removed in pytest 4.0 - test_same_knn_parallel will be ignored
+XFAIL sklearn/neighbors/tests/test_neighbors.py::test_same_radius_neighbors_parallel
+  reason: [NOTRUN] yield tests were removed in pytest 4.0 - test_same_radius_neighbors_parallel will be ignored
+FAILED sklearn/neighbors/tests/test_neighbors.py::test_n_neighbors_datatype
+============= 1 failed, 44 passed, 2 xfailed, 3 warnings in 1.32s ==============
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

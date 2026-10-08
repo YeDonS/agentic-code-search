@@ -1,0 +1,15 @@
+{
+  "expected": 100,
+  "reviewed": 100,
+  "llm_review_calls": 90,
+  "verdict_counts": {
+    "correct": 87,
+    "unscorable": 10,
+    "incorrect": 2,
+    "partial": 1
+  },
+  "automated_root_cause_match_rate": 0.87,
+  "root_cause_accuracy": null,
+  "human_review": false,
+  "metric_scope": "Automated comparison with maintainer patches; same-model bias; not human-validated accuracy."
+}

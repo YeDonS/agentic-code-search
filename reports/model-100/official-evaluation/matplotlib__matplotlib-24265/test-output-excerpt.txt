@@ -1,0 +1,40 @@
++ : '>>>>> Start Test Output'
++ pytest -rA lib/matplotlib/tests/test_style.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.4, pluggy-1.5.0
+rootdir: /testbed
+configfile: pytest.ini
+plugins: timeout-2.3.1, xdist-3.6.1, rerunfailures-15.0, cov-6.0.0
+collected 17 items
+
+lib/matplotlib/tests/test_style.py .................                     [100%]
+
+==================================== PASSES ====================================
+__________________ test_invalid_rc_warning_includes_filename ___________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib:__init__.py:855
+Bad key foo in file /tmp/tmpzzqevos_/basename.mplstyle, line 1 ('foo: bar')
+You probably need to get an updated matplotlibrc file from
+https://github.com/matplotlib/matplotlib/blob/v3.7.0.dev488+g62005fa9df.d20261008/matplotlibrc.template
+or from the matplotlib source distribution
+=========================== short test summary info ============================
+PASSED lib/matplotlib/tests/test_style.py::test_invalid_rc_warning_includes_filename
+PASSED lib/matplotlib/tests/test_style.py::test_available
+PASSED lib/matplotlib/tests/test_style.py::test_use
+PASSED lib/matplotlib/tests/test_style.py::test_use_url
+PASSED lib/matplotlib/tests/test_style.py::test_single_path
+PASSED lib/matplotlib/tests/test_style.py::test_context
+PASSED lib/matplotlib/tests/test_style.py::test_context_with_dict
+PASSED lib/matplotlib/tests/test_style.py::test_context_with_dict_after_namedstyle
+PASSED lib/matplotlib/tests/test_style.py::test_context_with_dict_before_namedstyle
+PASSED lib/matplotlib/tests/test_style.py::test_context_with_union_of_dict_and_namedstyle
+PASSED lib/matplotlib/tests/test_style.py::test_context_with_badparam
+PASSED lib/matplotlib/tests/test_style.py::test_alias[mpl20]
+PASSED lib/matplotlib/tests/test_style.py::test_alias[mpl15]
+PASSED lib/matplotlib/tests/test_style.py::test_xkcd_no_cm
+PASSED lib/matplotlib/tests/test_style.py::test_xkcd_cm
+PASSED lib/matplotlib/tests/test_style.py::test_deprecated_seaborn_styles
+PASSED lib/matplotlib/tests/test_style.py::test_up_to_date_blacklist
+============================== 17 passed in 1.91s ==============================
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

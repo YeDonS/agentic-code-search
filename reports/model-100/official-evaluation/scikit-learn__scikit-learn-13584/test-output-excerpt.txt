@@ -1,0 +1,31 @@
++ : '>>>>> Start Test Output'
++ pytest -rA sklearn/utils/tests/test_pprint.py
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 9 items
+
+sklearn/utils/tests/test_pprint.py .........                             [100%]
+
+==================================== PASSES ====================================
+__________________________ test_builtin_prettyprinter __________________________
+----------------------------- Captured stdout call -----------------------------
+LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)
+=========================== short test summary info ============================
+PASSED sklearn/utils/tests/test_pprint.py::test_basic
+PASSED sklearn/utils/tests/test_pprint.py::test_changed_only
+PASSED sklearn/utils/tests/test_pprint.py::test_pipeline
+PASSED sklearn/utils/tests/test_pprint.py::test_deeply_nested
+PASSED sklearn/utils/tests/test_pprint.py::test_gridsearch
+PASSED sklearn/utils/tests/test_pprint.py::test_gridsearch_pipeline
+PASSED sklearn/utils/tests/test_pprint.py::test_n_max_elements_to_show
+PASSED sklearn/utils/tests/test_pprint.py::test_length_constraint
+PASSED sklearn/utils/tests/test_pprint.py::test_builtin_prettyprinter
+============================== 9 passed in 0.64s ===============================
+>>>>> Test Exit Code: 0
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

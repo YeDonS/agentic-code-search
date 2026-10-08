@@ -1,0 +1,160 @@
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+
+# warning:
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: text
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/text
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+[01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
+[01mbuilding [text]: [39;49;00mtargets for 1 source files that are out of date
+[01mupdating environment: [39;49;00m[new config] 1 added, 0 changed, 0 removed
+[01mreading sources... [39;49;00m[100%] [35mindex[39;49;00m
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mpreparing documents... [39;49;00mdone
+[01mwriting output... [39;49;00m[100%] [32mindex[39;49;00m
+[01mbuild succeeded, 1 warning.[39;49;00m
+
+The text files are in ../tmp/pytest-of-root/pytest-0/ext-autodoc/_build/text.
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: text
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/text
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+[01mloading pickled environment... [39;49;00mdone
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: text
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/text
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+[01mloading pickled environment... [39;49;00mdone
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+[01mloading pickled environment... [39;49;00mdone
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: html
+# srcdir: /tmp/pytest-of-root/pytest-0/ext-autodoc
+# outdir: /tmp/pytest-of-root/pytest-0/ext-autodoc/_build/html
+# status:
+[01mRunning Sphinx v3.4.0+/f1a3d0dce[39;49;00m
+[01mloading pickled environment... [39;49;00mdone
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+============================= slowest 25 durations =============================
+0.23s setup    tests/test_ext_autodoc_configs.py::test_autoclass_content_class
+0.05s call     tests/test_ext_autodoc_configs.py::test_autodoc_default_options
+0.04s call     tests/test_ext_autodoc_configs.py::test_autodoc_default_options_with_values
+0.03s setup    tests/test_ext_autodoc_configs.py::test_autodoc_default_options
+0.03s call     tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description
+0.01s call     tests/test_ext_autodoc_configs.py::test_autodoc_docstring_signature
+0.01s call     tests/test_ext_autodoc_configs.py::test_autodoc_typehints_signature
+0.01s call     tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none
+0.01s call     tests/test_ext_autodoc_configs.py::test_autoclass_content_class
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_default_options_with_values
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autoclass_content_init
+0.01s setup    tests/test_ext_autodoc_configs.py::test_mocked_module_imports
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_both
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_typehints_signature
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none_for_overload
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_class
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autoclass_content_and_docstring_signature_init
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_inherit_docstrings
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autoclass_content_both
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_docstring_signature
+0.01s call     tests/test_ext_autodoc_configs.py::test_autodoc_typehints_none_for_overload
+0.01s call     tests/test_ext_autodoc_configs.py::test_autodoc_type_aliases
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_typehints_description_for_invalid_node
+0.01s setup    tests/test_ext_autodoc_configs.py::test_autodoc_type_aliases
+[36m[1m=========================== short test summary info ============================[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autoclass_content_class[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autoclass_content_init[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autoclass_content_both[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_inherit_docstrings[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_docstring_signature[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autoclass_content_and_docstring_signature_class[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autoclass_content_and_docstring_signature_init[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autoclass_content_and_docstring_signature_both[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_mocked_module_imports[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_typehints_signature[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_typehints_none[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_typehints_none_for_overload[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_typehints_description[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_typehints_description_for_invalid_node[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_type_aliases[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_default_options[0m
+[32mPASSED[0m tests/test_ext_autodoc_configs.py::[1mtest_autodoc_default_options_with_values[0m
+[33m======================= [32m17 passed[0m, [33m[1m64 warnings[0m[33m in 0.73s[0m[33m ========================[0m
+py39: exit 0 (1.14 seconds) /testbed> python -X dev -m pytest -rA --durations 25 tests/roots/test-ext-autodoc/target/annotations.py tests/test_ext_autodoc_configs.py pid=78
+  py39: OK (1.15=setup[0.01]+cmd[1.14] seconds)
+  congratulations :) (1.21 seconds)
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

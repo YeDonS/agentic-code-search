@@ -1,0 +1,53 @@
+{
+  "artifact_name": "patch-shard-3",
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37824041242",
+  "files": {
+    "harness.log": {
+      "sha256": "f5fc4551f5086f608a708ee49eaf43df06336c6a5ac440e15b18a5b0db594b36",
+      "bytes": 848
+    },
+    "image-pull.log": {
+      "sha256": "33c7d7002a9f6994a2ab1ed6db4bf45b4baeb028b795f997028fed2ee0772d1d",
+      "bytes": 1716
+    },
+    "logs/run_evaluation/patch-37824041242-3-18/agentic-code-search-gpt-6.1-sol/pytest-dev__pytest-5495/eval.sh": {
+      "sha256": "db0248efc7950fdc249909d6961d5a75dfe030bc5c32ba7dd4e2d07a401da061",
+      "bytes": 1750
+    },
+    "logs/run_evaluation/patch-37824041242-3-18/agentic-code-search-gpt-6.1-sol/pytest-dev__pytest-5495/patch.diff": {
+      "sha256": "68dacdbdf615975f0c31212fd4d91270dce49797afacc938491f081a50f68282",
+      "bytes": 380
+    },
+    "logs/run_evaluation/patch-37824041242-3-18/agentic-code-search-gpt-6.1-sol/pytest-dev__pytest-5495/report.json": {
+      "sha256": "fcebed1ee101d8a1cf181d59aecc6d7ed3219cfb85d630929fdc5114d53a1799",
+      "bytes": 9460
+    },
+    "logs/run_evaluation/patch-37824041242-3-18/agentic-code-search-gpt-6.1-sol/pytest-dev__pytest-5495/run_instance.log": {
+      "sha256": "e35719be29688f23f2aeb43d6a3177e62d2cf121d224dd74f14338f7ecf5c9f4",
+      "bytes": 10285
+    },
+    "logs/run_evaluation/patch-37824041242-3-18/agentic-code-search-gpt-6.1-sol/pytest-dev__pytest-5495/test_output.txt": {
+      "sha256": "0d968fd8247e33c8971e1a2dfdacdc4cb7bbfb92d3e79fb7797c8317242c829f",
+      "bytes": 216136
+    },
+    "logs/run_evaluation/patch-37824041242-3-18/run.json": {
+      "sha256": "f4ed7bd274c40995d061b13b583915ba5ea3116f556469f35b0c81360695ff94",
+      "bytes": 217
+    },
+    "predictions.jsonl": {
+      "sha256": "9b225a35b55f30ce69b00917515b46750055f59177f58e7a4ec64bf45ae40e9b",
+      "bytes": 510
+    },
+    "summary/agentic-code-search-gpt-6.1-sol.patch-37824041242-3-18.json": {
+      "sha256": "318d475fa1bfcf1cecb68a5f0c0b99921321e0c2e649c3fd4e149017e656492b",
+      "bytes": 950
+    }
+  },
+  "test_output_sha256": "0d968fd8247e33c8971e1a2dfdacdc4cb7bbfb92d3e79fb7797c8317242c829f",
+  "raw_lines": 4903,
+  "excerpt_start_line": 4740,
+  "excerpt_stop_line": 4899,
+  "truncated": true,
+  "trailing_whitespace_removed_for_display": true,
+  "original": "GitHub Actions artifact; ignored local runs/official-100-artifacts"
+}

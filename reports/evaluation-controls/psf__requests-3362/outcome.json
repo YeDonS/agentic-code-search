@@ -1,0 +1,14 @@
+{
+  "instance_id": "psf__requests-3362",
+  "status": "resolved",
+  "resolved": true,
+  "image": "swebench/sweb.eval.x86_64.psf_1776_requests-3362:latest",
+  "patch_sha256": "23e64f2da841d5d49874221e915a084e9bb1def2fcd6d6a24fd8e7dce71fba8d",
+  "image_id": "sha256:99e1429866dc72aa1cc58848ae7816ce0ccbcc3b1d77dd71c38c029926cd2c05",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.psf_1776_requests-3362@sha256:c5dc4ba64a2d97d6cff6b82fe9c0561589df13f23df6883d05e99b630942bbd1"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

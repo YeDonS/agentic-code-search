@@ -1,0 +1,72 @@
+{
+  "expected": 100,
+  "status_counts": {
+    "diagnosed": 90,
+    "insufficient_evidence": 10
+  },
+  "official_status_counts": {
+    "resolved": 48,
+    "unresolved": 23,
+    "empty_patch": 27,
+    "evaluation_error": 2
+  },
+  "empty_patch_breakdown": {
+    "withheld_invalid": 17,
+    "model_abstained": 10
+  },
+  "withheld_check_counts": {
+    "invalid": 17
+  },
+  "agent_step_limit_events": 26,
+  "recoverable_tool_errors": 7,
+  "automated_correct_but_not_resolved": 40,
+  "test_timeouts": [
+    "psf__requests-2317",
+    "sympy__sympy-11870"
+  ],
+  "timeout_observation": "Both patches applied and tests started; 600-second timeout. Cause not established as infrastructure failure; retained as unresolved in the denominator.",
+  "abstained_ids": [
+    "pylint-dev__pylint-7080",
+    "pytest-dev__pytest-5103",
+    "pydata__xarray-4248",
+    "pytest-dev__pytest-8906",
+    "sympy__sympy-20590",
+    "matplotlib__matplotlib-23314",
+    "sympy__sympy-18087",
+    "astropy__astropy-6938",
+    "pytest-dev__pytest-11148",
+    "sympy__sympy-13895"
+  ],
+  "withheld_ids": [
+    "django__django-10914",
+    "django__django-12983",
+    "django__django-13447",
+    "django__django-13757",
+    "matplotlib__matplotlib-18869",
+    "matplotlib__matplotlib-23563",
+    "matplotlib__matplotlib-24149",
+    "matplotlib__matplotlib-26020",
+    "pallets__flask-4992",
+    "pallets__flask-5063",
+    "pylint-dev__pylint-6506",
+    "pylint-dev__pylint-7993",
+    "scikit-learn__scikit-learn-14092",
+    "scikit-learn__scikit-learn-25747",
+    "sphinx-doc__sphinx-7975",
+    "sphinx-doc__sphinx-8273",
+    "sympy__sympy-20154"
+  ],
+  "frozen_inference_wall_seconds": 1358.683187,
+  "no_outcome_based_repair_or_reselection": true,
+  "posthoc_maintainer_controls": {
+    "cases": [
+      "psf__requests-3362",
+      "pydata__xarray-4493"
+    ],
+    "resolved": 2,
+    "same_image_digests": true,
+    "original_outcomes_revised": false,
+    "evidence": "../evaluation-controls/results.json",
+    "interpretation": "Incidental pytest fixture/import errors do not by themselves invalidate the official targeted regression grade; both maintainer fixes passed required tests."
+  }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/django/conf/global_settings.py\n+++ b/django/conf/global_settings.py\n@@ -305,5 +305,5 @@\n # The numeric mode to set newly-uploaded files to. The value should be a mode\n # you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\n-FILE_UPLOAD_PERMISSIONS = None\n+FILE_UPLOAD_PERMISSIONS = 0o644\n \n # The numeric mode to assign to newly-created directories, when uploading files.\n--- a/docs/howto/deployment/checklist.txt\n+++ b/docs/howto/deployment/checklist.txt\n@@ -157,9 +157,9 @@\n :setting:`FILE_UPLOAD_PERMISSIONS`\n ----------------------------------\n \n-With the default file upload settings, files smaller than\n+When :setting:`FILE_UPLOAD_PERMISSIONS` is ``None``, files smaller than\n :setting:`FILE_UPLOAD_MAX_MEMORY_SIZE` may be stored with a different mode\n than larger files as described in :setting:`FILE_UPLOAD_PERMISSIONS`.\n \n-Setting :setting:`FILE_UPLOAD_PERMISSIONS` ensures all files are uploaded with\n-the same permissions.\n+Setting :setting:`FILE_UPLOAD_PERMISSIONS` to a non-None value ensures all files\n+are uploaded with the same permissions.\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "11391f9ab65152ad9408bef613061ff2364d6f062ea15bee55162cbe29db1c1d",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: docs/howto/deployment/checklist.txt:157\nerror: docs/howto/deployment/checklist.txt: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "11391f9ab65152ad9408bef613061ff2364d6f062ea15bee55162cbe29db1c1d"
+    }
+  },
+  {
+    "candidate": "--- a/django/conf/global_settings.py\n+++ b/django/conf/global_settings.py\n@@ -305,7 +305,7 @@\n # The numeric mode to set newly-uploaded files to. The value should be a mode\n # you'd pass directly to os.chmod; see https://docs.python.org/library/os.html#files-and-directories.\n-FILE_UPLOAD_PERMISSIONS = None\n+FILE_UPLOAD_PERMISSIONS = 0o644\n \n # The numeric mode to assign to newly-created directories, when uploading files.\n # The value should be a mode as you'd pass to os.chmod;\n # see https://docs.python.org/library/os.html#files-and-directories.\n--- a/docs/howto/deployment/checklist.txt\n+++ b/docs/howto/deployment/checklist.txt\n@@ -157,12 +157,12 @@\n :setting:`FILE_UPLOAD_PERMISSIONS`\n ----------------------------------\n \n-With the default file upload settings, files smaller than\n+When :setting:`FILE_UPLOAD_PERMISSIONS` is ``None``, files smaller than\n :setting:`FILE_UPLOAD_MAX_MEMORY_SIZE` may be stored with a different mode\n than larger files as described in :setting:`FILE_UPLOAD_PERMISSIONS`.\n \n-Setting :setting:`FILE_UPLOAD_PERMISSIONS` ensures all files are uploaded with\n-the same permissions.\n+Setting :setting:`FILE_UPLOAD_PERMISSIONS` to a non-None value ensures all files\n+are uploaded with the same permissions.\n \n HTTPS\n =====\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "33a9b9b9fa4cbd78b5d21412f9682654faddc736b1b76a355d12bd18997bbfe9",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "33a9b9b9fa4cbd78b5d21412f9682654faddc736b1b76a355d12bd18997bbfe9"
+    }
+  }
+]

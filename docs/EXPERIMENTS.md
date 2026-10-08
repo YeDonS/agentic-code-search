@@ -68,6 +68,15 @@ This is a selected, extra-budget **post-hoc repair study**, not pass@1, an indep
 100-task rerun, or an improvement attributable solely to formatting: a model may alter the
 implementation despite the repair prompt. The original 48/100 is never overwritten.
 
+The first development run (`repair-17-v1`, source commit `6b61f9a`) recovered 14 applicable
+patches; three provider errors aborted correction. It is retained, rather than erased.
+The follow-up (`repair-17-v2`, source commit `0c39f8a`) reruns **all 17** after preserving
+diagnoses/attempts on provider errors and adding request/error counters. It uses the same
+per-issue caps, but is a new stochastic run with additional total budget. Differences
+between these runs cannot be attributed solely to exception handling, and their best
+patches are never pooled into one score. The paired three-arm study continues to use its
+original frozen `6b61f9a` implementation for every arm.
+
 ```bash
 uv run python scripts/repair_withheld.py reports/model-100 runs/repair-17 \
   --model provider:model-id --workers 4

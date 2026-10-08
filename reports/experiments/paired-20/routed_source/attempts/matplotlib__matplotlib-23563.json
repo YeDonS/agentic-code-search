@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/lib/mpl_toolkits/mplot3d/art3d.py\n+++ b/lib/mpl_toolkits/mplot3d/art3d.py\n@@ -221,8 +221,8 @@\n def line_2d_to_3d(line, zs=0, zdir='z'):\n     \"\"\"Convert a 2D line to 3D.\"\"\"\n \n+    Line3D.set_3d_properties(line, zs, zdir)\n     line.__class__ = Line3D\n-    line.set_3d_properties(zs, zdir)\n \n \n def _path_to_3d_segment(path, zs=0, zdir='z'):\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "c08dc8245b8a0b140ded0ec19fca82265bff0cb6deb05c4d443bb781b0b54de5",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "c08dc8245b8a0b140ded0ec19fca82265bff0cb6deb05c4d443bb781b0b54de5"
+    }
+  }
+]

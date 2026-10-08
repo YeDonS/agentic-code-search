@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/flask/blueprints.py\n+++ b/src/flask/blueprints.py\n@@ -188,6 +188,9 @@\n             template_folder=template_folder,\n             root_path=root_path,\n         )\n+        if \".\" in name:\n+            raise ValueError(\"Blueprint name must not contain dots.\")\n+\n         self.name = name\n         self.url_prefix = url_prefix\n         self.subdomain = subdomain\n--- a/tests/test_blueprints.py\n+++ b/tests/test_blueprints.py\n@@ -280,3 +280,8 @@\n+def test_blueprint_name_with_dot():\n+    with pytest.raises(ValueError, match=\"must not contain dots\"):\n+        flask.Blueprint(\"parent.child\", __name__)\n+\n+\n def test_dotted_names_from_app(app, client):\n     test = flask.Blueprint(\"test\", __name__)\n \n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "0638736f2bf9912a6c0cadbf11d18032917d01295042082123fd98ea6963222e",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "0638736f2bf9912a6c0cadbf11d18032917d01295042082123fd98ea6963222e"
+    }
+  }
+]

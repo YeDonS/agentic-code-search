@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/lib/matplotlib/__init__.py\n+++ b/lib/matplotlib/__init__.py\n@@ -133,8 +133,8 @@\n def __getattr__(name):\n-    if name == \"__version__\":\n+    if name in (\"__version__\", \"version_info\"):\n         import setuptools_scm\n-        global __version__  # cache it.\n+        global __version__, version_info  # cache both.\n         # Only shell out to a git subprocess if really needed, and not on a\n         # shallow clone, such as those used by CI, as the latter would trigger\n         # a warning from setuptools_scm.\n         root = Path(__file__).resolve().parents[2]\n@@ -149,7 +149,8 @@\n         else:  # Get the version from the _version.py setuptools_scm file.\n             __version__ = _version.version\n-        return __version__\n+        version_info = parse_version(__version__)\n+        return __version__ if name == \"__version__\" else version_info\n     raise AttributeError(f\"module {__name__!r} has no attribute {name!r}\")\n \n \n def _check_versions():\n--- a/lib/matplotlib/tests/test_matplotlib.py\n+++ b/lib/matplotlib/tests/test_matplotlib.py\n@@ -3,5 +3,6 @@\n import sys\n \n+from packaging.version import parse as parse_version\n import pytest\n \n import matplotlib\n@@ -7,6 +8,17 @@\n import matplotlib\n \n \n+def test_version_info():\n+    info = matplotlib.version_info\n+    assert info == parse_version(matplotlib.__version__)\n+    assert matplotlib.version_info is info\n+    version_type = type(info)\n+    assert version_type(\"3.9\") < version_type(\"3.10\")\n+    assert (version_type(\"3.10.dev1\") < version_type(\"3.10rc1\")\n+            < version_type(\"3.10\") < version_type(\"3.10.post1\"))\n+    assert isinstance(matplotlib.__version__, str)\n+\n+\n @pytest.mark.skipif(\n     os.name == \"nt\", reason=\"chmod() doesn't work as is on Windows\")\n @pytest.mark.skipif(os.name != \"nt\" and os.geteuid() == 0,\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "07f2cd91c24b8ca7b6e0ecc89801d3eedcbdcdc2a670d21c3a8ef9b7a7df6472",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: lib/matplotlib/tests/test_matplotlib.py:7\nerror: lib/matplotlib/tests/test_matplotlib.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "07f2cd91c24b8ca7b6e0ecc89801d3eedcbdcdc2a670d21c3a8ef9b7a7df6472"
+    }
+  },
+  {
+    "candidate": "--- a/lib/matplotlib/__init__.py\n+++ b/lib/matplotlib/__init__.py\n@@ -133,8 +133,8 @@\n def __getattr__(name):\n-    if name == \"__version__\":\n+    if name in (\"__version__\", \"version_info\"):\n         import setuptools_scm\n-        global __version__  # cache it.\n+        global __version__, version_info  # cache both.\n         # Only shell out to a git subprocess if really needed, and not on a\n         # shallow clone, such as those used by CI, as the latter would trigger\n         # a warning from setuptools_scm.\n         root = Path(__file__).resolve().parents[2]\n@@ -148,7 +148,8 @@\n         else:  # Get the version from the _version.py setuptools_scm file.\n             __version__ = _version.version\n-        return __version__\n+        version_info = parse_version(__version__)\n+        return __version__ if name == \"__version__\" else version_info\n     raise AttributeError(f\"module {__name__!r} has no attribute {name!r}\")\n \n \n def _check_versions():\n--- a/lib/matplotlib/tests/test_matplotlib.py\n+++ b/lib/matplotlib/tests/test_matplotlib.py\n@@ -1,11 +1,23 @@\n import os\n import subprocess\n import sys\n \n+from packaging.version import parse as parse_version\n import pytest\n \n import matplotlib\n \n \n+def test_version_info():\n+    info = matplotlib.version_info\n+    assert info == parse_version(matplotlib.__version__)\n+    assert matplotlib.version_info is info\n+    version_type = type(info)\n+    assert version_type(\"3.9\") < version_type(\"3.10\")\n+    assert (version_type(\"3.10.dev1\") < version_type(\"3.10rc1\")\n+            < version_type(\"3.10\") < version_type(\"3.10.post1\"))\n+    assert isinstance(matplotlib.__version__, str)\n+\n+\n @pytest.mark.skipif(\n     os.name == \"nt\", reason=\"chmod() doesn't work as is on Windows\")\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "76ef7979d9f9861dae4fb17ca2f3b05ce70be8acefb64f46fff81150e8520e28",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "76ef7979d9f9861dae4fb17ca2f3b05ce70be8acefb64f46fff81150e8520e28"
+    }
+  }
+]

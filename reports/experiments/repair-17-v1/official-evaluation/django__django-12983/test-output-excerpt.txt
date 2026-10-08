@@ -1,0 +1,29 @@
++ : '>>>>> Start Test Output'
++ ./tests/runtests.py --verbosity 2 --settings=test_sqlite --parallel 1 utils_tests.test_text
+test_compress_sequence (utils_tests.test_text.TestUtilsText) ... ok
+test_format_lazy (utils_tests.test_text.TestUtilsText) ... ok
+test_get_text_list (utils_tests.test_text.TestUtilsText) ... ok
+test_get_valid_filename (utils_tests.test_text.TestUtilsText) ... ok
+test_normalize_newlines (utils_tests.test_text.TestUtilsText) ... ok
+test_phone2numeric (utils_tests.test_text.TestUtilsText) ... ok
+test_slugify (utils_tests.test_text.TestUtilsText) ... ok
+test_smart_split (utils_tests.test_text.TestUtilsText) ... ok
+test_truncate_chars (utils_tests.test_text.TestUtilsText) ... ok
+test_truncate_chars_html (utils_tests.test_text.TestUtilsText) ... ok
+test_truncate_html_words (utils_tests.test_text.TestUtilsText) ... ok
+test_truncate_words (utils_tests.test_text.TestUtilsText) ... ok
+test_unescape_entities (utils_tests.test_text.TestUtilsText) ... ok
+test_unescape_entities_deprecated (utils_tests.test_text.TestUtilsText) ... ok
+test_unescape_string_literal (utils_tests.test_text.TestUtilsText) ... ok
+test_wrap (utils_tests.test_text.TestUtilsText) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.014s
+
+OK
+Testing against Django installed in '/testbed/django'
+Importing application utils_tests
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
++ SWEBENCH_TEST_EXIT_CODE=0
++ : '>>>>> End Test Output'

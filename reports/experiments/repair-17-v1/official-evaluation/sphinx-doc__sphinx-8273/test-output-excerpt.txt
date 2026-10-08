@@ -1,0 +1,160 @@
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/transforms/post_transforms/__init__.py:215: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for node in self.document.traverse(addnodes.desc_sig_element):
+
+tests/test_build_manpage.py::test_all
+tests/test_build_manpage.py::test_man_make_section_directory
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/builders/latex/transforms.py:595: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for node in self.document.traverse(nodes.title):
+
+tests/test_build_manpage.py: 86 warnings
+  /testbed/sphinx/builders/latex/transforms.py:597: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for i, index in enumerate(node.traverse(addnodes.index)):
+
+tests/test_build_manpage.py::test_all
+tests/test_build_manpage.py::test_man_make_section_directory
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/transforms/post_transforms/code.py:44: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for node in self.document.traverse(addnodes.highlightlang):
+
+tests/test_build_manpage.py::test_all
+tests/test_build_manpage.py::test_man_make_section_directory
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/transforms/post_transforms/code.py:96: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for lbnode in self.document.traverse(nodes.literal_block):  # type: nodes.literal_block
+
+tests/test_build_manpage.py::test_all
+tests/test_build_manpage.py::test_man_make_section_directory
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/transforms/post_transforms/code.py:100: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for dbnode in self.document.traverse(nodes.doctest_block):  # type: nodes.doctest_block
+
+tests/test_build_manpage.py::test_all
+  /testbed/sphinx/ext/todo.py:163: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for node in doctree.traverse(todolist):
+
+tests/test_build_manpage.py::test_all
+tests/test_build_manpage.py::test_man_make_section_directory
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/builders/manpage.py:101: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for pendingnode in largetree.traverse(addnodes.pending_xref):
+
+tests/test_build_manpage.py::test_all
+tests/test_build_manpage.py::test_man_make_section_directory
+tests/test_build_manpage.py::test_captioned_code_block
+tests/test_build_manpage.py::test_rubric
+  /testbed/sphinx/writers/manpage.py:65: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    for node in self.document.traverse(matcher):  # type: TextElement
+
+tests/test_build_manpage.py: 98 warnings
+  /testbed/sphinx/writers/manpage.py:221: PendingDeprecationWarning: nodes.Node.traverse() is obsoleted by Node.findall().
+    if node.traverse(nodes.strong):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: man
+# srcdir: /tmp/pytest-of-root/pytest-0/root
+# outdir: /tmp/pytest-of-root/pytest-0/root/_build/man
+# status:
+[01mRunning Sphinx v3.3.0+/5ce0d4a4d[39;49;00m
+[01mbuilding [man]: [39;49;00mall source files
+[01mupdating environment: [39;49;00m[new config] 15 added, 0 changed, 0 removed
+[01mreading sources... [39;49;00m[  6%] [35mautodoc[39;49;00m
+[01mreading sources... [39;49;00m[ 13%] [35mbom[39;49;00m
+[01mreading sources... [39;49;00m[ 20%] [35mextapi[39;49;00m
+[01mreading sources... [39;49;00m[ 26%] [35mextensions[39;49;00m
+[01mreading sources... [39;49;00m[ 33%] [35mfootnote[39;49;00m
+[01mreading sources... [39;49;00m[ 40%] [35mimages[39;49;00m
+[01mreading sources... [39;49;00m[ 46%] [35mincludes[39;49;00m
+[01mreading sources... [39;49;00m[ 53%] [35mindex[39;49;00m
+[01mreading sources... [39;49;00m[ 60%] [35mlists[39;49;00m
+[01mreading sources... [39;49;00m[ 66%] [35mmarkup[39;49;00m
+[01mreading sources... [39;49;00m[ 73%] [35mmath[39;49;00m
+[01mreading sources... [39;49;00m[ 80%] [35mobjects[39;49;00m
+[01mreading sources... [39;49;00m[ 86%] [35motherext[39;49;00m
+[01mreading sources... [39;49;00m[ 93%] [35msubdir/images[39;49;00m
+[01mreading sources... [39;49;00m[100%] [35msubdir/includes[39;49;00m
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mwriting... [39;49;00m[32msphinxtests.1[39;49;00m { [32mextapi[39;49;00m [32mimages[39;49;00m [32msubdir/images[39;49;00m [32msubdir/includes[39;49;00m [32mincludes[39;49;00m [32mmarkup[39;49;00m [32mobjects[39;49;00m [32mbom[39;49;00m [32mmath[39;49;00m [32mautodoc[39;49;00m [32mextensions[39;49;00m [32mfootnote[39;49;00m [32mlists[39;49;00m [32motherext[39;49;00m } done
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class:1: WARNING: duplicate object description of autodoc_target.Class, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.attr:1: WARNING: duplicate object description of autodoc_target.Class.attr, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.descr:1: WARNING: duplicate object description of autodoc_target.Class.descr, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.docattr:1: WARNING: duplicate object description of autodoc_target.Class.docattr, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.excludemeth:1: WARNING: duplicate object description of autodoc_target.Class.excludemeth, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.inst_attr_comment:1: WARNING: duplicate object description of autodoc_target.Class.inst_attr_comment, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.inst_attr_inline:1: WARNING: duplicate object description of autodoc_target.Class.inst_attr_inline, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.inst_attr_string:1: WARNING: duplicate object description of autodoc_target.Class.inst_attr_string, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.mdocattr:1: WARNING: duplicate object description of autodoc_target.Class.mdocattr, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.meth:1: WARNING: duplicate object description of autodoc_target.Class.meth, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.moore:1: WARNING: duplicate object description of autodoc_target.Class.moore, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.prop:1: WARNING: duplicate object description of autodoc_target.Class.prop, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.skipmeth:1: WARNING: duplicate object description of autodoc_target.Class.skipmeth, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.udocattr:1: WARNING: duplicate object description of autodoc_target.Class.udocattr, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.Class.docattr:1: WARNING: duplicate object description of autodoc_target.Class.docattr, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.InstAttCls:1: WARNING: duplicate object description of autodoc_target.InstAttCls, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.InstAttCls.ca1:1: WARNING: duplicate object description of autodoc_target.InstAttCls.ca1, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/autodoc_target.py:docstring of autodoc_target.InstAttCls.ia1:1: WARNING: duplicate object description of autodoc_target.InstAttCls.ia1, other instance in autodoc, use :noindex: for one of them[39;49;00m
+[91m/tmp/pytest-of-root/pytest-0/root/objects.txt:143: WARNING: Unparseable C cross-reference: 'SphinxType *'
+Invalid C declaration: Expected end of definition. [error at 11]
+  SphinxType *
+  -----------^[39;49;00m
+
+--------------------------- Captured stdout teardown ---------------------------
+# testroot: root
+# builder: man
+# srcdir: /tmp/pytest-of-root/pytest-0/markup-rubric
+# outdir: /tmp/pytest-of-root/pytest-0/markup-rubric/_build/man
+# status:
+[01mRunning Sphinx v3.3.0+/5ce0d4a4d[39;49;00m
+[01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
+[01mbuilding [man]: [39;49;00mall manpages
+[01mupdating environment: [39;49;00m[new config] 1 added, 0 changed, 0 removed
+[01mreading sources... [39;49;00m[100%] [35mindex[39;49;00m
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mwriting... [39;49;00m[32mpython.1[39;49;00m { } done
+[01mbuild succeeded, 1 warning.[39;49;00m
+
+The manual pages are in ../tmp/pytest-of-root/pytest-0/markup-rubric/_build/man.
+
+# warning:
+[91mWARNING: while setting up extension sphinx.addnodes: node class 'meta' is already registered, its visitors will be overridden[39;49;00m
+
+============================= slowest 25 durations =============================
+0.31s call     tests/test_build_manpage.py::test_all
+0.22s setup    tests/test_build_manpage.py::test_all
+0.05s call     tests/test_build_manpage.py::test_captioned_code_block
+0.01s setup    tests/test_build_manpage.py::test_captioned_code_block
+0.01s call     tests/test_build_manpage.py::test_man_make_section_directory
+0.01s setup    tests/test_build_manpage.py::test_man_make_section_directory
+0.01s setup    tests/test_build_manpage.py::test_rubric
+0.01s call     tests/test_build_manpage.py::test_rubric
+
+(7 durations < 0.005s hidden.  Use -vv to show these durations.)
+[36m[1m=========================== short test summary info ============================[0m
+[32mPASSED[0m tests/test_build_manpage.py::[1mtest_all[0m
+[32mPASSED[0m tests/test_build_manpage.py::[1mtest_default_man_pages[0m
+[32mPASSED[0m tests/test_build_manpage.py::[1mtest_rubric[0m
+[31mFAILED[0m tests/test_build_manpage.py::[1mtest_man_make_section_directory[0m - AssertionError: assert False
+[31mFAILED[0m tests/test_build_manpage.py::[1mtest_captioned_code_block[0m - assert '.sp\ncaption \\fItest\\fP rb\n.INDENT 0.0\n.INDENT 3.5\n.sp\n.nf\n....
+[31m================== [31m[1m2 failed[0m, [32m3 passed[0m, [33m1268 warnings[0m[31m in 0.69s[0m[31m ==================[0m
+py39: exit 1 (1.10 seconds) /testbed> pytest -rA --durations 25 tests/test_build_manpage.py pid=78
+  py39: FAIL code 1 (1.11=setup[0.01]+cmd[1.10] seconds)
+  evaluation failed :( (1.17 seconds)
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

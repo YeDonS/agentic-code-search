@@ -1,0 +1,41 @@
+[
+  {
+    "candidate": "--- a/sklearn/utils/_set_output.py\n+++ b/sklearn/utils/_set_output.py\n@@ -18,3 +18,3 @@\n-    If `data_to_wrap` is a DataFrame, then the `columns` and `index` will be changed\n-    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with\n+    If `data_to_wrap` is a DataFrame, then only the `columns` will be changed\n+    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with\n     `columns` and `index`.\n@@ -55,7 +55,5 @@\n     if isinstance(data_to_wrap, pd.DataFrame):\n         if columns is not None:\n             data_to_wrap.columns = columns\n-        if index is not None:\n-            data_to_wrap.index = index\n         return data_to_wrap\n \n     return pd.DataFrame(data_to_wrap, index=index, columns=columns)\n--- a/sklearn/utils/tests/test_set_output.py\n+++ b/sklearn/utils/tests/test_set_output.py\n@@ -27,10 +27,11 @@\n-def test__wrap_in_pandas_container_dense_update_columns_and_index():\n-    \"\"\"Check that _wrap_in_pandas_container overrides columns and index.\"\"\"\n+def test__wrap_in_pandas_container_dense_update_columns_preserve_index():\n+    \"\"\"Check that wrapping overrides columns but preserves the existing index.\"\"\"\n     pd = pytest.importorskip(\"pandas\")\n     X_df = pd.DataFrame([[1, 0, 3], [0, 0, 1]], columns=[\"a\", \"b\", \"c\"])\n+    original_index = X_df.index.copy()\n     new_columns = np.asarray([\"f0\", \"f1\", \"f2\"], dtype=object)\n-    new_index = [10, 12]\n+    new_index = [10, 12, 14]\n \n     new_df = _wrap_in_pandas_container(X_df, columns=new_columns, index=new_index)\n     assert_array_equal(new_df.columns, new_columns)\n-    assert_array_equal(new_df.index, new_index)\n+    assert_array_equal(new_df.index, original_index)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "cbe7b445e0eeb81265e94c708391101febec0f67efe6622ff66cdd9cf5718897",
+      "hunks_recounted": true,
+      "functional_tests_run": false,
+      "error": "error: patch failed: sklearn/utils/tests/test_set_output.py:27\nerror: sklearn/utils/tests/test_set_output.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "6e64d1badb37db17757820d141193c3fef803ca039035b6cedc8f624009e51c3"
+    }
+  },
+  {
+    "candidate": "--- a/sklearn/utils/_set_output.py\n+++ b/sklearn/utils/_set_output.py\n@@ -18,3 +18,3 @@\n-    If `data_to_wrap` is a DataFrame, then the `columns` and `index` will be changed\n-    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with\n+    If `data_to_wrap` is a DataFrame, then only the `columns` will be changed\n+    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with\n     `columns` and `index`.\n@@ -55,8 +55,6 @@\n     if isinstance(data_to_wrap, pd.DataFrame):\n         if columns is not None:\n             data_to_wrap.columns = columns\n-        if index is not None:\n-            data_to_wrap.index = index\n         return data_to_wrap\n \n     return pd.DataFrame(data_to_wrap, index=index, columns=columns)\n--- a/sklearn/utils/tests/test_set_output.py\n+++ b/sklearn/utils/tests/test_set_output.py\n@@ -27,10 +27,11 @@\n-def test__wrap_in_pandas_container_dense_update_columns_and_index():\n-    \"\"\"Check that _wrap_in_pandas_container overrides columns and index.\"\"\"\n+def test__wrap_in_pandas_container_dense_update_columns_preserve_index():\n+    \"\"\"Check that wrapping overrides columns but preserves the existing index.\"\"\"\n     pd = pytest.importorskip(\"pandas\")\n     X_df = pd.DataFrame([[1, 0, 3], [0, 0, 1]], columns=[\"a\", \"b\", \"c\"])\n+    original_index = X_df.index.copy()\n     new_columns = np.asarray([\"f0\", \"f1\", \"f2\"], dtype=object)\n-    new_index = [10, 12]\n+    new_index = [10, 12, 14]\n \n     new_df = _wrap_in_pandas_container(X_df, columns=new_columns, index=new_index)\n     assert_array_equal(new_df.columns, new_columns)\n-    assert_array_equal(new_df.index, new_index)\n+    assert_array_equal(new_df.index, original_index)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "6e64d1badb37db17757820d141193c3fef803ca039035b6cedc8f624009e51c3",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: sklearn/utils/tests/test_set_output.py:27\nerror: sklearn/utils/tests/test_set_output.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "6e64d1badb37db17757820d141193c3fef803ca039035b6cedc8f624009e51c3"
+    }
+  },
+  {
+    "candidate": "--- a/sklearn/utils/_set_output.py\n+++ b/sklearn/utils/_set_output.py\n@@ -16,7 +16,7 @@\n     \"\"\"Create a Pandas DataFrame.\n \n-    If `data_to_wrap` is a DataFrame, then the `columns` and `index` will be changed\n+    If `data_to_wrap` is a DataFrame, then only the `columns` will be changed\n     inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with\n     `columns` and `index`.\n \n     Parameters\n@@ -55,8 +55,6 @@\n     if isinstance(data_to_wrap, pd.DataFrame):\n         if columns is not None:\n             data_to_wrap.columns = columns\n-        if index is not None:\n-            data_to_wrap.index = index\n         return data_to_wrap\n \n     return pd.DataFrame(data_to_wrap, index=index, columns=columns)\n--- a/sklearn/utils/tests/test_set_output.py\n+++ b/sklearn/utils/tests/test_set_output.py\n@@ -24,16 +24,17 @@\n     assert_array_equal(dense_named.index, index)\n \n \n-def test__wrap_in_pandas_container_dense_update_columns_and_index():\n-    \"\"\"Check that _wrap_in_pandas_container overrides columns and index.\"\"\"\n+def test__wrap_in_pandas_container_dense_update_columns_preserve_index():\n+    \"\"\"Check that wrapping overrides columns but preserves the existing index.\"\"\"\n     pd = pytest.importorskip(\"pandas\")\n     X_df = pd.DataFrame([[1, 0, 3], [0, 0, 1]], columns=[\"a\", \"b\", \"c\"])\n+    original_index = X_df.index.copy()\n     new_columns = np.asarray([\"f0\", \"f1\", \"f2\"], dtype=object)\n-    new_index = [10, 12]\n+    new_index = [10, 12, 14]\n \n     new_df = _wrap_in_pandas_container(X_df, columns=new_columns, index=new_index)\n     assert_array_equal(new_df.columns, new_columns)\n-    assert_array_equal(new_df.index, new_index)\n+    assert_array_equal(new_df.index, original_index)\n \n \n def test__wrap_in_pandas_container_error_validation():\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "445aa830bc8ad2975d992bb5a7b738738cc8d2f43f271f377b363ffcce72faf1",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "445aa830bc8ad2975d992bb5a7b738738cc8d2f43f271f377b363ffcce72faf1"
+    }
+  }
+]

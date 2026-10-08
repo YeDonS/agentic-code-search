@@ -11,5 +11,10 @@
   "patch_check_attempts": 34,
   "repair_attempts": 17,
   "recovered_patches": 14,
-  "model_duration_ms": 610437
+  "model_duration_ms": 610437,
+  "successful_model_responses": 34,
+  "failed_model_calls": null,
+  "failed_runs": 3,
+  "model_call_scope": "completed responses only; failed invocations uncounted in v1",
+  "token_scope": "completed response usage only; failed call usage unknown"
 }

@@ -1,0 +1,13 @@
+{
+  "status": "invalid",
+  "original_sha256": "1b2e3f68c7e5b64212059ac952b09b2434d73bffc46da630ad5bddc9ecd00d8c",
+  "hunks_recounted": false,
+  "functional_tests_run": false,
+  "error": "error: patch failed: requests/adapters.py:23\nerror: requests/adapters.py: patch does not apply",
+  "created_files": [],
+  "deleted_files": [],
+  "submitted_sha256": "1b2e3f68c7e5b64212059ac952b09b2434d73bffc46da630ad5bddc9ecd00d8c",
+  "initial_status": "invalid",
+  "repair_attempts": 0,
+  "recovered": false
+}

@@ -1,0 +1,60 @@
++ : '>>>>> Start Test Output'
++ pytest -rA tests/config/test_config.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-7.4.4, pluggy-1.5.0
+benchmark: 3.4.1 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: /testbed
+configfile: setup.cfg
+plugins: timeout-2.3.1, cov-3.0.0, xdist-2.5.0, profiling-1.7.0, forked-1.6.0, benchmark-3.4.1
+collected 8 items
+
+tests/config/test_config.py ..FF....                                     [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_unknown_option_name ___________________________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x7fae87896580>
+
+    def test_unknown_option_name(capsys: CaptureFixture) -> None:
+        """Check that we correctly raise a message on an unknown option."""
+        with pytest.raises(SystemExit):
+            Run([str(EMPTY_MODULE), "--unknown-option=yes"], exit=False)
+        output = capsys.readouterr()
+>       assert "usage: pylint" in output.err
+E       AssertionError: assert 'usage: pylint' in ''
+E        +  where '' = CaptureResult(out='************* Module Command line\nCommand line:1:0: E0015: Unrecognized option found: unknown-option=yes (unrecognized-option)\n', err='').err
+
+tests/config/test_config.py:70: AssertionError
+________________________ test_unknown_short_option_name ________________________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x7fae8747aca0>
+
+    def test_unknown_short_option_name(capsys: CaptureFixture) -> None:
+        """Check that we correctly raise a message on an unknown short option."""
+        with pytest.raises(SystemExit):
+            Run([str(EMPTY_MODULE), "-Q"], exit=False)
+        output = capsys.readouterr()
+>       assert "usage: pylint" in output.err
+E       AssertionError: assert 'usage: pylint' in ''
+E        +  where '' = CaptureResult(out='************* Module Command line\nCommand line:1:0: E0015: Unrecognized option found: Q (unrecognized-option)\n', err='').err
+
+tests/config/test_config.py:79: AssertionError
+=============================== warnings summary ===============================
+../opt/miniconda3/envs/testbed/lib/python3.9/site-packages/astroid/interpreter/_import/util.py:6
+  /opt/miniconda3/envs/testbed/lib/python3.9/site-packages/astroid/interpreter/_import/util.py:6: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/config/test_config.py::test_can_read_toml_env_variable
+PASSED tests/config/test_config.py::test_unknown_message_id
+PASSED tests/config/test_config.py::test_unknown_confidence
+PASSED tests/config/test_config.py::test_unknown_yes_no
+PASSED tests/config/test_config.py::test_unknown_py_version
+PASSED tests/config/test_config.py::test_short_verbose
+FAILED tests/config/test_config.py::test_unknown_option_name - AssertionError...
+FAILED tests/config/test_config.py::test_unknown_short_option_name - Assertio...
+==================== 2 failed, 6 passed, 1 warning in 0.20s ====================
++ SWEBENCH_TEST_EXIT_CODE=1
++ : '>>>>> End Test Output'

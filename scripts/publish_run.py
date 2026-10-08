@@ -1,7 +1,11 @@
 """Curate a public HISTORICAL benchmark run; exclude prompts and source excerpts."""
 
 import argparse
+import hashlib
 import json
+import re
+import shutil
+import subprocess
 from pathlib import Path
 
 from code_assistant.benchmark import read_jsonl, write_jsonl
@@ -9,15 +13,43 @@ from code_assistant.observability import summarize_events
 from code_assistant.telemetry import write_json
 
 
-def publish(source: Path, destination: Path) -> None:
+def publish(source: Path, destination: Path, source_commit: str | None = None) -> None:
     if destination.exists():
         raise ValueError("choose a new publication directory")
     manifest = json.loads((source / "manifest.json").read_text())
     predictions = read_jsonl(source / "predictions.jsonl")
     if len(predictions) != manifest["count"]:
         raise ValueError("publish only a completed historical run")
+    if len({p["instance_id"] for p in predictions}) != len(predictions) or set(
+        p["instance_id"] for p in predictions
+    ) != set(manifest["task_ids"]):
+        raise ValueError("publication task IDs do not match the manifest")
+    if source_commit:
+        if not re.fullmatch(r"[0-9a-f]{40}", source_commit):
+            raise ValueError("source commit must be a full Git SHA")
+        files = subprocess.check_output(
+            ["git", "ls-tree", "-r", "--name-only", source_commit, "src/code_assistant"], text=True
+        ).splitlines()
+        digest = hashlib.sha256()
+        for name in sorted(
+            p
+            for p in files
+            if Path(p).parent.as_posix() == "src/code_assistant" and p.endswith(".py")
+        ):
+            digest.update(Path(name).name.encode())
+            digest.update(subprocess.check_output(["git", "show", f"{source_commit}:{name}"]))
+        if digest.hexdigest() != manifest["environment"]["source_tree_sha256"]:
+            raise ValueError("source commit does not match frozen inference fingerprint")
     destination.mkdir(parents=True)
     write_json(destination / "manifest.json", manifest)
+    if source_commit:
+        write_json(
+            destination / "source-proof.json",
+            {"source_commit": source_commit, "source_tree_sha256": digest.hexdigest()},
+        )
+    for name in ("swebench-predictions.jsonl", "experiment.json"):
+        if (source / name).exists():
+            shutil.copyfile(source / name, destination / name)
     for name in ("scores.json", "completion.json"):
         if (source / name).exists():
             write_json(destination / name, json.loads((source / name).read_text()))
@@ -84,6 +116,14 @@ def publish(source: Path, destination: Path) -> None:
             }
         )
     write_jsonl(destination / "diagnoses.jsonl", diagnoses)
+    for path in sorted((source / "agent_runs").glob("*/patch-attempts.json")):
+        write_json(
+            destination / "attempts" / f"{path.parent.name}.json", json.loads(path.read_text())
+        )
+    for path in sorted((source / "agent_runs").glob("*/patch-check.json")):
+        write_json(
+            destination / "checks" / f"{path.parent.name}.json", json.loads(path.read_text())
+        )
     print(json.dumps(summary, indent=2))
 
 
@@ -91,5 +131,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
     parser.add_argument("destination", type=Path)
+    parser.add_argument("--source-commit")
     args = parser.parse_args()
-    publish(args.source, args.destination)
+    publish(args.source, args.destination, args.source_commit)

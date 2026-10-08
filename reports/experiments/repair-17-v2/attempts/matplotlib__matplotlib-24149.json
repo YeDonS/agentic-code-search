@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/lib/matplotlib/axes/_axes.py\n+++ b/lib/matplotlib/axes/_axes.py\n@@ -2181,9 +2181,13 @@\n             try:\n                 x0 = cbook._safe_first_finite(x0)\n+            except StopIteration:\n+                x0 = cbook._safe_first_finite(x0, skip_nonfinite=False)\n             except (TypeError, IndexError, KeyError):\n                 pass\n \n             try:\n                 x = cbook._safe_first_finite(xconv)\n+            except StopIteration:\n+                x = cbook._safe_first_finite(xconv, skip_nonfinite=False)\n             except (TypeError, IndexError, KeyError):\n                 x = xconv\n--- a/lib/matplotlib/tests/test_axes.py\n+++ b/lib/matplotlib/tests/test_axes.py\n@@ -1715,4 +1715,10 @@\n def test_nan_bar_values():\n     fig, ax = plt.subplots()\n     ax.bar([0, 1], [np.nan, 4])\n \n+    for height in [0, np.nan]:\n+        bar = ax.bar([np.nan], [height])[0]\n+        assert np.isnan(bar.get_x())\n+        np.testing.assert_equal(bar.get_height(), height)\n+    ax.bar([np.nan, 1], [2, 3])\n+\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "6f64b181f6957f24763e129e23fcbc2b10a834fb770f230ac785302f3ac98364",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: lib/matplotlib/tests/test_axes.py:1715\nerror: lib/matplotlib/tests/test_axes.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "6f64b181f6957f24763e129e23fcbc2b10a834fb770f230ac785302f3ac98364"
+    }
+  },
+  {
+    "candidate": "--- a/lib/matplotlib/axes/_axes.py\n+++ b/lib/matplotlib/axes/_axes.py\n@@ -2181,9 +2181,13 @@\n             try:\n                 x0 = cbook._safe_first_finite(x0)\n+            except StopIteration:\n+                x0 = cbook._safe_first_finite(x0, skip_nonfinite=False)\n             except (TypeError, IndexError, KeyError):\n                 pass\n \n             try:\n                 x = cbook._safe_first_finite(xconv)\n+            except StopIteration:\n+                x = cbook._safe_first_finite(xconv, skip_nonfinite=False)\n             except (TypeError, IndexError, KeyError):\n                 x = xconv\n--- a/lib/matplotlib/tests/test_axes.py\n+++ b/lib/matplotlib/tests/test_axes.py\n@@ -1715,8 +1715,14 @@\n def test_nan_bar_values():\n     fig, ax = plt.subplots()\n     ax.bar([0, 1], [np.nan, 4])\n \n+    for height in [0, np.nan]:\n+        bar = ax.bar([np.nan], [height])[0]\n+        assert np.isnan(bar.get_x())\n+        np.testing.assert_equal(bar.get_height(), height)\n+    ax.bar([np.nan, 1], [2, 3])\n+\n \n def test_bar_ticklabel_fail():\n     fig, ax = plt.subplots()\n     ax.bar([], [])\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "828448947f3297cb9219d5563ae3e2dea1adbfb4b0a332022851b982e0e3c6fe",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "828448947f3297cb9219d5563ae3e2dea1adbfb4b0a332022851b982e0e3c6fe"
+    }
+  }
+]

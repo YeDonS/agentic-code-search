@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/seaborn/_oldcore.py\n+++ b/seaborn/_oldcore.py\n@@ -150,6 +150,9 @@\n             value = self.lookup_table[key]\n         except KeyError:\n+            if self.norm is None:\n+                return (0, 0, 0, 0)\n+\n             # Use the colormap to interpolate between existing datapoints\n             # (e.g. in the context of making a continuous legend)\n             try:\n                 normed = self.norm(key)\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "198182327c4d05506314f015969d0333715dcb0d9b8cac8f5c95ad2fa8fb2e19",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "198182327c4d05506314f015969d0333715dcb0d9b8cac8f5c95ad2fa8fb2e19"
+    }
+  }
+]

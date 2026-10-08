@@ -1,0 +1,13 @@
+{
+  "status": "invalid",
+  "original_sha256": "8dec460d30053cbeb2acfadeaed3823ec979c6f50b26f6a2c1c11120d9d01f46",
+  "hunks_recounted": false,
+  "functional_tests_run": false,
+  "error": "error: patch failed: testing/test_pathlib.py:301\nerror: testing/test_pathlib.py: patch does not apply",
+  "created_files": [],
+  "deleted_files": [],
+  "submitted_sha256": "8dec460d30053cbeb2acfadeaed3823ec979c6f50b26f6a2c1c11120d9d01f46",
+  "initial_status": "invalid",
+  "repair_attempts": 0,
+  "recovered": false
+}

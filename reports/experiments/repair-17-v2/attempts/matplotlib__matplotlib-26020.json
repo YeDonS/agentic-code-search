@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/lib/mpl_toolkits/axes_grid1/axes_grid.py\n+++ b/lib/mpl_toolkits/axes_grid1/axes_grid.py\n@@ -13,8 +13,19 @@\n def _tick_only(ax, bottom_on, left_on):\n     bottom_off = not bottom_on\n     left_off = not left_on\n-    ax.axis[\"bottom\"].toggle(ticklabels=bottom_off, label=bottom_off)\n-    ax.axis[\"left\"].toggle(ticklabels=left_off, label=left_off)\n+    if hasattr(ax.axis, \"__getitem__\"):\n+        ax.axis[\"bottom\"].toggle(ticklabels=bottom_off, label=bottom_off)\n+        ax.axis[\"left\"].toggle(ticklabels=left_off, label=left_off)\n+    else:\n+        ax.xaxis.set_tick_params(labelbottom=bottom_off)\n+        ax.yaxis.set_tick_params(labelleft=left_off)\n+        for axis, side, visible in [(ax.xaxis, \"bottom\", bottom_off),\n+                                    (ax.yaxis, \"left\", left_off)]:\n+            if visible:\n+                axis.label.set_visible(True)\n+                axis.set_label_position(side)\n+            elif axis.get_label_position() == side:\n+                axis.label.set_visible(False)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "7c747fe136d7c2985c2c6c98f86479a59abc5cb02825440c63d7e3e11fd1f1d6",
+      "hunks_recounted": true,
+      "functional_tests_run": false,
+      "error": "error: patch failed: lib/mpl_toolkits/axes_grid1/axes_grid.py:13\nerror: lib/mpl_toolkits/axes_grid1/axes_grid.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "0e5d85a555f7ab987d1ecf0048fb6c3d06492a348ed7885d7f72c6a3f15a75db"
+    }
+  },
+  {
+    "candidate": "--- a/lib/mpl_toolkits/axes_grid1/axes_grid.py\n+++ b/lib/mpl_toolkits/axes_grid1/axes_grid.py\n@@ -13,8 +13,19 @@\n def _tick_only(ax, bottom_on, left_on):\n     bottom_off = not bottom_on\n     left_off = not left_on\n-    ax.axis[\"bottom\"].toggle(ticklabels=bottom_off, label=bottom_off)\n-    ax.axis[\"left\"].toggle(ticklabels=left_off, label=left_off)\n+    if hasattr(ax.axis, \"__getitem__\"):\n+        ax.axis[\"bottom\"].toggle(ticklabels=bottom_off, label=bottom_off)\n+        ax.axis[\"left\"].toggle(ticklabels=left_off, label=left_off)\n+    else:\n+        ax.xaxis.set_tick_params(labelbottom=bottom_off)\n+        ax.yaxis.set_tick_params(labelleft=left_off)\n+        for axis, side, visible in [(ax.xaxis, \"bottom\", bottom_off),\n+                                    (ax.yaxis, \"left\", left_off)]:\n+            if visible:\n+                axis.label.set_visible(True)\n+                axis.set_label_position(side)\n+            elif axis.get_label_position() == side:\n+                axis.label.set_visible(False)\n \n \n class CbarAxesBase:\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "93a5842d3aa4761e181a68022c9c5202361f79b538bacbd2cf112caad1ed0fde",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "93a5842d3aa4761e181a68022c9c5202361f79b538bacbd2cf112caad1ed0fde"
+    }
+  }
+]

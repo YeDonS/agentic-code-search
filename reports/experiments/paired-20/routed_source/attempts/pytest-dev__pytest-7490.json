@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/_pytest/skipping.py\n+++ b/src/_pytest/skipping.py\n@@ -255,4 +255,7 @@\n     yield\n \n+    if xfailed is None:\n+        item._store[xfailed_key] = evaluate_xfail_marks(item)\n+\n \n @hookimpl(hookwrapper=True)\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "4d5475d4677891a0be1680e849e3722d199346f4bc083d64c3f177d34e61e93e",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "4d5475d4677891a0be1680e849e3722d199346f4bc083d64c3f177d34e61e93e"
+    }
+  }
+]

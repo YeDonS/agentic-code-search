@@ -1,0 +1,14 @@
+{
+  "instance_id": "pylint-dev__pylint-6506",
+  "status": "unresolved",
+  "resolved": false,
+  "image": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-6506:latest",
+  "patch_sha256": "a0712ed944581f6e14f785654c76616bcbdbd2191a895698e7a067bc6f984523",
+  "image_id": "sha256:f36fa34ed8366cd0a4cab240305841b939db316bbbe5c632dc0c85c8a550954a",
+  "image_digests": [
+    "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-6506@sha256:f2304d2a6461bc098bc872efc4474b34b54eec72f5a87bacc0509a88ba52fb2d"
+  ],
+  "harness_exit_code": 0,
+  "failure_reason": null,
+  "infra_failure": false
+}

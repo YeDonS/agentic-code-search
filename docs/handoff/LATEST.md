@@ -37,6 +37,9 @@ tasks, improved the implementation, and published English/Chinese evidence.
   `37824041242`, `37824921353`. Exact patch hashes match the full predictions;
   actual image digests, official reports, excerpts and raw-log hashes are published.
 - Separate pilot: 3/3 official resolutions, workflow `37822223997`. Excluded from full score.
+- Two post-hoc maintainer-patch sanity controls resolved with the same recorded image
+  digests, workflow `37827800765`. Incidental fixture/import errors still occurred but
+  did not block required regressions. Original model failures and 48/100 remain unchanged.
 
 ## Validation and review
 

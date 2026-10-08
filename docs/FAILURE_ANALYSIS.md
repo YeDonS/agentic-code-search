@@ -43,6 +43,15 @@ Examples retained for inspection:
   [Requests excerpt](../reports/model-100/official-evaluation/psf__requests-2317/test-output-excerpt.txt) ·
   [SymPy excerpt](../reports/model-100/official-evaluation/sympy__sympy-11870/test-output-excerpt.txt).
 
+## Maintainer-patch sanity controls
+
+Two unresolved cases with incidental fixture/import errors were checked using the exact
+maintainer patches, after inference froze. Both controls **resolved the official required
+tests** using the same recorded image digests. Other errors in the larger test output still
+occurred, so those messages alone do not invalidate the targeted grade. Both original
+agent failures remain unresolved; the score stays 48/100.
+[Maintainer controls and reports](../reports/evaluation-controls/README.md).
+
 ## Improvements to evaluate separately
 
 The current implementation preserves original candidates, checks cited/read file membership,
@@ -67,3 +76,7 @@ and do not merge retries into the original score. Neither change has been claime
 补丁可应用和功能修复是不同要求，自动评审也可能过于宽松。全部原始预测、被拒候选、
 官方结果、实际镜像 digest 和日志摘录均保留。增加轮数、补丁纠错或延长测试时间都应
 作为新的实验，不能回写本次冻结成绩。
+
+另对两条出现夹具/依赖报错的失败样本运行维护者补丁对照，两份都通过官方指定回归，
+无关报错仍会出现。因此不能把这些报错直接当作排除失败样本的依据。对照单独记录，
+不增加模型成绩；两条超时的具体原因仍未确定。

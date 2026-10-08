@@ -57,5 +57,16 @@
     "sympy__sympy-20154"
   ],
   "frozen_inference_wall_seconds": 1358.683187,
-  "no_outcome_based_repair_or_reselection": true
+  "no_outcome_based_repair_or_reselection": true,
+  "posthoc_maintainer_controls": {
+    "cases": [
+      "psf__requests-3362",
+      "pydata__xarray-4493"
+    ],
+    "resolved": 2,
+    "same_image_digests": true,
+    "original_outcomes_revised": false,
+    "evidence": "../evaluation-controls/results.json",
+    "interpretation": "Incidental pytest fixture/import errors do not by themselves invalidate the official targeted regression grade; both maintainer fixes passed required tests."
+  }
 }

@@ -1011,5 +1011,6 @@
       "resolved": false
     }
   ],
-  "harness_report_sha256": "734b68d844bcd29f5aa8ca2788d7e6471b580ef54ab9b38c28ea16bdec61d7c9"
+  "harness_report_sha256": "734b68d844bcd29f5aa8ca2788d7e6471b580ef54ab9b38c28ea16bdec61d7c9",
+  "external_metric_scope": "patch_resolution_rate is imported from the complete official 100-task harness aggregate; root_cause_accuracy remains unmeasured. The metric_scope string refers to file-localization columns."
 }

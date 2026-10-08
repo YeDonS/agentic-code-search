@@ -12,5 +12,9 @@
   "included_in_agent_score": false,
   "agent_predictions_changed": false,
   "harness_version": "5.0.2",
-  "test_timeout_seconds": 600
+  "test_timeout_seconds": 600,
+  "workflow_url": "https://github.com/YeDonS/agentic-code-search/actions/runs/37827800765",
+  "results_sha256": "0e1d4dc6176a5d71a7f94fe2950fd9058ed7a7af63b5c2af915a2ef4ca556b9c",
+  "conclusion": "Both maintainer patches resolved the official required tests despite incidental errors elsewhere in the test output. No original agent outcomes were excluded or revised.",
+  "same_image_digests_as_agent_run": true
 }

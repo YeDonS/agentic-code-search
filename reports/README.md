@@ -19,6 +19,7 @@ Model inference reused a local Codex login; authentication files and API secrets
 | [Automated causal review](model-100/automated-review/summary.json) | 87 correct, 1 partial, 2 incorrect, 10 unscorable; not human accuracy |
 | [Frozen batches](model-batches/) | Four consecutive 25-task batches for overlapping official evaluation |
 | [Pilot official results](model-pilot-3/official-evaluation/results.json) | Three real historical patches resolved; reports, test excerpts, raw-log hashes |
+| [Maintainer controls](evaluation-controls/README.md) | Two post-hoc gold-patch controls passed required tests with the same image digests; separate from agent score |
 | [Real-model checkout](real-model-checkout/) | Real search/test/synthesis routing, actual baseline failure and patched-copy success |
 | [Real-model HTTP](real-model-api/validation.json) | Bearer auth and actual three-role model workflow through FastAPI |
 | [Retrieval baseline](retrieval-100/scores.json) | Original Hit@1 40%, Hit@5 71%, MRR@5 0.5201667 |
@@ -41,6 +42,11 @@ resolved all three patches. Raw official logs remain in GitHub run artifacts and
 local `runs/`; durable reports/excerpts/hashes are curated here. The synthetic fixture is
 excluded from the historical task set. Full source archives, prompts, and hidden reasoning
 are not published.
+
+Two unresolved cases with incidental test environment errors received separate maintainer
+patch controls. Both controls satisfied official required regressions; unrelated errors
+still occurred in the larger test output. Both original model failures remain in the
+denominator. These controls do not explain the two test timeouts or change 48/100.
 
 中文：100 条真实模型运行及官方测试已完成，官方修复率 48/100；定位命中、自动根因
 核对和官方功能修复分别评分。

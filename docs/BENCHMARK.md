@@ -129,6 +129,11 @@ are retained. The full run resolved 48/100; 23 nonempty patches failed tests, 27
 had empty patches, and 2 tests timed out. There are no missing outcomes or image-pull failures.
 The three-task pilot separately resolved all three cases; it does not enlarge the denominator.
 
+Two post-hoc maintainer-patch controls also passed official required regressions with the
+same image digests, despite incidental fixture/import errors in the larger test output.
+Those errors alone therefore do not justify excluding the original model failures.
+[Control evidence](../reports/evaluation-controls/README.md). The agent score remains 48/100.
+
 Use a separate environment with a recorded, pinned SWE-bench harness version and working Docker.
 Export the **same pinned source records** for official evaluation, instead of silently loading
 whatever the upstream `main` revision becomes:

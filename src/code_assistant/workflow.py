@@ -6,6 +6,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langgraph.graph import END, START, StateGraph
 
 from code_assistant.agents import ToolCallingAgent, get_model
+from code_assistant.codex_model import CodexModelError
 from code_assistant.config import DEMO_ISSUE, DEMO_REPO, Settings
 from code_assistant.context import select_evidence
 from code_assistant.models import DebugResponse, Diagnosis, RouteDecision
@@ -81,38 +82,68 @@ def check_and_repair_patch(
     checked, audit = check_patch(tools.root, candidate, set(diagnosis.affected_files))
     attempts = [{"candidate": candidate, "audit": audit}]
     tools.logger.emit("patch_check", attempt=0, **audit)
+    write_json(directory / "candidate-patch.json", {"proposed_patch": original})
+    write_json(directory / "patch-attempts.json", attempts)
     for attempt in range(1, tools.settings.patch_repair_attempts + 1):
         if audit["status"] != "invalid" or agent.calls >= tools.settings.max_model_calls:
             break
         tools.logger.emit("patch_repair_start", attempt=attempt)
-        answer = agent.run(
-            "patch_repair",
-            {
-                **context,
-                "evidence": [
-                    e.model_dump()
-                    for e in select_evidence(
-                        tools.evidence,
-                        tools.settings.evidence_limit,
-                        tools.settings.evidence_policy,
-                    )
-                ],
-                "diagnosis": {**diagnosis.model_dump(), "proposed_patch": candidate},
-                "apply_error": audit["error"],
-                "attempt": attempt,
-            },
-            tools.for_agent("patch_repair"),
-        )
+        try:
+            answer = agent.run(
+                "patch_repair",
+                {
+                    **context,
+                    "evidence": [
+                        e.model_dump()
+                        for e in select_evidence(
+                            tools.evidence,
+                            tools.settings.evidence_limit,
+                            tools.settings.evidence_policy,
+                        )
+                    ],
+                    "diagnosis": {**diagnosis.model_dump(), "proposed_patch": candidate},
+                    "apply_error": audit["error"],
+                    "attempt": attempt,
+                },
+                tools.for_agent("patch_repair"),
+            )
+        except Exception as error:
+            # A failed correction must not discard the already cited diagnosis.
+            message = (
+                redact(str(error))[:300]
+                if isinstance(error, CodexModelError)
+                else "Model correction failed; raw response omitted."
+            )
+            tools.logger.emit(
+                "patch_repair_error",
+                attempt=attempt,
+                error_type=type(error).__name__,
+                message=message,
+            )
+            attempts.append(
+                {
+                    "candidate": None,
+                    "audit": {
+                        "status": "model_error",
+                        "error_type": type(error).__name__,
+                        "error": message,
+                    },
+                }
+            )
+            write_json(directory / "patch-attempts.json", attempts)
+            continue
         try:
             repaired = parse_diagnosis(answer)
         except ValueError:
             tools.logger.emit("patch_repair_invalid_response", attempt=attempt)
             attempts.append({"candidate": None, "audit": {"status": "invalid_response"}})
+            write_json(directory / "patch-attempts.json", attempts)
             continue
         candidate = repaired.proposed_patch
         # Repair cannot silently change the diagnosis or its declared file scope.
         checked, audit = check_patch(tools.root, candidate, set(diagnosis.affected_files))
         attempts.append({"candidate": candidate, "audit": audit})
+        write_json(directory / "patch-attempts.json", attempts)
         tools.logger.emit("patch_check", attempt=attempt, **audit)
     diagnosis.proposed_patch = checked
     summary = {

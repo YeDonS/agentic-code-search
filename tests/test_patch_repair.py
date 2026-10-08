@@ -86,3 +86,20 @@ def test_repair_respects_remaining_global_model_budget(tools, tmp_path):
     agent.calls = 1
     result = check_and_repair_patch(initial, tools, agent, tmp_path / "audit", {})
     assert not result.proposed_patch and agent.calls == 2
+
+
+def test_failed_model_correction_preserves_diagnosis_and_attempt_audit(
+    tools, tmp_path, monkeypatch
+):
+    initial = diagnosis(tools)
+    agent = ToolCallingAgent(ProtocolModel(responses=[]), tools.settings, tools.logger)
+    monkeypatch.setattr(
+        agent, "run", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("safe provider failure"))
+    )
+    result = check_and_repair_patch(initial, tools, agent, tmp_path / "audit", {})
+    assert result.root_cause == initial.root_cause and not result.proposed_patch
+    attempts = json.loads((tmp_path / "audit/patch-attempts.json").read_text())
+    assert len(attempts) == 3 and attempts[-1]["audit"]["status"] == "model_error"
+    assert (
+        json.loads((tmp_path / "audit/candidate-patch.json").read_text())["proposed_patch"] == BAD
+    )

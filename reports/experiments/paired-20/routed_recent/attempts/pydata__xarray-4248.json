@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/xarray/core/formatting.py\n+++ b/xarray/core/formatting.py\n@@ -271,3 +271,10 @@\n+def _variable_label(name, var):\n+    units = var.attrs.get(\"units\")\n+    if units is not None and str(units):\n+        return f\"{name}, in {units}\"\n+    return str(name)\n+\n+\n def summarize_variable(\n     name: Hashable, var, col_width: int, marker: str = \" \", max_width: int = None\n ):\n@@ -281,4 +288,4 @@\n-    first_col = pretty_print(f\"  {marker} {name} \", col_width)\n+    first_col = pretty_print(f\"  {marker} {_variable_label(name, var)} \", col_width)\n     if var.dims:\n         dims_str = \"({}) \".format(\", \".join(map(str, var.dims)))\n     else:\n@@ -348,6 +355,6 @@\n     col_items = []\n     for k, v in mapping.items():\n-        col_items.append(k)\n         var = getattr(v, \"variable\", v)\n+        col_items.append(_variable_label(k, var))\n         if isinstance(var, IndexVariable):\n             level_names = var.to_index_variable().level_names\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "70b98e6249988b8749daf712d02da2d25d4f2727ab976aacc3062bcbad3cb00e",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "70b98e6249988b8749daf712d02da2d25d4f2727ab976aacc3062bcbad3cb00e"
+    }
+  }
+]

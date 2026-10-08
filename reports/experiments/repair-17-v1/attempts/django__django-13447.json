@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/django/contrib/admin/sites.py\n+++ b/django/contrib/admin/sites.py\n@@ -433,3 +433,7 @@\n+    def build_app_dict(self, request, label=None):\n+        \"\"\"Build the app dictionary, optionally filtering by app label.\"\"\"\n+        return self._build_app_dict(request, label)\n+\n     def _build_app_dict(self, request, label=None):\n         \"\"\"\n         Build the app dictionary. The optional `label` parameter filters models\n@@ -462,4 +466,5 @@\n             info = (app_label, model._meta.model_name)\n             model_dict = {\n+                'model': model,\n                 'name': capfirst(model._meta.verbose_name_plural),\n                 'object_name': model._meta.object_name,\n@@ -506,3 +511,3 @@\n         registered in this site.\n         \"\"\"\n-        app_dict = self._build_app_dict(request)\n+        app_dict = self.build_app_dict(request)\n@@ -537,3 +542,3 @@\n     def app_index(self, request, app_label, extra_context=None):\n-        app_dict = self._build_app_dict(request, app_label)\n+        app_dict = self.build_app_dict(request, app_label)\n         if not app_dict:\n--- a/tests/admin_views/test_adminsite.py\n+++ b/tests/admin_views/test_adminsite.py\n@@ -56,3 +56,4 @@\n         self.assertEqual(admin_views['app_label'], 'admin_views')\n         self.assertEqual(len(admin_views['models']), 1)\n         self.assertEqual(admin_views['models'][0]['object_name'], 'Article')\n+        self.assertIs(admin_views['models'][0]['model'], Article)\n@@ -64,3 +65,4 @@\n         self.assertEqual(len(auth['models']), 1)\n         user = auth['models'][0]\n         self.assertEqual(user['object_name'], 'User')\n+        self.assertIs(user['model'], User)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "2b8f7778ea7c603a6f1a25b9025829c28b0d91f50bf177a98e6b42782e96d105",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: django/contrib/admin/sites.py:506\nerror: django/contrib/admin/sites.py: patch does not apply\nerror: patch failed: tests/admin_views/test_adminsite.py:56\nerror: tests/admin_views/test_adminsite.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "2b8f7778ea7c603a6f1a25b9025829c28b0d91f50bf177a98e6b42782e96d105"
+    }
+  },
+  {
+    "candidate": "--- a/django/contrib/admin/sites.py\n+++ b/django/contrib/admin/sites.py\n@@ -433,3 +433,7 @@\n+    def build_app_dict(self, request, label=None):\n+        \"\"\"Build the app dictionary, optionally filtering by app label.\"\"\"\n+        return self._build_app_dict(request, label)\n+\n     def _build_app_dict(self, request, label=None):\n         \"\"\"\n         Build the app dictionary. The optional `label` parameter filters models\n@@ -460,7 +464,8 @@\n                 continue\n \n             info = (app_label, model._meta.model_name)\n             model_dict = {\n+                'model': model,\n                 'name': capfirst(model._meta.verbose_name_plural),\n                 'object_name': model._meta.object_name,\n                 'perms': perms,\n@@ -504,7 +509,7 @@\n         Return a sorted list of all the installed apps that have been\n         registered in this site.\n         \"\"\"\n-        app_dict = self._build_app_dict(request)\n+        app_dict = self.build_app_dict(request)\n \n         # Sort the apps alphabetically.\n         app_list = sorted(app_dict.values(), key=lambda x: x['name'].lower())\n@@ -535,7 +540,7 @@\n         return TemplateResponse(request, self.index_template or 'admin/index.html', context)\n \n     def app_index(self, request, app_label, extra_context=None):\n-        app_dict = self._build_app_dict(request, app_label)\n+        app_dict = self.build_app_dict(request, app_label)\n         if not app_dict:\n             raise Http404('The requested admin page does not exist.')\n         # Sort the models alphabetically within each app.\n--- a/tests/admin_views/test_adminsite.py\n+++ b/tests/admin_views/test_adminsite.py\n@@ -56,6 +56,7 @@\n         self.assertEqual(admin_views['app_label'], 'admin_views')\n         self.assertEqual(len(admin_views['models']), 1)\n         self.assertEqual(admin_views['models'][0]['object_name'], 'Article')\n+        self.assertIs(admin_views['models'][0]['model'], Article)\n \n         # auth.User\n         auth = apps[1]\n@@ -63,7 +64,8 @@\n         self.assertEqual(len(auth['models']), 1)\n         user = auth['models'][0]\n         self.assertEqual(user['object_name'], 'User')\n+        self.assertIs(user['model'], User)\n \n         self.assertEqual(auth['app_url'], '/test_admin/admin/auth/')\n         self.assertIs(auth['has_module_perms'], True)\n \n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "09df14cb5881bbb37003494eaa66a39d2a39c063a7a59c2e3d7f2eafb46fdadc",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "09df14cb5881bbb37003494eaa66a39d2a39c063a7a59c2e3d7f2eafb46fdadc"
+    }
+  }
+]

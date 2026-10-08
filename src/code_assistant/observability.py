@@ -38,6 +38,8 @@ def summarize_events(directory: Path) -> dict[str, Any]:
             "model_budget_exhausted": counts["model_budget_exhausted"],
             "tool_budget_exhausted": counts["tool_budget_exhausted"],
             "patch_repair_invalid_response": counts["patch_repair_invalid_response"],
+            "model_error": counts["model_error"],
+            "patch_repair_error": counts["patch_repair_error"],
         },
         "tool_duration_ms_raw": durations,
         "unpaired_tools": counts["tool_start"] - counts["tool_end"],

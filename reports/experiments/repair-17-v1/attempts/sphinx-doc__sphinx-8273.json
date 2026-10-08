@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/sphinx/builders/manpage.py\n+++ b/sphinx/builders/manpage.py\n@@ -12,2 +12,2 @@\n-from os import path\n+from os import makedirs, path\n from typing import Any, Dict, List, Set, Tuple, Union\n@@ -83,5 +83,9 @@\n             targetname = '%s.%s' % (name, section)\n             logger.info(darkgreen(targetname) + ' { ', nonl=True)\n+            sectiondir = self.outdir\n+            if self.config.man_make_section_directory:\n+                sectiondir = path.join(self.outdir, 'man%s' % section)\n+                makedirs(sectiondir, exist_ok=True)\n             destination = FileOutput(\n-                destination_path=path.join(self.outdir, targetname),\n+                destination_path=path.join(sectiondir, targetname),\n                 encoding='utf-8')\n@@ -116,2 +120,3 @@\n     app.add_config_value('man_pages', default_man_pages, None)\n     app.add_config_value('man_show_urls', False, None)\n+    app.add_config_value('man_make_section_directory', False, None)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "a29a875f38c644cc25eba0c335a28288957addd53c6e47d2791e3912bfee8722",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: sphinx/builders/manpage.py:116\nerror: sphinx/builders/manpage.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "a29a875f38c644cc25eba0c335a28288957addd53c6e47d2791e3912bfee8722"
+    }
+  },
+  {
+    "candidate": "--- a/sphinx/builders/manpage.py\n+++ b/sphinx/builders/manpage.py\n@@ -12,5 +12,5 @@\n-from os import path\n+from os import makedirs, path\n from typing import Any, Dict, List, Set, Tuple, Union\n \n from docutils.frontend import OptionParser\n from docutils.io import FileOutput\n@@ -83,8 +83,12 @@\n             targetname = '%s.%s' % (name, section)\n             logger.info(darkgreen(targetname) + ' { ', nonl=True)\n+            sectiondir = self.outdir\n+            if self.config.man_make_section_directory:\n+                sectiondir = path.join(self.outdir, 'man%s' % section)\n+                makedirs(sectiondir, exist_ok=True)\n             destination = FileOutput(\n-                destination_path=path.join(self.outdir, targetname),\n+                destination_path=path.join(sectiondir, targetname),\n                 encoding='utf-8')\n \n             tree = self.env.get_doctree(docname)\n             docnames = set()  # type: Set[str]\n@@ -113,7 +117,8 @@\n def setup(app: Sphinx) -> Dict[str, Any]:\n     app.add_builder(ManualPageBuilder)\n \n     app.add_config_value('man_pages', default_man_pages, None)\n     app.add_config_value('man_show_urls', False, None)\n+    app.add_config_value('man_make_section_directory', False, None)\n \n     return {\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "7277288c08faf19b71b655fac3a8ff4b947ce2bc5c626ef49a48b02b38272548",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "7277288c08faf19b71b655fac3a8ff4b947ce2bc5c626ef49a48b02b38272548"
+    }
+  }
+]

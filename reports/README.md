@@ -6,6 +6,7 @@ Model inference reused a local Codex login; authentication files and API secrets
 
 | Evidence | Meaning |
 |---|---|
+| [Controlled studies](../docs/EXPERIMENTS.md) and [predeclared plan](experiments/paired-20/plan.json) | Separate same-model call/tool-budget controls and post-hoc invalid-patch repair; original 48/100 immutable |
 | [Model manifest](model-100/manifest.json) | Fixed 100 tasks, model/reasoning/transport, budgets, environment, CLI version |
 | [Source proof](model-100/source-proof.json) | Inference source digest matches the recorded Git commit |
 | [Predictions](model-100/predictions.jsonl) | All 100 diagnoses/abstentions and submitted patches |
@@ -16,19 +17,21 @@ Model inference reused a local Codex login; authentication files and API secrets
 | [Withheld candidates](model-100/withheld-patches.jsonl) | 17 original invalid patches retained for audit |
 | [Model usage](model-100/model-usage.json) | 541 responses, reported tokens, reconnects, patch checks |
 | [Events](model-100/trace-events.jsonl) and [audit](model-100/log-audit.json) | 844 paired tools, budgets/errors, raw durations and trace conservation |
-| [Automated causal review](model-100/automated-review/summary.json) | 87 correct, 1 partial, 2 incorrect, 10 unscorable; not human accuracy |
+| [Automated causal review](model-100/automated-review/summary.json) | Archived judge audit, with functional disagreements; excluded from headline performance |
 | [Frozen batches](model-batches/) | Four consecutive 25-task batches for overlapping official evaluation |
 | [Pilot official results](model-pilot-3/official-evaluation/results.json) | Three real historical patches resolved; reports, test excerpts, raw-log hashes |
 | [Maintainer controls](evaluation-controls/README.md) | Two post-hoc gold-patch controls passed required tests with the same image digests; separate from agent score |
-| [Real-model checkout](real-model-checkout/) | Real search/test/synthesis routing, actual baseline failure and patched-copy success |
-| [Real-model HTTP](real-model-api/validation.json) | Bearer auth and actual three-role model workflow through FastAPI |
+| [Real-model checkout](real-model-checkout/) | Tiny synthetic fixture: routing plumbing, baseline failure and patched-copy success; not realistic difficulty |
+| [Real-model HTTP](real-model-api/validation.json) | Bearer auth and three-role plumbing on the same synthetic fixture |
 | [Retrieval baseline](retrieval-100/scores.json) | Original Hit@1 40%, Hit@5 71%, MRR@5 0.5201667 |
 | [Retrieval reproduction](retrieval-100/reproduction.json) | Second full run produced identical ranked predictions |
 | [Validation](validation.json) and [CI](github-ci.json) | Local checks and actual multi-version/container evidence |
 
 The LLM run completed **100/100**: 90 cited diagnoses and 10 explicit abstentions. File
-Hit@1 is **87%**, Hit@5 **88%**, MRR@5 **0.875**. The automated comparison rate is **87%**;
-named human adjudication remains unmeasured. There are 73 applicable patches, 17 withheld
+Hit@1 is **87%**, Hit@5 **88%**, MRR@5 **0.875**. All 100 routes were **search → synthesis**;
+the test agent never ran during inference. Named human adjudication remains unmeasured.
+The archived judge called 40 unresolved cases correct and one resolved case incorrect;
+its agreement rate cannot substitute for the official metric. There are 73 applicable patches, 17 withheld
 candidates, and 10 abstentions. The complete official evaluation resolved **48/100**;
 23 were unresolved, 27 had empty patches, and 2 tests timed out. No outcomes are missing.
 The fixed denominator includes all empty patches, failures, and timeouts.

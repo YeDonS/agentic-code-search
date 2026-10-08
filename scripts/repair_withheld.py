@@ -49,6 +49,7 @@ def repair(source: Path, tasks_path: Path, output: Path, cache: Path, model: str
     output.mkdir(parents=True, mode=0o700)
     manifest = {
         "kind": "posthoc_invalid_patch_repair_only",
+        "protocol_version": 2,
         "created_at": datetime.now(UTC).isoformat(),
         "count": len(candidates),
         "task_ids": identifiers,

@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/sphinx/environment/adapters/indexentries.py\n+++ b/sphinx/environment/adapters/indexentries.py\n@@ -101,6 +101,5 @@\n-        # sort the index entries; put all symbols at the front, even those\n-        # following the letters in ASCII, this is where the chr(127) comes from\n-        def keyfunc(entry: Tuple[str, List]) -> Tuple[str, str]:\n+        # sort the index entries; put all symbols before letters\n+        def keyfunc(entry: Tuple[str, List]) -> Tuple[bool, str, str]:\n             key, (void, void, category_key) = entry\n             if category_key:\n                 # using specified category key to sort\n@@ -108,9 +107,8 @@\n             lckey = unicodedata.normalize('NFD', key.lower())\n             if lckey.startswith('\\N{RIGHT-TO-LEFT MARK}'):\n                 lckey = lckey[1:]\n-            if lckey[0:1].isalpha() or lckey.startswith('_'):\n-                lckey = chr(127) + lckey\n+            is_letter = lckey[0:1].isalpha() or lckey.startswith('_')\n             # ensure a determinstic order *within* letters by also sorting on\n             # the entry itself\n-            return (lckey, entry[0])\n+            return (is_letter, lckey, entry[0])\n         newlist = sorted(new.items(), key=keyfunc)\n@@ -149,7 +147,6 @@\n-        def keyfunc2(entry: Tuple[str, List]) -> str:\n+        def keyfunc2(entry: Tuple[str, List]) -> Tuple[bool, str]:\n             key = unicodedata.normalize('NFD', entry[0].lower())\n             if key.startswith('\\N{RIGHT-TO-LEFT MARK}'):\n                 key = key[1:]\n-            if key[0:1].isalpha() or key.startswith('_'):\n-                key = chr(127) + key\n-            return key\n+            is_letter = key[0:1].isalpha() or key.startswith('_')\n+            return (is_letter, key)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "4a7b3012ae5b6116eda5c02c98f1c59457ed1378beac2f90c2a27c472037a2a2",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: sphinx/environment/adapters/indexentries.py:149\nerror: sphinx/environment/adapters/indexentries.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "4a7b3012ae5b6116eda5c02c98f1c59457ed1378beac2f90c2a27c472037a2a2"
+    }
+  },
+  {
+    "candidate": "--- a/sphinx/environment/adapters/indexentries.py\n+++ b/sphinx/environment/adapters/indexentries.py\n@@ -101,16 +101,14 @@\n-        # sort the index entries; put all symbols at the front, even those\n-        # following the letters in ASCII, this is where the chr(127) comes from\n-        def keyfunc(entry: Tuple[str, List]) -> Tuple[str, str]:\n+        # sort the index entries; put all symbols before letters\n+        def keyfunc(entry: Tuple[str, List]) -> Tuple[bool, str, str]:\n             key, (void, void, category_key) = entry\n             if category_key:\n                 # using specified category key to sort\n                 key = category_key\n             lckey = unicodedata.normalize('NFD', key.lower())\n             if lckey.startswith('\\N{RIGHT-TO-LEFT MARK}'):\n                 lckey = lckey[1:]\n-            if lckey[0:1].isalpha() or lckey.startswith('_'):\n-                lckey = chr(127) + lckey\n+            is_letter = lckey[0:1].isalpha() or lckey.startswith('_')\n             # ensure a determinstic order *within* letters by also sorting on\n             # the entry itself\n-            return (lckey, entry[0])\n+            return (is_letter, lckey, entry[0])\n         newlist = sorted(new.items(), key=keyfunc)\n@@ -148,10 +146,9 @@\n         # sort the sub-index entries\n-        def keyfunc2(entry: Tuple[str, List]) -> str:\n+        def keyfunc2(entry: Tuple[str, List]) -> Tuple[bool, str]:\n             key = unicodedata.normalize('NFD', entry[0].lower())\n             if key.startswith('\\N{RIGHT-TO-LEFT MARK}'):\n                 key = key[1:]\n-            if key[0:1].isalpha() or key.startswith('_'):\n-                key = chr(127) + key\n-            return key\n+            is_letter = key[0:1].isalpha() or key.startswith('_')\n+            return (is_letter, key)\n \n         # group the entries by letter\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "5a6240ec9484ff97e3732199e1cabbe03df37c5d9038e2dd1aff7a4138eb93bc",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "5a6240ec9484ff97e3732199e1cabbe03df37c5d9038e2dd1aff7a4138eb93bc"
+    }
+  }
+]

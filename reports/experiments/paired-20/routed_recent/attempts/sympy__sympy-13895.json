@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/sympy/core/numbers.py\n+++ b/sympy/core/numbers.py\n@@ -2231,6 +2231,8 @@\n             else:\n                 return Rational(1, self.p)**ne\n+        if self.is_negative:\n+            return S.NegativeOne**expt*Pow(-self, expt)\n         # see if base is a perfect root, sqrt(4) --> 2\n         x, xexact = integer_nthroot(abs(self.p), expt.q)\n         if xexact:\n             # if it's a perfect root we've finished\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "f1853cf1446bc28118ff4e6966db4546eeb9d2af3a5a5b741050ff97e2959a9c",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "f1853cf1446bc28118ff4e6966db4546eeb9d2af3a5a5b741050ff97e2959a9c"
+    }
+  }
+]

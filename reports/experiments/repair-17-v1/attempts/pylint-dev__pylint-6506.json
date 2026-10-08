@@ -1,0 +1,28 @@
+[
+  {
+    "candidate": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -14,7 +14,10 @@\n from pylint import config\n from pylint.config.config_initialization import _config_initialization\n-from pylint.config.exceptions import ArgumentPreprocessingError\n+from pylint.config.exceptions import (\n+    ArgumentPreprocessingError,\n+    _UnrecognizedOptionError,\n+)\n from pylint.config.utils import _preprocess_options\n from pylint.constants import full_version\n from pylint.lint.base_options import _make_run_options\n from pylint.lint.pylinter import PyLinter\n@@ -135,3 +138,6 @@\n-        args = _config_initialization(\n-            linter, args, reporter, config_file=self._rcfile, verbose_mode=self.verbose\n-        )\n+        try:\n+            args = _config_initialization(\n+                linter, args, reporter, config_file=self._rcfile, verbose_mode=self.verbose\n+            )\n+        except _UnrecognizedOptionError:\n+            sys.exit(32)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "7129bab37e291f36ebce81da10b8c931eed03904b16c5e625efb8684dbe1d540",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: pylint/lint/run.py:135\nerror: pylint/lint/run.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "7129bab37e291f36ebce81da10b8c931eed03904b16c5e625efb8684dbe1d540"
+    }
+  },
+  {
+    "candidate": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -14,7 +14,10 @@\n from pylint import config\n from pylint.config.config_initialization import _config_initialization\n-from pylint.config.exceptions import ArgumentPreprocessingError\n+from pylint.config.exceptions import (\n+    ArgumentPreprocessingError,\n+    _UnrecognizedOptionError,\n+)\n from pylint.config.utils import _preprocess_options\n from pylint.constants import full_version\n from pylint.lint.base_options import _make_run_options\n from pylint.lint.pylinter import PyLinter\n@@ -132,8 +135,11 @@\n         linter.disable(\"I\")\n         linter.enable(\"c-extension-no-member\")\n \n-        args = _config_initialization(\n-            linter, args, reporter, config_file=self._rcfile, verbose_mode=self.verbose\n-        )\n+        try:\n+            args = _config_initialization(\n+                linter, args, reporter, config_file=self._rcfile, verbose_mode=self.verbose\n+            )\n+        except _UnrecognizedOptionError:\n+            sys.exit(32)\n \n         if linter.config.jobs < 0:\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "a0712ed944581f6e14f785654c76616bcbdbd2191a895698e7a067bc6f984523",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "a0712ed944581f6e14f785654c76616bcbdbd2191a895698e7a067bc6f984523"
+    }
+  }
+]

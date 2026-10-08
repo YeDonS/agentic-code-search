@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/lib/matplotlib/axis.py\n+++ b/lib/matplotlib/axis.py\n@@ -1244,5 +1244,6 @@\n                 if other is not self.axes:\n                     other._axis_map[name]._set_lim(\n                         v0, v1, emit=False, auto=auto)\n+                    other.callbacks.process(f\"{name}lim_changed\", other)\n                     if other.figure != self.figure:\n                         other.figure.canvas.draw_idle()\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "de8cd4dac7e50d6ed968a5d12f8f19974587703310092a62305d6d660f3c71ac",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "de8cd4dac7e50d6ed968a5d12f8f19974587703310092a62305d6d660f3c71ac"
+    }
+  }
+]

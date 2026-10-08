@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/src/_pytest/pathlib.py\n+++ b/src/_pytest/pathlib.py\n@@ -524,6 +524,9 @@\n     if mode is ImportMode.importlib:\n         module_name = module_name_from_path(path, root)\n \n+        if module_name in sys.modules:\n+            return sys.modules[module_name]\n+\n         for meta_importer in sys.meta_path:\n             spec = meta_importer.find_spec(module_name, [str(path.parent)])\n             if spec is not None:\n--- a/testing/test_pathlib.py\n+++ b/testing/test_pathlib.py\n@@ -301,7 +301,10 @@\n-    def test_importmode_twice_is_different_module(\n+    def test_importmode_twice_is_same_module(\n         self, simple_module: Path, tmp_path: Path\n     ) -> None:\n-        \"\"\"`importlib` mode always returns a new module.\"\"\"\n+        \"\"\"`importlib` mode preserves module identity and state.\"\"\"\n         module1 = import_path(simple_module, mode=\"importlib\", root=tmp_path)\n+        sentinel = object()\n+        module1.__dict__[\"sentinel\"] = sentinel\n         module2 = import_path(simple_module, mode=\"importlib\", root=tmp_path)\n-        assert module1 is not module2\n+        assert module1 is module2\n+        assert module2.__dict__[\"sentinel\"] is sentinel\n@@ -320,5 +323,6 @@\n         monkeypatch.setattr(\n             importlib.util, \"spec_from_file_location\", lambda *args: None\n         )\n+        monkeypatch.delitem(sys.modules, module.__name__)\n         with pytest.raises(ImportError):\n             import_path(simple_module, mode=\"importlib\", root=tmp_path)\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "1f5ec6cb29db8712624c3227b6f918bbf57cf0bd826324f78e527350c2efe8c5",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: testing/test_pathlib.py:301\nerror: testing/test_pathlib.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "1f5ec6cb29db8712624c3227b6f918bbf57cf0bd826324f78e527350c2efe8c5"
+    }
+  }
+]

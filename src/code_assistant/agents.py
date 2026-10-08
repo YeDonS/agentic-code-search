@@ -7,7 +7,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_core.outputs import ChatGeneration, ChatResult
 
-from code_assistant.codex_model import CodexCliModel
+from code_assistant.codex_model import CodexCliModel, CodexModelError
 from code_assistant.config import Settings
 from code_assistant.telemetry import RunLogger
 
@@ -173,15 +173,29 @@ class ToolCallingAgent:
         for step in range(steps):
             start = time.monotonic()
             self.calls += 1
-            if step == steps - 1 and tools:
-                messages.append(
-                    HumanMessage(
-                        content="The role's call budget ends after this response. Return your final finding or diagnosis JSON now, using the evidence already gathered."
+            self.logger.emit("model_request", agent=role, step=step, model_call=self.calls)
+            try:
+                if step == steps - 1 and tools:
+                    messages.append(
+                        HumanMessage(
+                            content="The role's call budget ends after this response. Return your final finding or diagnosis JSON now, using the evidence already gathered."
+                        )
                     )
+                    response = self.model.invoke(messages)
+                else:
+                    response = bound.invoke(messages)
+            except Exception as error:
+                self.logger.emit(
+                    "model_error",
+                    agent=role,
+                    model_call=self.calls,
+                    error_type=type(error).__name__,
+                    message=str(error)[:300]
+                    if isinstance(error, CodexModelError)
+                    else "Provider invocation failed; raw response omitted.",
+                    duration_ms=round((time.monotonic() - start) * 1000),
                 )
-                response = self.model.invoke(messages)
-            else:
-                response = bound.invoke(messages)
+                raise
             if not isinstance(response, AIMessage):
                 raise ValueError("model did not return an AIMessage")
             usage = response.usage_metadata or {}

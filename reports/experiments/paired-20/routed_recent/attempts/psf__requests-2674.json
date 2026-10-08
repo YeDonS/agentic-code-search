@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/requests/adapters.py\n+++ b/requests/adapters.py\n@@ -21,3 +21,4 @@\n from .structures import CaseInsensitiveDict\n-from .packages.urllib3.exceptions import ConnectTimeoutError\n+from .packages.urllib3.exceptions import (\n+    ConnectTimeoutError, DecodeError, TimeoutError as _TimeoutError)\n from .packages.urllib3.exceptions import HTTPError as _HTTPError\n@@ -31,2 +32,2 @@\n from .exceptions import (ConnectionError, ConnectTimeout, ReadTimeout, SSLError,\n-                         ProxyError, RetryError)\n+                         ProxyError, RetryError, Timeout, ContentDecodingError)\n@@ -428,6 +429,12 @@\n             if isinstance(e, _SSLError):\n                 raise SSLError(e, request=request)\n             elif isinstance(e, ReadTimeoutError):\n                 raise ReadTimeout(e, request=request)\n+            elif isinstance(e, ConnectTimeoutError):\n+                raise ConnectTimeout(e, request=request)\n+            elif isinstance(e, _TimeoutError):\n+                raise Timeout(e, request=request)\n+            elif isinstance(e, DecodeError):\n+                raise ContentDecodingError(e, request=request)\n             else:\n                 raise\n",
+    "audit": {
+      "status": "invalid",
+      "original_sha256": "820eb5eeacc6d365a5f9c2bbaa453173eeaffe42f162cb9103eb169ca2fd1a6b",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": "error: patch failed: requests/adapters.py:31\nerror: requests/adapters.py: patch does not apply",
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "820eb5eeacc6d365a5f9c2bbaa453173eeaffe42f162cb9103eb169ca2fd1a6b"
+    }
+  }
+]

@@ -34,9 +34,26 @@ def publish(source: Path, destination: Path) -> None:
     final_checks = [
         json.loads(p.read_text()) for p in (source / "agent_runs").glob("*/patch-check.json")
     ]
+    requests = sum(e["event"] == "model_request" for e in events)
+    run_counters = [
+        e["model_calls"] for e in events if e["event"] == "run_end" and "model_calls" in e
+    ]
+    complete_counters = len(run_counters) == len(predictions)
+    observed_calls = requests or (sum(run_counters) if complete_counters else len(model_calls))
     summary = {
         "tasks": len(predictions),
-        "model_calls": len(model_calls),
+        "model_calls": observed_calls,
+        "model_call_scope": "requests"
+        if requests
+        else "complete run counters"
+        if complete_counters
+        else "completed responses only; failed invocations may be missing",
+        "successful_model_responses": len(model_calls),
+        "failed_model_calls": observed_calls - len(model_calls)
+        if requests or complete_counters
+        else None,
+        "failed_runs": sum(p["status"] == "failed" for p in predictions),
+        "token_scope": "provider-reported usage from completed responses; failed calls may have unknown usage",
         "input_tokens": sum(e.get("input_tokens") or 0 for e in model_calls),
         "output_tokens": sum(e.get("output_tokens") or 0 for e in model_calls),
         "cached_input_tokens": sum(e.get("cached_input_tokens") or 0 for e in model_calls),

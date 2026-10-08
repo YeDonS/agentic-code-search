@@ -1,0 +1,15 @@
+[
+  {
+    "candidate": "--- a/lib/matplotlib/axes/_axes.py\n+++ b/lib/matplotlib/axes/_axes.py\n@@ -2198,7 +2198,7 @@\n                 dx = dx[0]\n-        except (ValueError, TypeError, AttributeError):\n+        except (ValueError, TypeError, AttributeError, StopIteration):\n             # if the above fails (for any reason) just fallback to what\n             # we do by default and convert dx by itself.\n             dx = convert(dx)\n         return dx\n \n--- a/lib/matplotlib/tests/test_axes.py\n+++ b/lib/matplotlib/tests/test_axes.py\n@@ -1715,6 +1715,8 @@\n def test_nan_bar_values():\n     fig, ax = plt.subplots()\n     ax.bar([0, 1], [np.nan, 4])\n+    ax.bar([np.nan], [np.nan])\n+    ax.bar([np.nan], [0])\n \n \n def test_bar_ticklabel_fail():\n",
+    "audit": {
+      "status": "applies",
+      "original_sha256": "c8858b6819bb12bc86fd98d183eb7ea8923f4fdd79351b8bdad99460b66f2fcd",
+      "hunks_recounted": false,
+      "functional_tests_run": false,
+      "error": null,
+      "created_files": [],
+      "deleted_files": [],
+      "submitted_sha256": "c8858b6819bb12bc86fd98d183eb7ea8923f4fdd79351b8bdad99460b66f2fcd"
+    }
+  }
+]

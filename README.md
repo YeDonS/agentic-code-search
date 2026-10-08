@@ -21,8 +21,10 @@ registered source citations. Patches are proposed without changing the repositor
 | Generated-patch resolution | Official harness export/scoring implemented; **not evaluated** |
 
 Baseline numbers measure **file localization against maintainer patches**, not bug-fix accuracy.
-No model credentials were available for a real-model run. The scripted demo is synthetic and
-excluded from the 100 historical tasks. [Results and traces](reports/README.md).
+The first three historical tasks have now been diagnosed with a real model through a locally
+authenticated Codex CLI. All three patches apply; official functional evaluation is separate.
+The scripted demo is synthetic and excluded from the 100 historical tasks.
+[Results and traces](reports/README.md).
 
 ## Quick start
 
@@ -73,6 +75,25 @@ Search passes, model turns, tool calls, reads, test duration, and output size ar
 [Architecture and limitations](docs/ARCHITECTURE.md).
 
 ## Real model and repository
+
+You can use a local [Codex CLI login](https://learn.chatgpt.com/docs/non-interactive-mode)
+instead of configuring a separate provider API key (tested with CLI 0.162.0-alpha.2):
+
+```bash
+codex login
+export ASSISTANT_MODEL=codex-cli:gpt-6.1-sol  # select a model available to your account
+export ASSISTANT_CODEX_REASONING_EFFORT=medium
+export ASSISTANT_CODEX_TRANSPORT=https       # optional, useful on this evaluation network
+uv run code-assistant doctor
+uv run code-assistant debug /path/to/repository "Observed bug and expected behavior"
+```
+
+This consumes your Codex account allowance. The adapter uses an empty temporary directory,
+disables built-in execution/search/connectors, and exchanges application tool calls through
+structured JSON. Only the application's allowlisted tools see the repository. Authentication
+stays with the CLI; never copy its login files into public CI or Docker images.
+
+Alternatively, use a provider API key:
 
 ```bash
 cp .env.example .env
@@ -126,7 +147,9 @@ uv run code-assistant benchmark run runs/my-retrieval-100 --mode retrieval
 uv run code-assistant logs runs/my-retrieval-100
 # Requires provider credentials; pilot before scaling:
 uv run code-assistant benchmark run runs/model-pilot --mode model --limit 3
-uv run code-assistant benchmark run runs/model-100 --mode model
+uv run code-assistant benchmark run runs/model-100 --mode model --workers 6
+# Resume only the exact same source/environment/model/task configuration:
+uv run code-assistant benchmark run runs/model-100 --mode model --workers 6 --resume
 uv run code-assistant benchmark export runs/model-100/predictions.jsonl runs/model-100/swebench.jsonl
 ```
 

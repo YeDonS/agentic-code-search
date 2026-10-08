@@ -1,0 +1,4 @@
+instance_id,root_cause,root_cause_correct,reviewer,rationale
+astropy__astropy-12907,"When _separable recursively evaluates a nested CompoundModel, its children become dependency matrices. For a right-hand matrix, _cstack replaces the entire dependency block with ones instead of preserving its contents. This turns independent linear-model inputs into false dependencies.",,,
+django__django-16255,"When lastmod is callable and items() is empty, Sitemap.get_latest_lastmod() calls max([]), which raises ValueError. Only TypeError is caught, so the exception propagates through the sitemap index view.",,,
+matplotlib__matplotlib-23964,"The TrueType branch of RendererPS.draw_text unconditionally appends curr_stream after glyph layout. An empty line yields no glyphs, so curr_stream remains None and stream becomes [None]. Unpacking that entry raises the reported TypeError. Text.draw forwards empty lines to the renderer.",,,

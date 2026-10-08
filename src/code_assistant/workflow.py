@@ -8,6 +8,7 @@ from langgraph.graph import END, START, StateGraph
 from code_assistant.agents import ToolCallingAgent, get_model
 from code_assistant.config import DEMO_ISSUE, DEMO_REPO, Settings
 from code_assistant.models import DebugResponse, Diagnosis, RouteDecision
+from code_assistant.patches import check_patch
 from code_assistant.telemetry import RunLogger, redact, write_json
 from code_assistant.tools import RepositoryTools
 
@@ -130,6 +131,18 @@ def debug_repository(
             if not validate_diagnosis(diagnosis, tools):
                 logger.emit("invalid_synthesis", reason="unregistered_or_unread_citation")
                 return {"diagnosis": None, "status": "insufficient_evidence"}
+            original_patch = diagnosis.proposed_patch
+            diagnosis.proposed_patch, audit = check_patch(
+                root, original_patch, set(diagnosis.affected_files)
+            )
+            logger.emit("patch_check", **audit)
+            write_json(directory / "patch-check.json", audit)
+            if original_patch:
+                write_json(directory / "candidate-patch.json", {"proposed_patch": original_patch})
+            if original_patch and not diagnosis.proposed_patch:
+                diagnosis.limitations.append(
+                    f"Candidate patch was withheld: applicability check status {audit['status']}."
+                )
             return {"diagnosis": diagnosis.model_dump(), "status": "diagnosed"}
 
         graph = StateGraph(State)

@@ -11,6 +11,7 @@ import tarfile
 import tempfile
 import urllib.request
 from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -266,19 +267,18 @@ def run_benchmark(
     settings: Settings,
     mode: str = "retrieval",
     limit: int | None = None,
+    workers: int = 1,
+    resume: bool = False,
 ) -> list[dict[str, Any]]:
     tasks = read_jsonl(tasks_path)
     if limit is not None:
         tasks = tasks[:limit]
-    if not tasks or mode not in {"retrieval", "model"}:
+    if not tasks or mode not in {"retrieval", "model"} or not 1 <= workers <= 8:
         raise ValueError("nonempty task set and retrieval/model mode required")
     if settings.test_executor != "disabled":
         raise ValueError(
             "historical benchmark tests must use the official SWE-bench harness; this diagnostic runner disables execution"
         )
-    if output.exists():
-        raise ValueError("choose a new output directory to preserve immutable run artifacts")
-    output.mkdir(parents=True, mode=0o700)
     manifest = {
         "mode": mode,
         "count": len(tasks),
@@ -290,11 +290,25 @@ def run_benchmark(
         "test_executor": "disabled",
         "max_tool_calls": settings.max_tool_calls,
         "max_search_passes": settings.max_search_passes,
+        "max_agent_steps": settings.max_agent_steps,
+        "model_timeout": settings.model_timeout,
+        "codex_reasoning_effort": settings.codex_reasoning_effort if mode == "model" else None,
+        "codex_transport": settings.codex_transport if mode == "model" else None,
+        "workers": workers,
         "environment": environment_manifest(),
     }
-    write_json(output / "manifest.json", manifest)
-    predictions = []
-    for index, task in enumerate(tasks, 1):
+    if mode == "model" and settings.model.startswith("codex-cli:"):
+        import subprocess
+
+        version = subprocess.run(
+            [settings.codex_executable, "--version"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=True,
+        )
+        manifest["codex_cli_version"] = version.stdout.strip()
+    for task in tasks:
         identifier = task["instance_id"]
         if not re.fullmatch(r"[A-Za-z0-9_.-]+__[A-Za-z0-9_.-]+-\d+", identifier):
             raise ValueError("invalid instance ID")
@@ -302,6 +316,34 @@ def run_benchmark(
             r"[0-9a-f]{40}", task["base_commit"]
         ):
             raise ValueError("invalid repository or base commit")
+    if output.exists():
+        if not resume:
+            raise ValueError(
+                "choose a new output directory or --resume the exact frozen configuration"
+            )
+        previous = json.loads((output / "manifest.json").read_text())
+        if any(previous.get(k) != v for k, v in manifest.items() if k != "created_at"):
+            raise ValueError(
+                "cannot resume: source, tasks, environment, or model configuration changed"
+            )
+        predictions = (
+            read_jsonl(output / "predictions.jsonl")
+            if (output / "predictions.jsonl").exists()
+            else []
+        )
+        identifiers = [p["instance_id"] for p in predictions]
+        if len(set(identifiers)) != len(identifiers) or set(identifiers) - set(
+            manifest["task_ids"]
+        ):
+            raise ValueError("cannot resume duplicate or unknown predictions")
+    else:
+        output.mkdir(parents=True, mode=0o700)
+        write_json(output / "manifest.json", manifest)
+        predictions = []
+    completed = {p["instance_id"] for p in predictions}
+
+    def run_one(task: dict[str, Any]) -> dict[str, Any]:
+        identifier = task["instance_id"]
         logger = RunLogger(output / "traces" / identifier, identifier, identifier)
         logger.emit("run_start", mode=mode, base_commit=task["base_commit"])
         try:
@@ -357,10 +399,33 @@ def run_benchmark(
                 "resolved": None,
                 "error_type": type(error).__name__,
             }
-        predictions.append(prediction)
-        with (output / "predictions.jsonl").open("a") as stream:
-            stream.write(json.dumps(prediction, ensure_ascii=False) + "\n")
-        print(f"[{index}/{len(tasks)}] {identifier}: {prediction['status']}", flush=True)
+        return prediction
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(run_one, t) for t in tasks if t["instance_id"] not in completed]
+        for future in as_completed(futures):
+            prediction = future.result()
+            predictions.append(prediction)
+            with (output / "predictions.jsonl").open("a") as stream:
+                stream.write(json.dumps(prediction, ensure_ascii=False) + "\n")
+                stream.flush()
+            print(
+                f"[{len(predictions)}/{len(tasks)}] {prediction['instance_id']}: {prediction['status']}",
+                flush=True,
+            )
+    order = {t["instance_id"]: i for i, t in enumerate(tasks)}
+    predictions.sort(key=lambda p: order[p["instance_id"]])
+    write_jsonl(output / "predictions.jsonl", predictions)
+    write_json(
+        output / "completion.json",
+        {
+            "completed_at": datetime.now(UTC).isoformat(),
+            "count": len(predictions),
+            "predictions_sha256": hashlib.sha256(
+                (output / "predictions.jsonl").read_bytes()
+            ).hexdigest(),
+        },
+    )
     return predictions
 
 
@@ -439,6 +504,7 @@ def incorporate_external_scores(
         with reviews.open() as stream:
             rows = list(csv.DictReader(stream))
         seen, judged, correct = set(), set(), set()
+        per_issue = {r["instance_id"]: r for r in summary["per_issue"]}
         for row in rows:
             identifier = row["instance_id"]
             if identifier not in expected or identifier in seen:
@@ -456,6 +522,8 @@ def incorporate_external_scores(
             if verdict == "correct" and not prediction_map.get(identifier, {}).get("root_cause"):
                 raise ValueError("cannot score a missing root-cause diagnosis as correct")
             judged.add(identifier)
+            per_issue[identifier]["root_cause_correct"] = verdict == "correct"
+            per_issue[identifier]["human_verdict"] = verdict
             if verdict == "correct":
                 correct.add(identifier)
         summary["human_reviewed"] = len(judged)
@@ -473,6 +541,8 @@ def incorporate_external_scores(
         if any(not prediction_map.get(i, {}).get("model_patch") for i in resolved):
             raise ValueError("resolved instances must have submitted nonempty patches")
         summary["patch_resolution_rate"] = len(resolved) / len(expected)
+        for row in summary["per_issue"]:
+            row["resolved"] = row["instance_id"] in resolved
         summary["harness_report_sha256"] = hashlib.sha256(harness_report.read_bytes()).hexdigest()
     return summary
 

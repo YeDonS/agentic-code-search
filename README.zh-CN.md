@@ -20,8 +20,9 @@
 | 生成补丁的回归测试通过率 | 官方评测导出与评分已实现；**尚未评测** |
 
 这些数字衡量“候选文件是否命中维护者补丁修改的文件”，不是修复成功率。
-当前环境没有可用模型凭证，未进行真实模型评测。固定演示使用人工构造缺陷，
-排除在 100 条历史任务之外。[真实运行结果与日志](reports/README.md)。
+已通过本地 Codex CLI 登录对前三条历史问题运行真实模型，三个补丁均通过应用检查；
+功能测试由官方评测另行验证。固定演示使用人工构造缺陷，排除在 100 条历史任务之外。
+[真实运行结果与日志](reports/README.md)。
 
 ## 快速运行
 
@@ -73,6 +74,24 @@ flowchart TD
 
 ## 接入真实模型与仓库
 
+也可以复用本地 [Codex CLI 登录](https://learn.chatgpt.com/docs/non-interactive-mode)，
+无需单独导出 API Key（已验证 CLI 0.162.0-alpha.2）：
+
+```bash
+codex login
+export ASSISTANT_MODEL=codex-cli:gpt-6.1-sol  # 选择账号可用的模型
+export ASSISTANT_CODEX_REASONING_EFFORT=medium
+export ASSISTANT_CODEX_TRANSPORT=https       # 可选；本次网络采用此设置
+uv run code-assistant doctor
+uv run code-assistant debug /你的仓库路径 "描述实际行为、预期行为及复现条件"
+```
+
+这会消耗 Codex 账户额度。适配器在空临时目录运行，关闭内置执行、联网搜索和连接器，
+通过结构化 JSON 请求项目工具；仓库只向项目的白名单工具开放。登录凭证由 CLI 自行
+管理，不复制到公开 CI 或 Docker 镜像。
+
+也可以使用独立模型 API Key：
+
 ```bash
 cp .env.example .env
 # 在 .env 中配置 ASSISTANT_MODE=model、ASSISTANT_MODEL=provider:model-id，
@@ -123,7 +142,9 @@ uv run code-assistant benchmark run runs/my-retrieval-100 --mode retrieval
 uv run code-assistant logs runs/my-retrieval-100
 # 下面需要模型凭证，先运行三条试验再扩大规模。
 uv run code-assistant benchmark run runs/model-pilot --mode model --limit 3
-uv run code-assistant benchmark run runs/model-100 --mode model
+uv run code-assistant benchmark run runs/model-100 --mode model --workers 6
+# 只允许以完全相同的源码、环境、模型和任务配置续跑。
+uv run code-assistant benchmark run runs/model-100 --mode model --workers 6 --resume
 uv run code-assistant benchmark export runs/model-100/predictions.jsonl runs/model-100/swebench.jsonl
 ```
 

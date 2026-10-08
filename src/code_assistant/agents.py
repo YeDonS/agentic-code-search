@@ -7,6 +7,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_core.outputs import ChatGeneration, ChatResult
 
+from code_assistant.codex_model import CodexCliModel
 from code_assistant.config import Settings
 from code_assistant.telemetry import RunLogger
 
@@ -21,7 +22,9 @@ PROMPTS = {
     + """\nROLE: code_search
 Locate the root cause by searching repository symbols, error text, and likely files. Read
 the relevant function and nearby callers/tests. Refine the query after empty results or
-new test evidence. Stop when you have concrete source evidence. Return a brief finding.""",
+new test evidence. Batch independent read_file calls to conserve turns. Read the complete
+lines that must change, with nearby context, so synthesis can construct an applicable diff.
+Stop when you have concrete source evidence. Return a brief finding.""",
     "test_runner": COMMON
     + """\nROLE: test_runner
 Select a narrow existing Python test based on source evidence. Use run_tests once, then
@@ -36,6 +39,9 @@ suggested_fix (string), proposed_patch (unified diff string or empty string),
 confidence (low|medium|high), limitations (array of strings).
 Every affected file must occur in source evidence and at least one cited ID must be a source
 read. If the evidence does not establish a cause, say so, use low confidence, and no patch.
+When the cause is established, propose a minimal fix as a valid unified diff with --- a/path,
++++ b/path and @@ hunk headers. Copy original context exactly from read_file observations,
+omit displayed line-number prefixes, and list every edited file in affected_files.
 Describe baseline tests honestly. A suggested patch is UNVERIFIED, even when baseline tests pass.
 """,
 }
@@ -106,6 +112,14 @@ class DemoModel(BaseChatModel):
 def get_model(settings: Settings) -> BaseChatModel:
     if settings.mode == "demo":
         return DemoModel()
+    if settings.model.startswith("codex-cli:"):
+        return CodexCliModel(
+            model_name=settings.model.removeprefix("codex-cli:"),
+            timeout=settings.model_timeout,
+            reasoning_effort=settings.codex_reasoning_effort,
+            executable=settings.codex_executable,
+            transport=settings.codex_transport,
+        )
     kwargs: dict[str, Any] = {"temperature": 0, "timeout": settings.model_timeout, "max_retries": 1}
     key = (
         settings.anthropic_api_key
@@ -148,6 +162,10 @@ class ToolCallingAgent:
                 duration_ms=round((time.monotonic() - start) * 1000),
                 input_tokens=usage.get("input_tokens"),
                 output_tokens=usage.get("output_tokens"),
+                cached_input_tokens=usage.get("input_token_details", {}).get("cache_read"),
+                provider=response.response_metadata.get("provider"),
+                builtin_tool_calls=response.response_metadata.get("builtin_tool_calls"),
+                transport_reconnects=response.response_metadata.get("transport_reconnects"),
                 tool_call_count=len(response.tool_calls),
             )
             messages.append(response)

@@ -1,4 +1,6 @@
 import json
+import shutil
+import subprocess
 from pathlib import Path
 from typing import Annotated
 
@@ -13,6 +15,44 @@ from code_assistant.workflow import debug_repository
 app = typer.Typer(no_args_is_help=True)
 bench = typer.Typer(no_args_is_help=True)
 app.add_typer(bench, name="benchmark")
+
+
+@app.command()
+def doctor():
+    """Check model access configuration without displaying or extracting credentials."""
+    settings = Settings(mode="model")
+    result = {"model": settings.model, "test_executor": settings.test_executor}
+    if settings.model.startswith("codex-cli:"):
+        available = bool(shutil.which(settings.codex_executable))
+        result["cli_installed"] = available
+        if available:
+            version = subprocess.run(
+                [settings.codex_executable, "--version"], capture_output=True, text=True, timeout=10
+            )
+            login = subprocess.run(
+                [settings.codex_executable, "login", "status"], capture_output=True, timeout=10
+            )
+            result.update(
+                cli_version=version.stdout.strip(),
+                logged_in=login.returncode == 0,
+                transport=settings.codex_transport,
+            )
+        ready = available and result.get("logged_in", False)
+    else:
+        key = (
+            settings.anthropic_api_key
+            if settings.model.startswith("anthropic:")
+            else settings.openai_api_key
+            if settings.model.startswith("openai:")
+            else None
+        )
+        ready = key is not None
+        result["provider_key_configured"] = ready
+    result["configuration_ready"] = bool(ready)
+    result["inference_tested"] = False
+    typer.echo(json.dumps(result, indent=2))
+    if not ready:
+        raise typer.Exit(1)
 
 
 @app.command()
@@ -70,10 +110,12 @@ def run(
     limit: Annotated[int | None, typer.Option(min=1)] = None,
     tasks: Path = BENCHMARK_ROOT / "tasks.jsonl",
     cache: Path = Path(".cache"),
+    workers: Annotated[int, typer.Option(min=1, max=8)] = 1,
+    resume: bool = False,
 ):
     """Run retrieval or real-model diagnostics on isolated pre-fix source snapshots."""
     settings = Settings(test_executor="disabled")
-    benchmark.run_benchmark(tasks, output, cache, settings, mode, limit)
+    benchmark.run_benchmark(tasks, output, cache, settings, mode, limit, workers, resume)
     task_rows = benchmark.read_jsonl(tasks)
     if limit is not None:
         task_rows = task_rows[:limit]
@@ -93,6 +135,20 @@ def export(predictions: Path, destination: Path, model_name: str = "agentic-code
     benchmark.export_swebench(rows, destination, model_name)
     benchmark.export_review(rows, destination.with_suffix(".review.csv"))
     typer.echo(str(destination))
+
+
+@bench.command("review")
+def review(
+    predictions: Path,
+    output: Path,
+    cache: Path = Path(".cache"),
+    workers: Annotated[int, typer.Option(min=1, max=8)] = 4,
+):
+    """Compare FROZEN root causes with gold using a labeled automated LLM reviewer."""
+    from code_assistant.review import review_predictions
+
+    summary = review_predictions(predictions, output, cache, Settings(mode="model"), workers)
+    typer.echo(json.dumps(summary, indent=2))
 
 
 @bench.command("reference")
